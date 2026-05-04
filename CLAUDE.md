@@ -84,3 +84,5 @@ Os arquivos de cada skill estao em `.claude/commands/`.
 Formato obrigatorio: tipo(escopo): descricao
 Exemplos: feat(portfolio): adiciona secao de contato
           fix(css): corrige cor dos links no dark mode
+
+Apos qualquer alteracao em arquivos, sugerir o commit diretamente sem perguntar antes se o usuario quer a sugestao.
