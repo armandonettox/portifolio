@@ -1,4 +1,5 @@
 import os
+import base64
 import streamlit as st
 import requests
 from datetime import datetime, timezone, timedelta
@@ -533,6 +534,22 @@ def buscar_linguagens(usuario: str, repo_nome: str) -> list[str]:
         return []
 
 
+@st.cache_data(ttl=3600)
+def buscar_readme_perfil(usuario: str) -> str | None:
+    try:
+        r = requests.get(
+            f"https://api.github.com/repos/{usuario}/{usuario}/readme",
+            headers=_GITHUB_HEADERS,
+            timeout=5,
+        )
+        if r.status_code == 200:
+            conteudo = r.json().get("content", "")
+            return base64.b64decode(conteudo).decode("utf-8")
+    except Exception:
+        pass
+    return None
+
+
 def _formatar(nome: str, repo: dict, cfg: dict) -> dict:
     titulo_raw = nome.replace("_", " ").replace("-", " ").title()
     # Usa descricao do config se existir; senao usa a do GitHub so se parecer util
@@ -595,27 +612,24 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ─── Bio ──────────────────────────────────────────────────────────────────────
+_BIO_FALLBACK = """Sou graduando em Ciência de Dados e entusiasta do universo analítico, com uma sólida formação em matemática. Sou um entusiasta da democratização de dados, focando no desenvolvimento de soluções de grande impacto por meio de ferramentas de código aberto e arquiteturas de baixo custo.
+
+Minha atuação integra a capacidade analítica de Python, R e SQL para desenvolver soluções inovadoras. Meu objetivo é transformar dados em ativos estratégicos, seja explorando padrões ou automatizando processos. Defendo o uso de ferramentas de código aberto para democratizar a análise de dados, proporcionando resultados significativos com o mínimo de custo operacional."""
+
+_readme = buscar_readme_perfil(USUARIO_GITHUB)
+_bio_texto = _readme if _readme else _BIO_FALLBACK
+
+# Converte parágrafos de texto simples em <p> para manter o estilo da .pf-bio
+_bio_paragrafos = "".join(
+    f"<p>{p.strip()}</p>"
+    for p in _bio_texto.split("\n\n")
+    if p.strip()
+)
+
 st.markdown(f"""
 <div class="pf-bio">
-    <p>
-        <span style="font-style:italic; color:{muted};">{SAUDACAO}</span>
-    </p>
-    <p>
-        Graduando em Ci&ecirc;ncia de Dados e entusiasta do universo anal&iacute;tico,
-        possuo s&oacute;lida base em matem&aacute;tica. Sou um entusiasta da
-        democratiza&ccedil;&atilde;o de dados, priorizando o desenvolvimento de solu&ccedil;&otilde;es
-        de alto impacto atrav&eacute;s de ferramentas open-source e arquiteturas de baixo custo.
-    </p>
-    <p>
-        Minha atua&ccedil;&atilde;o combina o poder anal&iacute;tico de
-        <strong>Python</strong>, <strong>R</strong> e <strong>SQL</strong>
-        para arquitetar solu&ccedil;&otilde;es que v&atilde;o al&eacute;m do convencional.
-        Seja explorando padr&otilde;es com Pandas e Seaborn ou automatizando processos
-        com Selenium, meu objetivo &eacute; um s&oacute;: transformar dados em ativos
-        estrat&eacute;gicos. Sou um defensor do uso de ferramentas de c&oacute;digo aberto
-        para democratizar a an&aacute;lise de dados, entregando resultados de impacto real
-        com o menor custo operacional poss&iacute;vel.
-    </p>
+    <p><span style="font-style:italic; color:{muted};">{SAUDACAO}</span></p>
+    {_bio_paragrafos}
 </div>
 """, unsafe_allow_html=True)
 
