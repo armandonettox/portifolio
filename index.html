@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
     <style>
         /* ── Variáveis de tema ── */
         :root {
@@ -516,6 +515,31 @@
         return res.json();
     }
 
+    function extrairParagrafos(markdown) {
+        return markdown
+            .split(/\n\n+/)
+            .map(bloco => bloco.trim())
+            .filter(bloco => {
+                if (!bloco) return false;
+                if (/^#{1,6}\s/.test(bloco)) return false;       // títulos
+                if (/^!\[/.test(bloco)) return false;             // imagens/badges
+                if (/^-{3,}$/.test(bloco)) return false;          // separadores ---
+                if (/^\[!\[/.test(bloco)) return false;           // badge wrappado em link
+                if (bloco.startsWith('<')) return false;           // comentários e tags HTML
+                return true;
+            })
+            .map(bloco =>
+                bloco
+                    .replace(/!\[.*?\]\(.*?\)/g, '')              // remove imagens inline
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // **bold**
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')         // *itálico*
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')      // [texto](url) → texto
+                    .replace(/^[*\-]\s+/gm, '')                   // remove marcadores de lista
+                    .trim()
+            )
+            .filter(Boolean);
+    }
+
     async function carregarBio() {
         try {
             const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${USUARIO}/readme`);
@@ -524,6 +548,9 @@
             const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
             const texto = new TextDecoder('utf-8').decode(bytes);
 
+            const paragrafos = extrairParagrafos(texto);
+            if (paragrafos.length === 0) return;
+
             const bio = document.getElementById('bio');
 
             // Remove parágrafos do fallback estático, mantém a saudação
@@ -531,10 +558,11 @@
                 if (!p.querySelector('#saudacao')) p.remove();
             });
 
-            // Renderiza o markdown do README como HTML
-            const div = document.createElement('div');
-            div.innerHTML = marked.parse(texto);
-            bio.appendChild(div);
+            paragrafos.forEach(texto => {
+                const p = document.createElement('p');
+                p.innerHTML = texto;
+                bio.appendChild(p);
+            });
         } catch (_) {
             // Mantém o fallback estático já no HTML
         }
