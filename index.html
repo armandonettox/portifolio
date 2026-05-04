@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
     <style>
         /* ── Variáveis de tema ── */
         :root {
@@ -113,6 +114,12 @@
         .pf-bio p { margin-bottom: 0.75rem; }
         .pf-bio p:last-child { margin-bottom: 0; }
         .pf-bio strong { font-weight: 500; }
+        .pf-bio h1, .pf-bio h2, .pf-bio h3 { display: none; }
+        .pf-bio img { display: none; }
+        .pf-bio a { border-bottom: 1px solid var(--accent); }
+        .pf-bio a:hover { color: var(--accent); }
+        .pf-bio ul { padding-left: 1.2rem; margin-bottom: 0.75rem; }
+        .pf-bio hr { display: none; }
         .pf-saudacao { font-style: italic; color: var(--muted); }
 
         /* ── Seção ── */
@@ -512,23 +519,22 @@
     async function carregarBio() {
         try {
             const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${USUARIO}/readme`);
-            const texto = atob(data.content.replace(/\n/g, ''));
+
+            // Decodifica base64 respeitando UTF-8
+            const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+            const texto = new TextDecoder('utf-8').decode(bytes);
+
             const bio = document.getElementById('bio');
-            const saudacaoEl = bio.querySelector('#saudacao').parentElement;
 
             // Remove parágrafos do fallback estático, mantém a saudação
             Array.from(bio.querySelectorAll('p')).forEach(p => {
                 if (!p.querySelector('#saudacao')) p.remove();
             });
 
-            // Adiciona parágrafos do README
-            texto.split(/\n\n+/).forEach(bloco => {
-                const limpo = bloco.trim();
-                if (!limpo) return;
-                const p = document.createElement('p');
-                p.textContent = limpo;
-                bio.appendChild(p);
-            });
+            // Renderiza o markdown do README como HTML
+            const div = document.createElement('div');
+            div.innerHTML = marked.parse(texto);
+            bio.appendChild(div);
         } catch (_) {
             // Mantém o fallback estático já no HTML
         }
