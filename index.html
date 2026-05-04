@@ -120,7 +120,7 @@
         .pf-bio a:hover { color: var(--accent); }
         .pf-bio ul { padding-left: 1.2rem; margin-bottom: 0.75rem; }
         .pf-bio hr { display: none; }
-        .pf-saudacao { font-style: italic; color: var(--muted); }
+        .pf-saudacao { font-style: normal; color: var(--text); }
 
         /* ── Seção ── */
         .pf-section { margin-top: 1.8rem; }
@@ -545,9 +545,9 @@
 
     // ── Saudação dinâmica (Brasília UTC-3) ──
     const hora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })).getHours();
-    let saudacao = 'Boa noite.';
-    if (hora >= 5 && hora < 12) saudacao = 'Bom dia.';
-    else if (hora >= 12 && hora < 18) saudacao = 'Boa tarde.';
+    let saudacao = 'Olá, boa noite!';
+    if (hora >= 5 && hora < 12) saudacao = 'Olá, bom dia!';
+    else if (hora >= 12 && hora < 18) saudacao = 'Olá, boa tarde!';
     document.getElementById('saudacao').textContent = saudacao;
 
     // ── GitHub API ──
