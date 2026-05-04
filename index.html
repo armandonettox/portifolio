@@ -186,73 +186,43 @@
         }
 
         /* ── Competências ── */
-        .pf-tree {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .pf-skills {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
-        .pf-tree details { border: none; outline: none; }
-        .pf-tree summary {
-            font-size: 0.97rem;
-            font-weight: 500;
-            color: var(--text);
-            cursor: pointer;
-            list-style: none;
+        .pf-skill-row {
             display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            user-select: none;
-            padding: 0.1rem 0;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
         }
-        .pf-tree summary::-webkit-details-marker { display: none; }
-        .pf-tree summary::before {
-            content: '▸';
-            font-size: 0.75rem;
-            color: var(--accent);
-            transition: transform 0.15s;
-            flex-shrink: 0;
-            line-height: 1;
-        }
-        .pf-tree details[open] summary::before { transform: rotate(90deg); }
-        .pf-tree summary:hover { color: var(--muted); }
-
-        .pf-tree-subcategories {
-            list-style: none;
-            padding: 0;
-            margin: 0.3rem 0 0.2rem 1rem;
-            border-left: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .pf-tree-sub {
-            position: relative;
-            padding-left: 0.9rem;
-        }
-        .pf-tree-sub::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.6em;
-            width: 0.6rem;
-            height: 1px;
-            background-color: var(--border);
-        }
-        .pf-tree-sublabel {
-            font-size: 0.88rem;
-            font-weight: 300;
-            color: var(--muted);
-            font-style: italic;
-        }
-        .pf-tree-items {
-            display: inline;
+        .pf-skill-lang {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--muted);
-            font-weight: 300;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+        .pf-skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+        .pf-skill-tag {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text);
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.1rem 0.5rem;
+            line-height: 1.6;
+            white-space: nowrap;
         }
 
         /* ── Experiência ── */
@@ -353,65 +323,45 @@
     <!-- Competências -->
     <div class="pf-section">
         <div class="pf-section-title">Competências</div>
-        <ul class="pf-tree">
-            <li>
-                <details>
-                    <summary>Python</summary>
-                    <ul class="pf-tree-subcategories">
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Análise de dados</span>
-                            <span class="pf-tree-items"> — pandas · numpy</span>
-                        </li>
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Visualização</span>
-                            <span class="pf-tree-items"> — matplotlib · seaborn · plotly</span>
-                        </li>
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Automação</span>
-                            <span class="pf-tree-items"> — selenium</span>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>SQL</summary>
-                    <ul class="pf-tree-subcategories">
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Consulta e transformação</span>
-                            <span class="pf-tree-items"> — BigQuery · AWS Athena</span>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>R</summary>
-                    <ul class="pf-tree-subcategories">
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Análise estatística</span>
-                            <span class="pf-tree-items"> — ggplot2 · dplyr</span>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>Ferramentas</summary>
-                    <ul class="pf-tree-subcategories">
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Dashboards</span>
-                            <span class="pf-tree-items"> — Streamlit · Power BI · Tableau</span>
-                        </li>
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Versionamento</span>
-                            <span class="pf-tree-items"> — Git · GitHub</span>
-                        </li>
-                        <li class="pf-tree-sub">
-                            <span class="pf-tree-sublabel">Cloud</span>
-                            <span class="pf-tree-items"> — AWS · Google Cloud</span>
-                        </li>
-                    </ul>
+        <div class="pf-skills">
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">Python</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">pandas</span>
+                    <span class="pf-skill-tag">numpy</span>
+                    <span class="pf-skill-tag">matplotlib</span>
+                    <span class="pf-skill-tag">seaborn</span>
+                    <span class="pf-skill-tag">plotly</span>
+                    <span class="pf-skill-tag">selenium</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">SQL</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">BigQuery</span>
+                    <span class="pf-skill-tag">AWS Athena</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">R</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">ggplot2</span>
+                    <span class="pf-skill-tag">dplyr</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">Ferramentas</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">Power BI</span>
+                    <span class="pf-skill-tag">Tableau</span>
+                    <span class="pf-skill-tag">Streamlit</span>
+                    <span class="pf-skill-tag">Git</span>
+                    <span class="pf-skill-tag">GitHub</span>
+                    <span class="pf-skill-tag">AWS</span>
+                    <span class="pf-skill-tag">Google Cloud</span>
+                </div>
+            </div>
+        </div>
                 </details>
             </li>
         </ul>
