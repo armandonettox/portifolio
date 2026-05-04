@@ -285,6 +285,121 @@
             margin-top: 0.1rem;
         }
 
+        /* ── Modal de projeto ── */
+        .pf-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 100;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+        .pf-modal-overlay.open { display: flex; }
+
+        .pf-modal {
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 100%;
+            max-width: 640px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .pf-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .pf-modal-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .pf-modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0;
+            flex-shrink: 0;
+            transition: color 0.15s;
+        }
+        .pf-modal-close:hover { color: var(--text); }
+
+        .pf-modal-body {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--text);
+        }
+        .pf-modal-body p { margin-bottom: 0.75rem; }
+        .pf-modal-body p:last-child { margin-bottom: 0; }
+        .pf-modal-body h1, .pf-modal-body h2 {
+            font-size: 0.97rem;
+            font-weight: 500;
+            color: var(--text);
+            margin: 1rem 0 0.3rem;
+        }
+        .pf-modal-body h3 { font-size: 0.9rem; font-weight: 500; margin: 0.8rem 0 0.2rem; }
+        .pf-modal-body ul, .pf-modal-body ol {
+            padding-left: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+        .pf-modal-body li { margin-bottom: 0.2rem; }
+        .pf-modal-body code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            background: var(--border);
+            padding: 0.1em 0.35em;
+            border-radius: 3px;
+        }
+        .pf-modal-body pre {
+            background: var(--border);
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 0.75rem;
+        }
+        .pf-modal-body pre code { background: none; padding: 0; }
+        .pf-modal-body img { display: none; }
+        .pf-modal-body a { border-bottom: 1px solid var(--accent); }
+        .pf-modal-body a:hover { color: var(--accent); }
+        .pf-modal-body strong { font-weight: 500; }
+
+        .pf-modal-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .pf-btn-repo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            padding: 0.4rem 0.9rem;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .pf-btn-repo:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
         /* ── Status / loading ── */
         .pf-status {
             font-size: 0.9rem;
@@ -424,6 +539,24 @@
         </ul>
     </div>
 
+</div>
+
+<!-- Modal de projeto -->
+<div class="pf-modal-overlay" id="modal-overlay">
+    <div class="pf-modal" role="dialog" aria-modal="true">
+        <div class="pf-modal-header">
+            <span class="pf-modal-title" id="modal-title"></span>
+            <button class="pf-modal-close" id="modal-close" aria-label="Fechar">&#x2715;</button>
+        </div>
+        <div class="pf-modal-body" id="modal-body">
+            <span class="pf-status">Carregando...</span>
+        </div>
+        <div class="pf-modal-footer">
+            <a class="pf-btn-repo" id="modal-repo-link" href="#" target="_blank">
+                Ver repositório &#x2192;
+            </a>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -598,6 +731,90 @@
             descricao: cfg.descricao || repo.description || '',
             url: repo.html_url,
         };
+    }
+
+    // ── Modal de projeto ──
+    const overlay   = document.getElementById('modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody  = document.getElementById('modal-body');
+    const modalLink  = document.getElementById('modal-repo-link');
+
+    function abrirModal(titulo, url, nome) {
+        modalTitle.textContent = titulo;
+        modalLink.href = url;
+        modalBody.innerHTML = '<span class="pf-status">Carregando...</span>';
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        carregarReadmeModal(nome);
+    }
+
+    function fecharModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-close').addEventListener('click', fecharModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) fecharModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+    function markdownParaHtml(md) {
+        // Remove badges/imagens
+        md = md.replace(/!\[.*?\]\(.*?\)/g, '');
+        // Remove links de badge envoltos em []()
+        md = md.replace(/\[!\[.*?\]\(.*?\)\]\(.*?\)/g, '');
+
+        const linhas = md.split('\n');
+        let html = '';
+        let emLista = false;
+
+        for (let i = 0; i < linhas.length; i++) {
+            let l = linhas[i];
+
+            // Fecha lista se linha não for item
+            if (emLista && !/^[*\-+]\s|^\d+\.\s/.test(l.trim())) {
+                html += '</ul>';
+                emLista = false;
+            }
+
+            if (/^#{1}\s+(.+)/.test(l)) {
+                html += `<h1>${l.replace(/^#\s+/, '')}</h1>`;
+            } else if (/^#{2}\s+(.+)/.test(l)) {
+                html += `<h2>${l.replace(/^##\s+/, '')}</h2>`;
+            } else if (/^#{3,}\s+(.+)/.test(l)) {
+                html += `<h3>${l.replace(/^#{3,}\s+/, '')}</h3>`;
+            } else if (/^[*\-+]\s/.test(l.trim())) {
+                if (!emLista) { html += '<ul>'; emLista = true; }
+                html += `<li>${inline(l.trim().replace(/^[*\-+]\s/, ''))}</li>`;
+            } else if (/^-{3,}$/.test(l.trim())) {
+                // separador — ignora
+            } else if (l.trim() === '') {
+                // linha vazia — ignora
+            } else {
+                html += `<p>${inline(l)}</p>`;
+            }
+        }
+        if (emLista) html += '</ul>';
+        return html;
+    }
+
+    function inline(t) {
+        return t
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+    }
+
+    async function carregarReadmeModal(nome) {
+        try {
+            const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${nome}/readme`);
+            const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+            const texto = new TextDecoder('utf-8').decode(bytes);
+            modalBody.innerHTML = markdownParaHtml(texto);
+        } catch (_) {
+            modalBody.innerHTML = '<span class="pf-status">README não encontrado.</span>';
+        }
     }
 
     carregarBio();

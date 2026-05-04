@@ -20,7 +20,13 @@ st.set_page_config(
 
 # Dark mode via query param: ?dark=1
 dark = st.query_params.get("dark", "0") == "1"
-toggle_href = "?dark=0" if dark else "?dark=1"
+projeto_selecionado = st.query_params.get("projeto", "")
+
+_dark_toggle_val = "0" if dark else "1"
+if projeto_selecionado:
+    toggle_href = f"?projeto={projeto_selecionado}&dark={_dark_toggle_val}"
+else:
+    toggle_href = f"?dark={_dark_toggle_val}"
 
 # ─── Controle manual dos projetos ────────────────────────────────────────────
 #
@@ -489,6 +495,71 @@ a.pf-link:hover {{
     font-weight: 300;
 }}
 
+/* README do projeto renderizado via st.markdown nativo */
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+.stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {{
+    font-family: 'Newsreader', Georgia, serif !important;
+    color: {text} !important;
+    font-weight: 500 !important;
+    margin-top: 1.4rem !important;
+    margin-bottom: 0.4rem !important;
+}}
+.stMarkdown h1 {{ font-size: 1.4rem !important; }}
+.stMarkdown h2 {{ font-size: 1.15rem !important; }}
+.stMarkdown h3 {{ font-size: 1rem !important; }}
+.stMarkdown p {{
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 0.97rem !important;
+    font-weight: 300 !important;
+    line-height: 1.75 !important;
+    color: {text} !important;
+}}
+.stMarkdown code {{
+    font-size: 0.85rem !important;
+    background-color: {border} !important;
+    padding: 0.1em 0.35em !important;
+    border-radius: 3px !important;
+    font-family: 'Courier New', monospace !important;
+    color: {text} !important;
+}}
+.stMarkdown pre {{
+    background-color: {border} !important;
+    border-radius: 5px !important;
+    padding: 1rem !important;
+    overflow-x: auto !important;
+}}
+.stMarkdown pre code {{
+    background-color: transparent !important;
+    padding: 0 !important;
+}}
+.stMarkdown ul, .stMarkdown ol {{
+    padding-left: 1.4rem !important;
+    color: {text} !important;
+}}
+.stMarkdown li {{
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 0.97rem !important;
+    font-weight: 300 !important;
+    line-height: 1.75 !important;
+    color: {text} !important;
+}}
+.stMarkdown a {{
+    color: {accent} !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid {accent} !important;
+}}
+.stMarkdown img {{
+    max-width: 100% !important;
+    border-radius: 4px !important;
+}}
+.stMarkdown blockquote {{
+    border-left: 3px solid {border} !important;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 0.3rem 1rem !important;
+    color: {muted} !important;
+    font-style: italic !important;
+}}
+
 /* Estado de carregamento / erro */
 .pf-status {{
     font-family: 'Newsreader', Georgia, serif;
@@ -532,6 +603,22 @@ def buscar_linguagens(usuario: str, repo_nome: str) -> list[str]:
         return list(langs.keys())
     except Exception:
         return []
+
+
+@st.cache_data(ttl=3600)
+def buscar_readme_projeto(usuario: str, repo: str) -> str | None:
+    try:
+        r = requests.get(
+            f"https://api.github.com/repos/{usuario}/{repo}/readme",
+            headers=_GITHUB_HEADERS,
+            timeout=5,
+        )
+        if r.status_code == 200:
+            conteudo = r.json().get("content", "")
+            return base64.b64decode(conteudo).decode("utf-8")
+    except Exception:
+        pass
+    return None
 
 
 @st.cache_data(ttl=3600)
@@ -588,14 +675,16 @@ def montar_projetos(repos_raw: list) -> list:
 
 def render_lista(projetos: list, usuario: str) -> str:
     items = ""
+    _dark_suffix = "&dark=1" if dark else ""
     for p in projetos:
         langs = buscar_linguagens(usuario, p["nome"])
         meta  = f'<span class="pf-meta">({", ".join(langs)})</span>' if langs else ""
         desc  = f'<span class="pf-desc"> — {p["descricao"]}</span>' if p["descricao"] else ""
+        href  = f"?projeto={p['nome']}{_dark_suffix}"
         items += f"""
         <li class="pf-item">
             <span class="pf-bullet">&#x2022;</span>
-            <a href="{p['url']}" target="_blank" class="pf-link">{p['titulo']}</a>{desc}{meta}
+            <a href="{href}" class="pf-link">{p['titulo']}</a>{desc}{meta}
         </li>"""
     return f'<ul class="pf-list">{items}</ul>'
 
@@ -610,6 +699,39 @@ st.markdown(f"""
     </a>
 </div>
 """, unsafe_allow_html=True)
+
+# ─── Pagina de README do projeto ─────────────────────────────────────────────
+if projeto_selecionado:
+    _back_href = f"/?dark=1" if dark else "/"
+    _github_url = f"https://github.com/{USUARIO_GITHUB}/{projeto_selecionado}"
+    _readme_proj = buscar_readme_projeto(USUARIO_GITHUB, projeto_selecionado)
+    _titulo_proj = projeto_selecionado.replace("_", " ").replace("-", " ").title()
+    cfg_proj = PROJETOS_CONFIG.get(projeto_selecionado, {})
+    if cfg_proj.get("titulo"):
+        _titulo_proj = cfg_proj["titulo"]
+
+    st.markdown(f"""
+    <div class="pf-section" style="margin-top:0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem;">
+            <a href="{_back_href}" class="pf-nav-link" style="display:inline-flex; align-items:center; gap:0.35rem;">
+                <span style="font-size:0.85rem;">&#8592;</span> voltar
+            </a>
+            <a href="{_github_url}" target="_blank" class="pf-nav-link"
+               style="border:1px solid {border}; padding:0.25rem 0.7rem; border-radius:4px;">
+                ver no GitHub
+            </a>
+        </div>
+        <h2 style="font-family:'Newsreader',Georgia,serif; font-size:1.3rem; font-weight:500;
+                   color:{text}; margin:0 0 1.2rem 0;">{_titulo_proj}</h2>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if _readme_proj:
+        st.markdown(_readme_proj)
+    else:
+        st.markdown(f'<div class="pf-status">README nao encontrado para este repositorio.</div>', unsafe_allow_html=True)
+
+    st.stop()
 
 # ─── Bio ──────────────────────────────────────────────────────────────────────
 _BIO_FALLBACK = """Sou graduando em Ciência de Dados e entusiasta do universo analítico, com uma sólida formação em matemática. Sou um entusiasta da democratização de dados, focando no desenvolvimento de soluções de grande impacto por meio de ferramentas de código aberto e arquiteturas de baixo custo.
