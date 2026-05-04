@@ -122,7 +122,7 @@
         .pf-saudacao { font-style: italic; color: var(--muted); }
 
         /* ── Seção ── */
-        .pf-section { margin-top: 1.2rem; }
+        .pf-section { margin-top: 1.8rem; }
 
         .pf-section-title {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -210,8 +210,8 @@
         .pf-tree summary::-webkit-details-marker { display: none; }
         .pf-tree summary::before {
             content: '▸';
-            font-size: 0.6rem;
-            color: var(--muted);
+            font-size: 0.75rem;
+            color: var(--accent);
             transition: transform 0.15s;
             flex-shrink: 0;
             line-height: 1;
@@ -516,28 +516,36 @@
     }
 
     function extrairParagrafos(markdown) {
-        return markdown
-            .split(/\n\n+/)
-            .map(bloco => bloco.trim())
-            .filter(bloco => {
-                if (!bloco) return false;
-                if (/^#{1,6}\s/.test(bloco)) return false;       // títulos
-                if (/^!\[/.test(bloco)) return false;             // imagens/badges
-                if (/^-{3,}$/.test(bloco)) return false;          // separadores ---
-                if (/^\[!\[/.test(bloco)) return false;           // badge wrappado em link
-                if (bloco.startsWith('<')) return false;           // comentários e tags HTML
-                return true;
-            })
-            .map(bloco =>
-                bloco
-                    .replace(/!\[.*?\]\(.*?\)/g, '')              // remove imagens inline
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // **bold**
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')         // *itálico*
-                    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')      // [texto](url) → texto
-                    .replace(/^[*\-]\s+/gm, '')                   // remove marcadores de lista
-                    .trim()
-            )
-            .filter(Boolean);
+        const blocos = markdown.split(/\n\n+/).map(b => b.trim());
+        const resultado = [];
+
+        for (const bloco of blocos) {
+            if (!bloco) continue;
+            if (/^#{1,6}\s/.test(bloco)) continue;        // títulos
+            if (/^!\[/.test(bloco)) continue;              // imagens/badges
+            if (/^-{3,}$/.test(bloco)) continue;           // separadores ---
+            if (/^\[!\[/.test(bloco)) continue;            // badge em link
+            if (bloco.startsWith('<')) continue;            // tags HTML
+            if (/:\s*$/.test(bloco)) continue;             // linha terminando em ":" (cabeçalho de lista)
+            if (/^[*\-]\s/.test(bloco)) continue;          // lista com marcadores
+            if (/^\*\*[^*]+\*\*$/.test(bloco)) continue;  // linha só com **negrito** (subtítulo)
+
+            const limpo = bloco
+                .replace(/!\[.*?\]\(.*?\)/g, '')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                .trim();
+
+            if (!limpo) continue;
+
+            resultado.push(limpo);
+
+            // Para nos dois primeiros parágrafos — bio deve ser concisa
+            if (resultado.length === 2) break;
+        }
+
+        return resultado;
     }
 
     async function carregarBio() {
