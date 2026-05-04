@@ -123,7 +123,7 @@ else:
     border   = "#d1cfc5"   # cloud-light
     hover    = "#5e5d59"
     toggle_l = "#5e5d59"
-    accent   = "#252D65"   # azul primario da identidade visual
+    accent   = "#4a67b5"   # azul medio — visivel no fundo ivory
 
 # ─── Fonte — injetada como <link> para garantir carregamento ─────────────────
 st.markdown("""
@@ -198,7 +198,7 @@ a, a:visited, a:active,
     font-family: 'Newsreader', Georgia, serif;
     font-size: 1.05rem;
     font-weight: 500;
-    color: {text} !important;
+    color: {accent} !important;
     text-decoration: none !important;
     letter-spacing: -0.01em;
     line-height: 1;
