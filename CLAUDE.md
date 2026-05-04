@@ -75,10 +75,21 @@ Tudo configuravel no topo do app.py sem mexer no resto do codigo:
 
 ## Deploy
 
-- Plataforma: Render (free tier)
-- Start command: `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
-- Variavel de ambiente GITHUB_TOKEN configurada no painel do Render
-- DNS: Cloudflare com dois CNAMEs (@ e www) apontando para armandonetto.onrender.com, proxy desligado
+- Plataforma: GitHub Pages (repositorio armandonettox/portifolio)
+- O arquivo `index.html` na raiz e o que e publicado
+- Dominio customizado: armandonetto.com (configurado via DNS)
+
+## Skills disponiveis
+
+Use digitando `/nome` no Claude Code:
+
+| Comando | O que faz |
+|---------|-----------|
+| `/revisar-arquitetura` | Analisa a arquitetura do projeto inteiro ou de um arquivo especifico |
+| `/revisar-bugs` | Varre o projeto em busca de bugs e comportamentos inesperados |
+| `/revisar-morto` | Identifica codigo, variaveis, funcoes e arquivos que nao sao mais usados |
+
+Os arquivos de cada skill estao em `.claude/commands/`.
 
 ## Commits
 
