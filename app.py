@@ -30,7 +30,9 @@ else:
 
 # ─── Controle manual dos projetos ────────────────────────────────────────────
 #
-# Adicione entradas pelo nome exato do repositorio no GitHub.
+# ATENCAO: o deploy do site usa index.html (GitHub Pages).
+# Esta config existe apenas para a versao Streamlit (app.py).
+# Source of truth para producao: PROJETOS_CONFIG em index.html
 #
 # Campos disponiveis:
 #   titulo      -> nome exibido no portfolio (padrao: nome do repo formatado)
