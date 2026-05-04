@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         /* ── Variáveis de tema ── */
         :root {
@@ -359,6 +360,9 @@
         .pf-readme a { border-bottom: 1px solid var(--accent); }
         .pf-readme a:hover { color: var(--accent); }
         .pf-readme strong { font-weight: 500; }
+        .pf-readme table { border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.9em; }
+        .pf-readme th, .pf-readme td { border: 1px solid var(--border); padding: 0.35rem 0.65rem; text-align: left; }
+        .pf-readme th { font-weight: 500; background: var(--border); }
 
         /* ── Status / loading ── */
         .pf-status {
@@ -710,42 +714,7 @@
     function markdownParaHtml(md) {
         md = md.replace(/!\[.*?\]\(.*?\)/g, '');
         md = md.replace(/\[!\[.*?\]\(.*?\)\]\(.*?\)/g, '');
-
-        const linhas = md.split('\n');
-        let resultado = '';
-        let emLista = false;
-
-        for (const l of linhas) {
-            if (emLista && !/^[*\-+]\s|^\d+\.\s/.test(l.trim())) {
-                resultado += '</ul>';
-                emLista = false;
-            }
-            if (/^# /.test(l)) {
-                resultado += `<h1>${inline(l.replace(/^# /, ''))}</h1>`;
-            } else if (/^## /.test(l)) {
-                resultado += `<h2>${inline(l.replace(/^## /, ''))}</h2>`;
-            } else if (/^#{3,} /.test(l)) {
-                resultado += `<h3>${inline(l.replace(/^#{3,} /, ''))}</h3>`;
-            } else if (/^[*\-+] /.test(l.trim())) {
-                if (!emLista) { resultado += '<ul>'; emLista = true; }
-                resultado += `<li>${inline(l.trim().replace(/^[*\-+] /, ''))}</li>`;
-            } else if (/^-{3,}$/.test(l.trim()) || l.trim() === '') {
-                // ignora separadores e linhas vazias
-            } else {
-                resultado += `<p>${inline(l)}</p>`;
-            }
-        }
-        if (emLista) resultado += '</ul>';
-        return resultado;
-    }
-
-    function inline(t) {
-        return t
-            .replace(/`([^`]+)`/g, '<code>$1</code>')
-            .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g, '<em>$1</em>')
-            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        return marked.parse(md);
     }
 
     async function carregarPaginaProjeto(nome) {
