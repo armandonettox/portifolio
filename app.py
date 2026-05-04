@@ -580,7 +580,7 @@ def render_lista(projetos: list, usuario: str) -> str:
 st.markdown(f"""
 <div class="pf-header">
     <a href="/" class="pf-name">Armando Netto</a>
-    <a href="{toggle_href}" class="pf-toggle" title="Alternar modo escuro">
+    <a href="{toggle_href}" class="pf-toggle" title="Alternar modo escuro" target="_self">
         <span class="pf-toggle-track">
             <span class="pf-toggle-thumb"></span>
         </span>
