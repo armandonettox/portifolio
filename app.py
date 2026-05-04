@@ -108,6 +108,7 @@ if dark:
     border   = "#3d3d3a"   # slate-medium
     hover    = "#b0aea5"   # cloud-medium
     toggle_l = "#b0aea5"
+    accent   = "#6b85c4"   # azul AN suavizado para dark mode
 else:
     bg       = "#f0eee6"   # ivory-medium
     text     = "#1f1e1d"   # slate-dark
@@ -115,6 +116,7 @@ else:
     border   = "#d1cfc5"   # cloud-light
     hover    = "#5e5d59"
     toggle_l = "#5e5d59"
+    accent   = "#252D65"   # azul primario da identidade visual
 
 # ─── Fonte — injetada como <link> para garantir carregamento ─────────────────
 st.markdown("""
@@ -132,6 +134,10 @@ st.markdown(f"""
 [data-testid="stToolbar"]                  {{ display: none !important; }}
 [data-testid="stDecoration"]               {{ display: none !important; }}
 [data-testid="stStatusWidget"]             {{ display: none !important; }}
+[data-testid="stAppRunningMan"]            {{ display: none !important; }}
+[data-testid="stAppRunningIcon"]           {{ display: none !important; }}
+.stAppRunningIcon                          {{ display: none !important; }}
+.stSpinner                                 {{ display: none !important; }}
 .stDeployButton                            {{ display: none !important; }}
 section[data-testid="stSidebar"]           {{ display: none !important; }}
 [data-testid="stAppViewBlockContainer"]    {{ padding-top: 0 !important; }}
@@ -264,10 +270,10 @@ div[data-testid="stVerticalBlock"] > div {{
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: {muted};
+    color: {accent};
     margin-bottom: 0.6rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid {border};
+    border-bottom: 1px solid {accent};
 }}
 
 /* Lista de itens */
@@ -293,7 +299,7 @@ div[data-testid="stVerticalBlock"] > div {{
 .pf-item:last-child {{ border-bottom: none; }}
 
 .pf-bullet {{
-    color: {muted};
+    color: {accent};
     flex-shrink: 0;
     font-size: 0.75em;
     line-height: 2;
@@ -306,12 +312,12 @@ a.pf-link:visited,
 a.pf-link:active {{
     color: {text} !important;
     text-decoration: none !important;
-    border-bottom: 1px solid {border};
+    border-bottom: 1px solid {accent};
     transition: border-color 0.15s, color 0.15s;
 }}
 a.pf-link:hover {{
-    color: {muted} !important;
-    border-bottom-color: {muted};
+    color: {accent} !important;
+    border-bottom-color: {accent};
 }}
 
 .pf-desc {{
