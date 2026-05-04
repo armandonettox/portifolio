@@ -12,6 +12,7 @@ _GITHUB_HEADERS = {"Authorization": f"Bearer {_GITHUB_TOKEN}"} if _GITHUB_TOKEN 
 
 st.set_page_config(
     page_title="Armando Netto",
+    page_icon="assets/logos/logo_an.png",
     layout="centered",
     initial_sidebar_state="collapsed",
 )
