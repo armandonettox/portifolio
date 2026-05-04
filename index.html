@@ -16,7 +16,7 @@
             --muted:  #5e5d59;
             --border: #d1cfc5;
             --hover:  #5e5d59;
-            --accent: #252D65;
+            --accent: #4a67b5;
             --toggle-track: #d1cfc5;
             --toggle-thumb: #1f1e1d;
             --toggle-left:  3px;
@@ -65,7 +65,7 @@
         .pf-name {
             font-size: 1.05rem;
             font-weight: 500;
-            color: var(--text);
+            color: var(--accent);
             letter-spacing: -0.01em;
             line-height: 1;
             transition: color 0.15s;
@@ -711,13 +711,20 @@
                 li.className = 'pf-item';
                 li.innerHTML = `
                     <span class="pf-bullet">&#x2022;</span>
-                    <a href="${p.url}" target="_blank" class="pf-link">${p.titulo}</a>${desc}${meta}
+                    <a href="#" class="pf-link" data-nome="${p.nome}" data-titulo="${p.titulo}" data-url="${p.url}">${p.titulo}</a>${desc}${meta}
                 `;
                 ul.appendChild(li);
             });
 
             el.innerHTML = '';
             el.appendChild(ul);
+
+            ul.querySelectorAll('a[data-nome]').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    abrirModal(a.dataset.titulo, a.dataset.url, a.dataset.nome);
+                });
+            });
         } catch (_) {
             el.innerHTML = '<span class="pf-status">Não foi possível carregar os projetos.</span>';
         }
