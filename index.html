@@ -413,6 +413,11 @@
             padding: 0.4rem 0;
         }
 
+        /* Wrapper de conteudo do projeto (nome + meta) */
+        .pf-item-content {
+            display: inline;
+        }
+
         /* Wrapper de metadados do projeto (langs + estrelas + tempo) */
         .pf-item-meta {
             display: inline-flex;
@@ -424,12 +429,15 @@
         /* Mobile */
         @media (max-width: 560px) {
             .pf-item {
-                flex-wrap: wrap;
-                row-gap: 0.2rem;
+                align-items: flex-start;
+            }
+            .pf-item-content {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
             }
             .pf-item-meta {
-                width: 100%;
-                padding-left: 1rem;
+                flex-wrap: wrap;
             }
             .pf-skill-row {
                 flex-direction: column;
@@ -480,6 +488,7 @@
                     <span class="pf-skill-tag">seaborn</span>
                     <span class="pf-skill-tag">plotly</span>
                     <span class="pf-skill-tag">selenium</span>
+                    <span class="pf-skill-tag">Streamlit</span>
                 </div>
             </div>
             <div class="pf-skill-row">
@@ -501,11 +510,8 @@
                 <div class="pf-skill-tags">
                     <span class="pf-skill-tag">Power BI</span>
                     <span class="pf-skill-tag">Tableau</span>
-                    <span class="pf-skill-tag">Streamlit</span>
                     <span class="pf-skill-tag">Git</span>
                     <span class="pf-skill-tag">GitHub</span>
-                    <span class="pf-skill-tag">AWS</span>
-                    <span class="pf-skill-tag">Google Cloud</span>
                 </div>
             </div>
         </div>
@@ -750,7 +756,7 @@
                 li.className = 'pf-item';
                 li.innerHTML = `
                     <span class="pf-bullet">&#x2022;</span>
-                    <a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}<span class="pf-item-meta">${meta}${estrelas}${tempo}</span>
+                    <span class="pf-item-content"><a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}<span class="pf-item-meta">${meta}${estrelas}${tempo}</span></span>
                 `;
                 ul.appendChild(li);
             });
