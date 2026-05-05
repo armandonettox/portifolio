@@ -799,7 +799,18 @@
             const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${nome}/readme`);
             const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
             const texto = new TextDecoder('utf-8').decode(bytes);
-            document.getElementById('projeto-readme').innerHTML = markdownParaHtml(texto);
+            const el = document.getElementById('projeto-readme');
+            el.innerHTML = markdownParaHtml(texto);
+
+            // Remove links relativos (caminhos de arquivo do repo que nao funcionam no portfolio)
+            el.querySelectorAll('a').forEach(a => {
+                const href = a.getAttribute('href') || '';
+                if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('mailto:')) {
+                    const span = document.createElement('span');
+                    span.innerHTML = a.innerHTML;
+                    a.replaceWith(span);
+                }
+            });
         } catch (_) {
             document.getElementById('projeto-readme').innerHTML = '<span class="pf-status">README não encontrado.</span>';
         }
