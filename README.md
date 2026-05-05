@@ -1,24 +1,28 @@
 # Portfolio — Armando Netto
 
-Portfolio pessoal construido com Python e Streamlit, com visual minimalista inspirado no site de Dario Amodei.
+Portfolio pessoal com visual minimalista inspirado no site de Dario Amodei.
 
 Acesse em: [armandonetto.com](https://armandonetto.com)
 
 ## Stack
 
-- **Python** + **Streamlit 1.55**
-- GitHub API — busca projetos e linguagens automaticamente
-- CSS customizado com fonte Newsreader (Google Fonts)
-- Deploy: Render + dominio proprio via Cloudflare
+- HTML + CSS + JavaScript puro, sem framework
+- GitHub API para busca automatica de projetos, linguagens e bio
+- marked.js para renderizacao de README em Markdown
+- Fonte Newsreader (Google Fonts)
+- Deploy: Netlify com funcao serverless como proxy da GitHub API
+- Dominio customizado via Cloudflare DNS
 
 ## Funcionalidades
 
-- Dark/light mode com toggle pill
-- Saudacao dinamica (bom dia/boa tarde/boa noite) por horario de Brasilia
-- Projetos buscados automaticamente da API do GitHub com controle manual
-- Secao de competencias em arvore hierarquica colapsavel
-- Secao de experiencia com timeline por empresa
-- Favicon personalizado
+- Dark/light mode com toggle persistido em localStorage
+- Saudacao dinamica (bom dia/boa tarde/boa noite) pelo horario de Brasilia
+- Projetos buscados automaticamente da API do GitHub com controle manual de visibilidade
+- Linguagens de cada projeto exibidas como tags
+- Secao de competencias com tags por categoria
+- Secao de experiencia com timeline
+- Pagina de README por projeto com roteamento via query param
+- Favicon SVG customizado
 
 ## Como rodar localmente
 
@@ -28,46 +32,41 @@ git clone https://github.com/armandonettox/portifolio.git
 cd portifolio
 ```
 
-**2. Crie o ambiente virtual e instale as dependencias**
+**2. Abra o arquivo no browser**
+
+Abra o `index.html` diretamente no browser. Para que a busca de projetos funcione localmente, rode um servidor local simples:
+
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
+npx serve .
 ```
 
-**3. Configure as variaveis de ambiente (opcional)**
-```bash
-copy .env.example .env
-# Adicione seu GITHUB_TOKEN para aumentar o limite da API de 60 para 5000 req/hora
-```
+Ou use a extensao Live Server no VS Code / Cursor.
 
-**4. Rode o app**
-```bash
-streamlit run app.py
-```
+> As chamadas a GitHub API passam pela funcao Netlify em producao. Localmente, os projetos nao vao carregar sem um servidor configurado com a variavel GITHUB_TOKEN.
 
 ## Configuracao de conteudo
 
-Toda a customizacao fica no topo do `app.py`:
+Toda a customizacao fica no topo do `<script>` em `index.html`:
 
 | Variavel | O que controla |
-|----------|---------------|
+|----------|----------------|
 | `PROJETOS_CONFIG` | Titulo, descricao e visibilidade dos repos do GitHub |
 | `ORDEM_PREFERIDA` | Ordem de exibicao dos projetos |
-| `EXPERIENCIA` | Historico profissional com timeline |
-| `COMPETENCIAS` | Arvore de linguagens, subcategorias e ferramentas |
-| `USUARIO_GITHUB` | Nome de usuario do GitHub para busca automatica |
+| `USUARIO` | Nome de usuario do GitHub para busca automatica |
+
+Experiencia e competencias estao hardcoded no HTML, na secao correspondente.
 
 ## Estrutura
 
 ```
 portifolio/
-    app.py              <- codigo principal
-    requirements.txt    <- dependencias
-    .env.example        <- template de variaveis de ambiente
-    .gitignore
+    index.html                  <- unico arquivo do site
+    netlify/
+        functions/
+            github.js           <- proxy serverless para a GitHub API
     assets/
-        logos/          <- favicon e logos
+        favicon.svg             <- favicon do site
+        logos/                  <- logos e imagens
 ```
 
 ## Status
