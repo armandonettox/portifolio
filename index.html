@@ -523,15 +523,11 @@
 
     // ── Config de projetos — SOURCE OF TRUTH para producao (GitHub Pages) ──
     const PROJETOS_CONFIG = {
-        'transcol_opex_analytics': {
-            titulo: 'Transcol OPEX Analytics',
-            descricao: 'Análise de custos operacionais do sistema de transporte coletivo do Espírito Santo.',
-        },
         'Armandonettox': { ocultar: true },
         'armandonettox': { ocultar: true },
         'portifolio':    { ocultar: true },
     };
-    const ORDEM_PREFERIDA = ['transcol_opex_analytics'];
+    const ORDEM_PREFERIDA = [];
 
     // ── Dark mode ──
     const html = document.documentElement;
@@ -684,10 +680,9 @@
     }
 
     function formatar(nome, repo, cfg) {
-        const tituloRaw = nome.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         return {
             nome,
-            titulo: cfg.titulo || tituloRaw,
+            titulo: cfg.titulo || nome,
             descricao: cfg.descricao || repo.description || '',
             url: repo.html_url,
         };
@@ -718,8 +713,7 @@
 
     async function carregarPaginaProjeto(nome) {
         const cfg = PROJETOS_CONFIG[nome] || {};
-        const tituloRaw = nome.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        const titulo = cfg.titulo || tituloRaw;
+        const titulo = cfg.titulo || nome;
         const githubUrl = `https://github.com/${USUARIO}/${nome}`;
 
         document.title = `${titulo} — Armando Netto`;
