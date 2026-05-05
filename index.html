@@ -651,15 +651,21 @@
     document.getElementById('saudacao').textContent = saudacao;
 
     // GitHub API
+    const CACHE_TTL = 2 * 60 * 60 * 1000; // 2 horas em ms
+
     async function apiFetch(url) {
-        const cached = sessionStorage.getItem(url);
-        if (cached) return JSON.parse(cached);
+        const key = 'pf_' + url;
+        const cached = localStorage.getItem(key);
+        if (cached) {
+            const { data, ts } = JSON.parse(cached);
+            if (Date.now() - ts < CACHE_TTL) return data;
+        }
 
         const path = url.replace('https://api.github.com', '');
         const res = await fetch(`https://github-proxy.armandosln7.workers.dev?path=${encodeURIComponent(path)}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        sessionStorage.setItem(url, JSON.stringify(data));
+        localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
         return data;
     }
 
