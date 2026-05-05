@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armando Netto</title>
+    <meta name="description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados, entusiasta de solucoes analiticas com Python, R e SQL.">
+    <meta property="og:title" content="Armando Netto">
+    <meta property="og:description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados.">
+    <meta property="og:url" content="https://armandonetto.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Armando Netto">
+    <meta name="twitter:description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +52,7 @@
             font-size: 16px;
             line-height: 1.6;
             transition: background-color 0.2s, color 0.2s;
+            scroll-behavior: smooth;
         }
 
         a { color: inherit; text-decoration: none; }
@@ -197,6 +206,14 @@
             font-size: 0.78rem;
             font-weight: 300;
             color: var(--muted);
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+        .pf-estrelas {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: var(--accent);
             margin-left: 0.5rem;
             white-space: nowrap;
         }
@@ -378,6 +395,15 @@
         .pf-readme table { border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.9em; }
         .pf-readme th, .pf-readme td { border: 1px solid var(--border); padding: 0.35rem 0.65rem; text-align: left; }
         .pf-readme th { font-weight: 500; background: var(--border); }
+
+        /* Fade-in ao carregar */
+        @keyframes pf-fadein {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .container {
+            animation: pf-fadein 0.35s ease both;
+        }
 
         /* Status e loading */
         .pf-status {
@@ -688,15 +714,16 @@
             ul.className = 'pf-list';
 
             ordenados.forEach((p, i) => {
-                const tags  = langs[i].map(l => `<span class="pf-skill-tag">${l}</span>`).join('');
-                const meta  = langs[i].length ? `<span class="pf-proj-langs">${tags}</span>` : '';
-                const desc  = p.descricao ? `<span class="pf-desc"> — ${p.descricao}</span>` : '';
-                const tempo = p.atualizado ? `<span class="pf-atualizado">${tempoRelativo(p.atualizado)}</span>` : '';
+                const tags     = langs[i].map(l => `<span class="pf-skill-tag">${l}</span>`).join('');
+                const meta     = langs[i].length ? `<span class="pf-proj-langs">${tags}</span>` : '';
+                const desc     = p.descricao ? `<span class="pf-desc"> — ${p.descricao}</span>` : '';
+                const tempo    = p.atualizado ? `<span class="pf-atualizado">${tempoRelativo(p.atualizado)}</span>` : '';
+                const estrelas = p.estrelas > 0 ? `<span class="pf-estrelas">&#9733; ${p.estrelas}</span>` : '';
                 const li = document.createElement('li');
                 li.className = 'pf-item';
                 li.innerHTML = `
                     <span class="pf-bullet">&#x2022;</span>
-                    <a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}${meta}${tempo}
+                    <a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}${meta}${estrelas}${tempo}
                 `;
                 ul.appendChild(li);
             });
