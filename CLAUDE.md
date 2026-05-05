@@ -79,6 +79,13 @@ Use digitando `/nome` no Claude Code:
 
 Os arquivos de cada skill estao em `.claude/commands/`.
 
+## Comentarios no codigo
+
+- Comentarios devem ser simples, sem caracteres especiais como `──`, `→`, `—` ou acentos
+- Escrever como se um humano tivesse digitado normalmente, sem formatacao decorativa
+- Exemplos corretos: `// Dark mode`, `/* Lista de projetos */`, `// Roteamento por query param`
+- Exemplos errados: `// ── Dark mode ──`, `/* ── Lista de projetos ── */`
+
 ## Commits
 
 Formato obrigatorio: tipo(escopo): descricao
