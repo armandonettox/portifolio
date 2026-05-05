@@ -786,7 +786,7 @@
                 li.className = 'pf-item';
                 li.innerHTML = `
                     <span class="pf-bullet">&#x2022;</span>
-                    <span class="pf-item-content"><a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}<span class="pf-item-meta">${meta}${estrelas}${tempo}</span></span>
+                    <span class="pf-item-content"><a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${tempo}${estrelas}<span class="pf-item-meta">${meta}</span></span>
                 `;
                 ul.appendChild(li);
             });
