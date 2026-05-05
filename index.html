@@ -185,6 +185,13 @@
             flex-shrink: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
+        .pf-proj-langs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
 
         /* ── Competências ── */
         .pf-skills {
@@ -661,7 +668,8 @@
             ul.className = 'pf-list';
 
             projetos.forEach((p, i) => {
-                const meta  = langs[i].length ? `<span class="pf-meta">(${langs[i].join(', ')})</span>` : '';
+                const tags  = langs[i].map(l => `<span class="pf-skill-tag">${l}</span>`).join('');
+                const meta  = langs[i].length ? `<span class="pf-proj-langs">${tags}</span>` : '';
                 const desc  = p.descricao ? `<span class="pf-desc"> — ${p.descricao}</span>` : '';
                 const li = document.createElement('li');
                 li.className = 'pf-item';
