@@ -656,7 +656,7 @@
         if (cached) return JSON.parse(cached);
 
         const path = url.replace('https://api.github.com', '');
-        const res = await fetch(`/.netlify/functions/github?path=${encodeURIComponent(path)}`);
+        const res = await fetch(`https://github-proxy.armandosln7.workers.dev?path=${encodeURIComponent(path)}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         sessionStorage.setItem(url, JSON.stringify(data));
