@@ -551,8 +551,10 @@
     document.getElementById('saudacao').textContent = saudacao;
 
     // ── GitHub API ──
+    const GITHUB_TOKEN = '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';
+
     async function apiFetch(url) {
-        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json', 'Authorization': `Bearer ${GITHUB_TOKEN}` } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
     }
