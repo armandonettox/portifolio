@@ -551,10 +551,9 @@
     document.getElementById('saudacao').textContent = saudacao;
 
     // ── GitHub API ──
-    const GITHUB_TOKEN = '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';
-
     async function apiFetch(url) {
-        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json', 'Authorization': `Bearer ${GITHUB_TOKEN}` } });
+        const path = url.replace('https://api.github.com', '');
+        const res = await fetch(`/.netlify/functions/github?path=${encodeURIComponent(path)}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
     }
