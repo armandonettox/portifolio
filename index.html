@@ -412,6 +412,33 @@
             color: var(--muted);
             padding: 0.4rem 0;
         }
+
+        /* Wrapper de metadados do projeto (langs + estrelas + tempo) */
+        .pf-item-meta {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 560px) {
+            .pf-item {
+                flex-wrap: wrap;
+                row-gap: 0.2rem;
+            }
+            .pf-item-meta {
+                width: 100%;
+                padding-left: 1rem;
+            }
+            .pf-skill-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .pf-skill-lang {
+                min-width: unset;
+            }
+        }
     </style>
 </head>
 <body>
@@ -723,7 +750,7 @@
                 li.className = 'pf-item';
                 li.innerHTML = `
                     <span class="pf-bullet">&#x2022;</span>
-                    <a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}${meta}${estrelas}${tempo}
+                    <a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${desc}<span class="pf-item-meta">${meta}${estrelas}${tempo}</span>
                 `;
                 ul.appendChild(li);
             });
