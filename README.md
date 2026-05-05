@@ -18,11 +18,18 @@ Acesse em: [armandonetto.com](https://armandonetto.com)
 - Dark/light mode com toggle persistido em localStorage
 - Saudacao dinamica (bom dia/boa tarde/boa noite) pelo horario de Brasilia
 - Projetos buscados automaticamente da API do GitHub com controle manual de visibilidade
-- Linguagens de cada projeto exibidas como tags
+- Linguagens de cada projeto exibidas como tags estilizadas
+- Ordenacao automatica de projetos por estrelas
+- Tempo de atualizacao relativo por projeto (ex: "ha 3 dias")
+- Contagem de estrelas por projeto
 - Secao de competencias com tags por categoria
 - Secao de experiencia com timeline
 - Pagina de README por projeto com roteamento via query param
 - Favicon SVG customizado
+- Cache de chamadas a API com sessionStorage
+- Pagina de erro 404 customizada
+- Meta tags de SEO e Open Graph (preview no WhatsApp, LinkedIn e Google)
+- Animacao de fade-in suave ao carregar
 
 ## Como rodar localmente
 
@@ -51,7 +58,7 @@ Toda a customizacao fica no topo do `<script>` em `index.html`:
 | Variavel | O que controla |
 |----------|----------------|
 | `PROJETOS_CONFIG` | Titulo, descricao e visibilidade dos repos do GitHub |
-| `ORDEM_PREFERIDA` | Ordem de exibicao dos projetos |
+| `ORDEM_PREFERIDA` | Ordem de exibicao dos projetos (ficam no topo, antes dos ordenados por estrelas) |
 | `USUARIO` | Nome de usuario do GitHub para busca automatica |
 
 Experiencia e competencias estao hardcoded no HTML, na secao correspondente.
@@ -61,11 +68,12 @@ Experiencia e competencias estao hardcoded no HTML, na secao correspondente.
 ```
 portifolio/
     index.html                  <- unico arquivo do site
+    404.html                    <- pagina de erro customizada
     netlify/
         functions/
             github.js           <- proxy serverless para a GitHub API
     assets/
-        favicon.svg             <- favicon do site
+        favicon.svg             <- favicon SVG do site
         logos/                  <- logos e imagens
 ```
 
