@@ -93,3 +93,80 @@ Exemplos: feat(portfolio): adiciona secao de contato
           fix(css): corrige cor dos links no dark mode
 
 Apos qualquer alteracao em arquivos, sugerir o commit diretamente sem perguntar antes se o usuario quer a sugestao.
+
+## Regras
+
+1. **Comentarios no codigo naturais e commits sem atribuicao de IA.**
+   Comentarios claros, simples, sem caracteres especiais forcados (──, →, —, ■).
+   Commits em portugues, formato `tipo(escopo): descricao`.
+   Nunca atribuir autoria a IA (co-authored-by, "feito por Claude").
+   **Motivacao:** comentarios decorativos entregam que foram gerados por IA.
+   Commits com atribuicao poluem o historico e parecem amadores.
+
+2. **Fazer uma pergunta por vez, com sugestao de resposta.**
+   Nunca duas ou mais perguntas na mesma mensagem. Incluir sugestao
+   com motivo resumido de cada opcao.
+   **Motivacao:** TDAH torna multiplas perguntas paralisantes.
+
+3. **Nao despejar informacao de uma vez.**
+   Apresentar planos em etapas, confirmar antes de prosseguir.
+   **Motivacao:** sobrecarga cognitiva impede absorcao.
+
+4. **Nunca pular para proxima etapa sem autorizacao.**
+   Sugerir o proximo passo, mas aguardar confirmacao explicita.
+   **Motivacao:** TDAH precisa de pausas entre etapas para processar.
+
+5. **Sempre ler o arquivo antes de editar.**
+   **Motivacao:** editar sem contexto quebra mais do que conserta.
+
+6. **Toda regra e toda skill deve ter motivacao.**
+   Ao criar regra ou skill nova, incluir secao de motivacao.
+   Verificar se ja existe similar no mesmo nivel ou superiores.
+   **Motivacao:** regras sem motivacao viram tarefa robotica que a IA segue cegamente.
+
+7. **Nomenclatura de arquivos e pastas: priorizar hifen como separador.**
+   Nomes minusculo, sem acentos. Hifen padrao, underscore so quando
+   linguagem exigir (Python vars, __init__.py).
+   **Motivacao:** padrao unico evita confusao entre projetos.
+
+8. **Memoria e registro de informacoes.**
+   Vault do Obsidian e a unica fonte de memoria.
+   Hierarquia: root _index.md -> pasta _index.md -> nota individual.
+   Quando surgir informacao importante: verificar se ja existe no vault,
+   se existir nao duplicar, se nao existir sugerir criar com aprovacao.
+   Nao registrar informacoes efemeras.
+   **Motivacao:** memorias separadas criam duplicacao. _index.md como MOC
+   garante que a IA encontre o que precisa.
+
+9. **Manter artefatos do projeto atualizados.**
+   - **CLAUDE.md e README.md:** manter sincronizados com o estado real.
+     Atualizar conforme a tabela:
+     | Mudanca | CLAUDE.md | README.md |
+     |---|---|---|
+     | Stack, LLM, banco, infra ou servico externo | Sim | Sim |
+     | Variavel de ambiente nova/removida | Sim (obrigatorias) | Sim (completa) |
+     | Arquivo novo/removido na estrutura | Sim (se essencial) | Sim (arvore) |
+     | Tabela nova no banco | Sim | Sim |
+     | Funcionalidade ou fluxo novo | Sim | Sim |
+     | Regra de seguranca ou comportamento | Sim | Nao |
+     | Comando, job ou trigger novo | Sim (se afetar fluxo) | Sim |
+     | Bug corrigido | Nao (so vault) | Nao |
+     | Refatoracao interna | Nao | Nao |
+   - **Criterio:** CLAUDE.md e o que a IA precisa saber. README.md e o
+     que um humano precisa para usar o projeto.
+   **Motivacao:** roadmap desatualizado perde utilidade. Decisoes nao
+   registradas viram retrabalho. Documentos defasados geram erros.
+
+10. **Seguir o modelo padrao de README.md definido pela skill `/novo-projeto`.**
+    Secoes na ordem padrao: Indice, Objetivo, Forma de entrega, Stack,
+    Estrutura, Instalacao, Configuracao, Como usar, Output, Funcionamento,
+    Adaptacao, Erros comuns.
+    Nenhum path local, credencial, token ou dado sensivel no README.
+    **Motivacao:** consistencia entre projetos. Modelo unico facilita
+    navegacao e evita vazamento de informacoes sensiveis.
+
+## Memoria do projeto
+
+Use `~/armandonettox/armandonettox/projects/portifolio/` como memoria.
+Contexto, decisoes e aprendizados sao registrados la.
+Consultar antes de alteracoes significativas.
