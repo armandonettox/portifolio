@@ -167,6 +167,6 @@ Apos qualquer alteracao em arquivos, sugerir o commit diretamente sem perguntar 
 
 ## Memoria do projeto
 
-Use `~/armandonettox/armandonettox/projects/portifolio/` como memoria.
+Use `~/armandonettox/vault-armandonettox/projects/portifolio/` como memoria.
 Contexto, decisoes e aprendizados sao registrados la.
 Consultar antes de alteracoes significativas.
