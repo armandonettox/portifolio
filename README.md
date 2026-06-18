@@ -4,16 +4,15 @@ Publicado em [armandonetto.com](https://armandonetto.com).
 
 ## Automacoes
 
-| Comando | Descricao |
-|---------|-----------|
-| `/revisar-arquitetura` | Analisa arquitetura do projeto ou de um arquivo especifico |
-| `/revisar-bugs` | Varre o projeto em busca de bugs |
-| `/revisar-morto` | Identifica codigo, variaveis e arquivos sem uso |
-| `/resumo-sessao` | Gera checkpoint do que foi feito na sessao |
-| `/comitar` | Cria commit com alteracoes pendentes |
+O site e estatico (HTML/CSS/JS puro), mas os dados sao dinamicos via API do GitHub:
 
-Push em `main` dispara deploy automatico via GitHub Actions.
-
-## Stack
-
-MkDocs + Material for MkDocs, GitHub Pages, Cloudflare DNS.
+| Automacao | Descricao |
+|-----------|-----------|
+| **Projetos** | Lista repos do GitHub automaticamente com nome, descricao, estrelas, linguagens e ultima atualizacao |
+| **Bio** | Puxa do README do perfil do GitHub |
+| **README dos projetos** | Ao clicar em um projeto, carrega o README direto do repo |
+| **Cache local** | Dados da API ficam em localStorage por 2 horas |
+| **Proxy** | Cloudflare Worker como intermediario para nao expor token |
+| **Dark mode** | Toggle com persistencia em localStorage |
+| **Saudacao** | Dinamica baseada no horario de Brasilia |
+| **Deploy** | Push em `main` faz deploy automatico no GitHub Pages via GitHub Actions |
