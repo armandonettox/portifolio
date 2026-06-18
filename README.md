@@ -16,35 +16,46 @@
 
 ## Objetivo
 
-Portfolio pessoal com visual minimalista inspirado no site de Dario Amodei. O objetivo e gastar o minimo de tempo possivel em manutencao para sobrar tempo para criar novos projetos. A maior parte do conteudo e puxada automaticamente da API do GitHub — basta criar um novo repo publico que ele aparece sozinho, com linguagens, estrelas e data de atualizacao. A bio tambem vem do README do perfil do GitHub.
+Portfolio pessoal com visual minimalista inspirado no site de Dario Amodei. Conteudo escrito
+em Markdown puro — projetos, bio, competencias e experiencia sao mantidos manualmente.
 
 Acesse em: [armandonetto.com](https://armandonetto.com)
 
 ## Forma de entrega
 
-Site estatico publicado via Netlify com dominio customizado.
+Site estatico gerado pelo MkDocs e publicado via GitHub Pages com dominio customizado.
 
 ## Stack
 
-- HTML + CSS + JavaScript puro (sem frameworks)
-- GitHub API para busca automatica de projetos, linguagens e bio
-- marked.js para renderizacao de README em Markdown
-- Netlify com funcao serverless como proxy da GitHub API
-- Cloudflare DNS para dominio customizado
+- MkDocs + Material for MkDocs
+- GitHub Pages + GitHub Actions (deploy automatico a cada push em main)
 - Fonte Newsreader (Google Fonts)
+- Cloudflare DNS para dominio customizado
 
 ## Estrutura do projeto
 
 ```
 portifolio/
-    index.html                  <- unico arquivo do site
-    404.html                    <- pagina de erro customizada
-    netlify/
-        functions/
-            github.js           <- proxy serverless para a GitHub API
-    assets/
-        favicon.svg             <- favicon SVG do site
-        logos/                  <- logos e imagens
+    mkdocs.yml              <- config principal do MkDocs
+    requirements.txt        <- dependencias Python do build
+    .python-version         <- versao do Python
+    docs/
+        index.md            <- pagina inicial (bio, projetos, competencias, experiencia)
+        CNAME               <- dominio customizado para o GitHub Pages
+        404.md              <- pagina de erro
+        projetos/           <- uma pagina por projeto
+            netto-bot.md
+            netto-malware.md
+            portifolio.md
+        stylesheets/
+            extra.css       <- estilos customizados (paleta, layout, componentes pf-*)
+        assets/
+            favicon.svg     <- favicon SVG do site
+    overrides/
+        main.html           <- carrega Newsreader e shim de links ?projeto=X
+    .github/
+        workflows/
+            deploy.yml      <- build MkDocs e deploy no GitHub Pages
 ```
 
 ## Instalacao
@@ -54,131 +65,84 @@ portifolio/
 ```bash
 git clone https://github.com/armandonettox/portifolio.git
 cd portifolio
+pip install -r requirements.txt
+mkdocs serve
 ```
 
-Abra o `index.html` diretamente no browser ou use um servidor local:
+Acesse em `http://127.0.0.1:8000`.
 
-```bash
-npx serve .
-```
+### Deploy (automatico)
 
-Ou use a extensao Live Server no VS Code / Cursor.
+Qualquer push na branch `main` dispara o workflow `deploy.yml`, que gera o site com
+`mkdocs build` e publica no GitHub Pages.
 
-> As chamadas a GitHub API passam pela funcao Netlify em producao. Localmente, os projetos nao vao carregar sem um servidor configurado com a variavel GITHUB_TOKEN.
-
-### Deploy no Netlify
-
-1. Crie uma conta no Netlify e conecte com seu GitHub
-2. Importe o repositorio (o Netlify detecta automaticamente que e um site estatico)
-3. Gere um token no GitHub em `github.com/settings/tokens` com escopo `public_repo`
-4. No painel do Netlify, va em Site settings > Environment variables e adicione `GITHUB_TOKEN`
-5. Configure dominio customizado em Domain management > Add a domain
+Passo unico (feito uma vez): em Settings > Pages > Source, selecionar **GitHub Actions**.
 
 ## Configuracao
 
-### Usuario do GitHub
+### Adicionar ou editar um projeto
 
-No topo do `<script>` em `index.html`, troque o valor da variavel `USUARIO`:
+Crie ou edite um arquivo em `docs/projetos/<nome>.md`. Adicione a entrada no `nav:` do
+`mkdocs.yml` para que apareca na navegacao.
 
-```javascript
-const USUARIO = 'seu-usuario-aqui';
-```
+### Editar bio, competencias ou experiencia
 
-### Controle de projetos
-
-Use `PROJETOS_CONFIG` para ocultar repos ou sobrescrever titulos e descricoes:
-
-```javascript
-const PROJETOS_CONFIG = {
-    'nome-do-repo':    { ocultar: true },
-    'outro-repo':      { titulo: 'Titulo customizado', descricao: 'Descricao customizada' },
-};
-```
-
-Use `ORDEM_PREFERIDA` para fixar projetos no topo da lista:
-
-```javascript
-const ORDEM_PREFERIDA = ['projeto-destaque', 'outro-projeto'];
-```
-
-### Conteudo manual
-
-No `index.html`, edite diretamente as secoes:
-- **Experiencia** — bloco com classe `pf-exp-list`
-- **Competencias** — bloco com classe `pf-skills`
-- **Perfis e contato** — blocos com `pf-section-title` correspondente
+Edite `docs/index.md` diretamente — todo o conteudo esta escrito como HTML embutido com
+as classes `.pf-*` do `extra.css`.
 
 ## Como usar
 
-O portfolio funciona de forma automatica. Acesse armandonetto.com para:
-
-1. Visualizar a lista de projetos publicos do GitHub, ordenados por estrelas
-2. Clicar em um projeto para ver o README completo
-3. Alternar entre tema claro e escuro
-4. Navegar pelas secoes de experiencia, competencias e contato
-
-Para adicionar um novo projeto ao portfolio, basta criar um repo publico no GitHub.
+1. Edite o Markdown em `docs/` conforme necessario
+2. `git push` dispara o deploy automatico
+3. Acesse armandonetto.com
 
 ## Output
 
 Site publicado em armandonetto.com com:
-- Pagina inicial com bio, projetos, competencias, experiencia e contato
-- Pagina de README por projeto com roteamento via query param
-- Dark/light mode com toggle persistido
-- Meta tags de SEO e Open Graph para compartilhamento
-- Pagina de erro 404 customizada
+- Pagina inicial: bio, projetos, competencias, experiencia, perfis e contato
+- Pagina individual por projeto
+- Dark/light mode nativo (toggle do Material, persistido em localStorage)
+- Meta tags de SEO e Open Graph
+- Pagina de erro 404
 
 ## Funcionamento
 
-### Conteudo automatico
+### Dark mode
 
-- **Bio** — lida do README do repo especial `usuario/usuario` no GitHub
-- **Lista de projetos** — todos os repos publicos nao-fork do usuario
-- **Linguagens de cada projeto** — buscadas via API por repo
-- **Estrelas** — campo `stargazers_count` de cada repo
-- **Tempo de atualizacao** — campo `pushed_at` de cada repo
+Gerenciado nativamente pelo Material for MkDocs. O toggle na barra superior alterna entre
+os esquemas `an-light` e `an-dark`, definidos em `docs/stylesheets/extra.css`.
+A preferencia e persistida automaticamente em localStorage.
 
-### Funcionalidades
+### Layout
 
-- Dark/light mode com toggle persistido em localStorage
-- Saudacao dinamica (bom dia / boa tarde / boa noite) pelo horario de Brasilia
-- Tags de linguagens por projeto
-- Ordenacao automatica de projetos por estrelas
-- Cache de chamadas a API com sessionStorage (TTL de 2 horas)
-- Animacao de fade-in suave ao carregar
-- Scroll suave com CSS (scroll-behavior: smooth)
+O CSS em `extra.css` sobrescreve o tema Material para virar uma coluna unica de 640px,
+sem sidebars, sem footer de docs e sem barra de busca. A estetica (tipografia, paleta e
+componentes `.pf-*`) e portada do site anterior (HTML/CSS puro).
 
-### Proxy da GitHub API
+### Links antigos
 
-A funcao serverless em `netlify/functions/github.js` recebe a requisicao do browser com o path da API, adiciona o token GITHUB_TOKEN no cabecalho e faz a chamada real a GitHub API. Isso evita expor o token no frontend e aumenta o limite de 60 req/h para 5000 req/h.
-
-### Controle de visibilidade
-
-Tudo configuravel no topo do `<script>` em `index.html`:
-- `PROJETOS_CONFIG` — sobrescreve titulo/descricao ou oculta repos
-- `ORDEM_PREFERIDA` — define quais repos aparecem primeiro
-- Experiencia e competencias estao hardcoded no HTML
+O shim em `overrides/main.html` redireciona links no formato `?projeto=X` (formato do
+site anterior) para `/projetos/X/` automaticamente.
 
 ## Adaptacao
 
-Para usar este repositorio como base para seu proprio portfolio:
+Para usar como base para seu proprio portfolio:
 
-1. Clone ou fork o repositorio
-2. Crie um README de perfil no GitHub (repo com mesmo nome do usuario)
-3. Atualize a variavel `USUARIO` no topo do script em `index.html`
-4. Configure `PROJETOS_CONFIG` e `ORDEM_PREFERIDA` conforme necessario
-5. Atualize as meta tags no `<head>` com seu nome e descricao
-6. Faca deploy no Netlify e configure o GITHUB_TOKEN nas variaveis de ambiente
-7. Aponte seu dominio via Cloudflare DNS com CNAME para o dominio Netlify
+1. Clone o repositorio
+2. Edite `mkdocs.yml`: `site_name`, `site_url`, `site_description`
+3. Substitua o conteudo de `docs/index.md` com seus dados
+4. Adicione seus projetos em `docs/projetos/`
+5. Atualize `docs/CNAME` com seu dominio
+6. Aponte o DNS do seu dominio para o GitHub Pages
 
 ## Erros comuns
 
 | Erro | Causa | Solucao |
 |------|-------|---------|
-| Projetos nao carregam localmente | Sem GITHUB_TOKEN no ambiente local | Usar npx serve e configurar variavel, ou testar em producao |
-| API retorna 403 | Limite de 60 req/h excedido (sem token) | Configurar GITHUB_TOKEN no Netlify |
-| Certificado SSL nao emite | Cloudflare com proxy (icone laranja) ativo | Desativar proxy do Cloudflare (icone cinza) para o CNAME do Netlify |
-| Projeto aparece com titulo estranho | Nome do repo nao foi sobrescrito no PROJETOS_CONFIG | Adicionar entrada com `titulo` customizado |
+| `mkdocs build --strict` falha com link quebrado | Pagina referenciada no nav nao existe | Criar o arquivo .md correspondente em docs/ |
+| Fonte Newsreader nao carrega localmente | Bloqueio de rede ou offline | Normal em ambiente sem internet; cai para Georgia |
+| Dominio custom some apos deploy | CNAME nao esta em docs/ | Garantir que docs/CNAME existe e contem o dominio |
+| Dark mode nao persiste | Cache do browser | Limpar localStorage e testar novamente |
 
 ## Status
 
