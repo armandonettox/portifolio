@@ -1,6 +1,6 @@
 # Portfolio — Armando Netto
 
-Publicado em [armandonetto.com](https://armandonetto.com).
+Publicado em [armandonetto.com](https://armandonetto.com) — domino que tambem uso para criar subdominios de novos projetos.
 
 Feito para gastar menos tempo atualizando o portfolio e mais em adquirir conhecimento e desenvolver projetos. Os dados sao puxados automaticamente do GitHub.
 
