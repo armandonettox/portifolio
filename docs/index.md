@@ -1,8 +1,12 @@
-# Armando Netto
+---
+title: Armando Netto
+---
+
+<h1 class="pf-sr-only">Armando Netto</h1>
 
 <div class="pf-bio">
-<p>Sou graduando em Ciência de Dados e entusiasta do universo analítico, com uma sólida formação em matemática. Sou um entusiasta da democratização de dados, focando no desenvolvimento de soluções de grande impacto por meio de ferramentas de código aberto e arquiteturas de baixo custo.</p>
-<p>Minha atuação integra a capacidade analítica de Python, R e SQL para desenvolver soluções inovadoras. Meu objetivo é transformar dados em ativos estratégicos, seja explorando padrões ou automatizando processos. Defendo o uso de ferramentas de código aberto para democratizar a análise de dados, proporcionando resultados significativos com o mínimo de custo operacional.</p>
+<p>Analista de Dados e graduando em Ciência de Dados, com foco em analytics, automação e inteligência artificial. Crio dashboards, indicadores e fluxos automatizados usando Python, SQL e R — com preferência por soluções de código aberto e baixo custo operacional.</p>
+<p>Também trabalho com LLMs, agentes e RAG para construir ferramentas que transformam dados em decisões. Meu projeto principal é o <strong>Hera</strong>, assistente pessoal no Telegram com gestão financeira e agenda integradas.</p>
 </div>
 
 <div class="pf-section">
@@ -10,18 +14,18 @@
 <ul class="pf-list">
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
-    <a href="/projetos/netto-bot/" class="pf-link">netto-bot</a>
-    <span class="pf-desc"> — Bot Telegram de assistente pessoal e controle financeiro</span>
+    <a href="/projetos/hera/" class="pf-link">hera</a>
+    <span class="pf-desc"> — Assistente pessoal no Telegram para finanças e agenda</span>
   </li>
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
-    <a href="/projetos/netto-malware/" class="pf-link">netto-malware</a>
-    <span class="pf-desc"> — RAT para estudos de ciberseguranca</span>
+    <a href="/projetos/genrefy/" class="pf-link">genrefy</a>
+    <span class="pf-desc"> — Organiza músicas curtidas do Spotify em playlists por gênero</span>
   </li>
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
-    <a href="/projetos/portifolio/" class="pf-link">portifolio</a>
-    <span class="pf-desc"> — Este portfolio pessoal (MkDocs + Material)</span>
+    <a href="/projetos/fifa-worldcup/" class="pf-link">fifa-worldcup</a>
+    <span class="pf-desc"> — Análise histórica das Copas do Mundo com dashboard e previsões</span>
   </li>
 </ul>
 </div>
@@ -35,15 +39,16 @@
       <span class="pf-skill-tag">pandas</span>
       <span class="pf-skill-tag">numpy</span>
       <span class="pf-skill-tag">matplotlib</span>
-      <span class="pf-skill-tag">seaborn</span>
       <span class="pf-skill-tag">plotly</span>
-      <span class="pf-skill-tag">selenium</span>
+      <span class="pf-skill-tag">scikit-learn</span>
       <span class="pf-skill-tag">Streamlit</span>
+      <span class="pf-skill-tag">FastAPI</span>
     </div>
   </div>
   <div class="pf-skill-row">
     <span class="pf-skill-lang">SQL</span>
     <div class="pf-skill-tags">
+      <span class="pf-skill-tag">PostgreSQL</span>
       <span class="pf-skill-tag">BigQuery</span>
       <span class="pf-skill-tag">AWS Athena</span>
     </div>
@@ -56,12 +61,31 @@
     </div>
   </div>
   <div class="pf-skill-row">
+    <span class="pf-skill-lang">IA</span>
+    <div class="pf-skill-tags">
+      <span class="pf-skill-tag">LLMs</span>
+      <span class="pf-skill-tag">RAG</span>
+      <span class="pf-skill-tag">Agentes</span>
+      <span class="pf-skill-tag">Claude</span>
+      <span class="pf-skill-tag">MCP</span>
+    </div>
+  </div>
+  <div class="pf-skill-row">
     <span class="pf-skill-lang">Ferramentas</span>
     <div class="pf-skill-tags">
       <span class="pf-skill-tag">Power BI</span>
       <span class="pf-skill-tag">Tableau</span>
       <span class="pf-skill-tag">Git</span>
-      <span class="pf-skill-tag">GitHub</span>
+      <span class="pf-skill-tag">Podman</span>
+      <span class="pf-skill-tag">GitHub Actions</span>
+    </div>
+  </div>
+  <div class="pf-skill-row">
+    <span class="pf-skill-lang">Cloud</span>
+    <div class="pf-skill-tags">
+      <span class="pf-skill-tag">AWS</span>
+      <span class="pf-skill-tag">Oracle Cloud</span>
+      <span class="pf-skill-tag">Supabase</span>
     </div>
   </div>
 </div>

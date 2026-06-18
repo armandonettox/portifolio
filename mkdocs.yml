@@ -42,8 +42,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
 
 nav:
-  - Inicio: index.md
+  - index.md
   - Projetos:
-    - netto-bot: projetos/netto-bot.md
-    - netto-malware: projetos/netto-malware.md
-    - portifolio: projetos/portifolio.md
+    - hera: projetos/hera.md
+    - genrefy: projetos/genrefy.md
+    - fifa-worldcup: projetos/fifa-worldcup.md
