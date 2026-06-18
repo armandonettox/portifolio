@@ -1,0 +1,466 @@
+/* ---- Esquema claro ---- */
+[data-md-color-scheme="an-light"] {
+  --pf-bg:     #f0eee6;
+  --pf-text:   #1f1e1d;
+  --pf-muted:  #3a3936;
+  --pf-border: #d1cfc5;
+  --pf-hover:  #5e5d59;
+  --pf-accent: #4a67b5;
+
+  --md-default-bg-color:           var(--pf-bg);
+  --md-default-fg-color:           var(--pf-text);
+  --md-default-fg-color--light:    var(--pf-muted);
+  --md-default-fg-color--lighter:  var(--pf-muted);
+  --md-default-fg-color--lightest: var(--pf-border);
+  --md-primary-fg-color:           var(--pf-accent);
+  --md-primary-bg-color:           var(--pf-bg);
+  --md-accent-fg-color:            var(--pf-accent);
+  --md-typeset-a-color:            var(--pf-accent);
+  --md-code-bg-color:              var(--pf-border);
+  --md-code-fg-color:              var(--pf-text);
+  color-scheme: light;
+}
+
+/* ---- Esquema escuro ---- */
+[data-md-color-scheme="an-dark"] {
+  --pf-bg:     #1f1e1d;
+  --pf-text:   #f0eee6;
+  --pf-muted:  #87867f;
+  --pf-border: #3d3d3a;
+  --pf-hover:  #b0aea5;
+  --pf-accent: #6b85c4;
+
+  --md-default-bg-color:           var(--pf-bg);
+  --md-default-fg-color:           var(--pf-text);
+  --md-default-fg-color--light:    var(--pf-muted);
+  --md-default-fg-color--lighter:  var(--pf-muted);
+  --md-default-fg-color--lightest: var(--pf-border);
+  --md-primary-fg-color:           var(--pf-accent);
+  --md-primary-bg-color:           var(--pf-bg);
+  --md-accent-fg-color:            var(--pf-accent);
+  --md-typeset-a-color:            var(--pf-accent);
+  --md-code-bg-color:              var(--pf-border);
+  --md-code-fg-color:              var(--pf-text);
+  color-scheme: dark;
+}
+
+/* ---- Tipografia ---- */
+:root {
+  --md-text-font: "Newsreader", Georgia, "Times New Roman", serif;
+  --md-code-font: "Courier New", monospace;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--md-text-font);
+  background-color: var(--pf-bg);
+  color: var(--pf-text);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.md-typeset {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--pf-text);
+}
+
+/* ---- Coluna unica 640px ---- */
+.md-grid { max-width: 640px; }
+.md-main__inner { margin-top: 0; }
+.md-content { padding: 0; }
+.md-content__inner {
+  padding: 3.5rem 1.5rem 6rem;
+  margin: 0;
+  animation: pf-fadein 0.35s ease both;
+}
+.md-content__inner::before { display: none; }
+
+@keyframes pf-fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Esconder chrome do Material ---- */
+.md-sidebar--primary,
+.md-sidebar--secondary,
+.md-footer,
+.md-content__button,
+.md-typeset .headerlink,
+.md-nav,
+.md-tabs { display: none; }
+
+.md-header {
+  position: static;
+  box-shadow: none;
+  background: transparent;
+  color: var(--pf-accent);
+}
+
+.md-header__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 0;
+}
+
+.md-header__title,
+.md-header__button.md-logo,
+.md-search { display: none; }
+
+.md-header__inner > .md-header__option { margin-left: auto; }
+
+.md-clipboard { display: none; }
+
+/* ---- Links base ---- */
+.md-typeset a {
+  color: inherit;
+  border-bottom: 1px solid var(--pf-accent);
+  text-decoration: none;
+}
+.md-typeset a:hover { color: var(--pf-accent); }
+
+/* ---- Bio ---- */
+.pf-bio {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--pf-text);
+  margin-top: 1.2rem;
+}
+.pf-bio p { margin-bottom: 0.75rem; }
+.pf-bio p:last-child { margin-bottom: 0; }
+.pf-bio strong { font-weight: 500; }
+.pf-bio a { border-bottom: 1px solid var(--pf-accent); }
+.pf-bio a:hover { color: var(--pf-accent); }
+
+/* ---- Secao ---- */
+.pf-section { margin-top: 1.8rem; }
+
+.pf-section-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pf-accent);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--pf-accent);
+}
+
+/* ---- Lista de projetos ---- */
+.md-typeset .pf-list,
+.md-typeset .pf-exp-list { list-style: none; margin: 0; padding: 0; }
+
+.md-typeset .pf-list li::before,
+.md-typeset .pf-exp-list li::before { content: none; }
+
+.pf-list { list-style: none; padding: 0; margin: 0; }
+
+.pf-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.45rem;
+  row-gap: 0;
+  padding: 0.32rem 0;
+  font-size: 0.97rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.pf-bullet {
+  color: var(--pf-accent);
+  flex-shrink: 0;
+  font-size: 0.75em;
+  line-height: 2;
+  user-select: none;
+}
+
+.pf-link {
+  color: var(--pf-text);
+  border-bottom: 1px solid var(--pf-accent);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.pf-link:hover { color: var(--pf-accent); }
+
+.pf-desc {
+  color: var(--pf-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.pf-meta {
+  color: var(--pf-muted);
+  font-size: 0.8rem;
+  font-weight: 300;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.pf-proj-langs {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.pf-atualizado {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--pf-muted);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.pf-estrelas {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--pf-accent);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+/* ---- Competencias ---- */
+.pf-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pf-skill-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.pf-skill-lang {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pf-muted);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.pf-skill-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+}
+.pf-skill-tags::-webkit-scrollbar { display: none; }
+
+.pf-skill-tag {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--pf-text);
+  background: transparent;
+  border: 1px solid var(--pf-accent);
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ---- Experiencia ---- */
+.pf-exp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pf-exp-group { display: flex; flex-direction: column; gap: 0; }
+
+.pf-exp-empresa {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--pf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.pf-exp-roles {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.pf-exp-roles::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 7px;
+  bottom: 7px;
+  width: 1px;
+  background-color: var(--pf-accent);
+}
+
+.pf-exp-role { position: relative; padding: 0 0 0.9rem 0; }
+.pf-exp-role:last-child { padding-bottom: 0; }
+
+.pf-exp-role::before {
+  content: "";
+  position: absolute;
+  left: -1.4rem;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--pf-accent);
+  border: 1.5px solid var(--pf-accent);
+}
+
+.pf-exp-cargo {
+  font-size: 0.97rem;
+  font-weight: 400;
+  color: var(--pf-text);
+  display: block;
+}
+
+.pf-exp-periodo {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--pf-muted);
+  display: block;
+  margin-top: 0.1rem;
+}
+
+/* ---- Botao repositorio ---- */
+.pf-btn-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--pf-accent);
+  border: 1px solid var(--pf-accent);
+  border-bottom: 1px solid var(--pf-accent);
+  border-radius: 4px;
+  padding: 0.4rem 0.9rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  margin-top: 1.5rem;
+}
+.pf-btn-repo:hover { background: var(--pf-accent); color: var(--pf-bg); }
+
+/* ---- Conteudo das paginas de projeto (.md-typeset overrides) ---- */
+.md-typeset { font-weight: 300; line-height: 1.75; }
+.md-typeset p { margin-bottom: 0.75rem; }
+.md-typeset p:last-child { margin-bottom: 0; }
+.md-typeset h1 { font-size: 1.3rem; font-weight: 500; margin: 1.4rem 0 0.4rem; }
+.md-typeset h2 { font-size: 1rem;   font-weight: 500; margin: 1.2rem 0 0.3rem; }
+.md-typeset h3 { font-size: 0.95rem;font-weight: 500; margin: 1rem 0 0.25rem; }
+.md-typeset ul, .md-typeset ol { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+.md-typeset li { margin-bottom: 0.2rem; }
+.md-typeset strong { font-weight: 500; }
+
+.md-typeset code {
+  font-family: var(--md-code-font);
+  font-size: 0.85em;
+  background: var(--pf-border);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  color: var(--pf-text);
+}
+
+.md-typeset pre,
+.md-typeset .highlight {
+  background: var(--pf-border);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.md-typeset pre > code,
+.md-typeset .highlight code { background: none; padding: 0; }
+
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  font-size: 0.9em;
+  box-shadow: none;
+  border: none;
+}
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  border: 1px solid var(--pf-border);
+  padding: 0.35rem 0.65rem;
+  text-align: left;
+}
+.md-typeset table:not([class]) th {
+  font-weight: 500;
+  background: var(--pf-border);
+}
+
+.md-typeset img { display: none; }
+
+/* ---- Status / loading ---- */
+.pf-status {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--pf-muted);
+  padding: 0.4rem 0;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 560px) {
+  .pf-item {
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .pf-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.45rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .pf-link { flex-shrink: 0; }
+  .pf-desc { display: none; }
+
+  .pf-item-meta {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .pf-item-meta::-webkit-scrollbar { display: none; }
+  .pf-proj-langs { flex-wrap: nowrap; }
+
+  .pf-skill-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .pf-skill-lang { min-width: unset; }
+
+  .md-content__inner { padding: 2.5rem 1.2rem 4rem; }
+}
