@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armando Netto</title>
+    <meta name="description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados, entusiasta de solucoes analiticas com Python, R e SQL.">
+    <meta property="og:title" content="Armando Netto">
+    <meta property="og:description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados.">
+    <meta property="og:url" content="https://armandonetto.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Armando Netto">
+    <meta name="twitter:description" content="Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Variaveis de tema */
+        :root {
+            --bg:     #f0eee6;
+            --text:   #1f1e1d;
+            --muted:  #3a3936;
+            --border: #d1cfc5;
+            --hover:  #5e5d59;
+            --accent: #4a67b5;
+            --toggle-track: #d1cfc5;
+            --toggle-thumb: #1f1e1d;
+            --toggle-left:  3px;
+        }
+        html.dark {
+            --bg:     #1f1e1d;
+            --text:   #f0eee6;
+            --muted:  #87867f;
+            --border: #3d3d3a;
+            --hover:  #b0aea5;
+            --accent: #6b85c4;
+            --toggle-track: #555;
+            --toggle-thumb: #fff;
+            --toggle-left:  23px;
+        }
+
+        /* Reset e base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.6;
+            transition: background-color 0.2s, color 0.2s;
+            scroll-behavior: smooth;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Layout */
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 6rem;
+        }
+
+        /* Header */
+        .pf-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+        }
+
+        .pf-name {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: -0.01em;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+        .pf-name:hover { color: var(--muted); }
+
+        /* Toggle dark/light */
+        .pf-toggle {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .pf-toggle-track {
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+            background-color: var(--toggle-track);
+            border-radius: 12px;
+            position: relative;
+            transition: background-color 0.2s;
+            flex-shrink: 0;
+        }
+        .pf-toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: var(--toggle-left);
+            width: 18px;
+            height: 18px;
+            background-color: var(--toggle-thumb);
+            border-radius: 50%;
+            transition: left 0.2s, background-color 0.2s;
+        }
+
+        /* Bio */
+        .pf-bio {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--text);
+            margin-top: 1.2rem;
+        }
+        .pf-bio p { margin-bottom: 0.75rem; }
+        .pf-bio p:last-child { margin-bottom: 0; }
+        .pf-bio strong { font-weight: 500; }
+        .pf-bio h1, .pf-bio h2, .pf-bio h3 { display: none; }
+        .pf-bio img { display: none; }
+        .pf-bio a { border-bottom: 1px solid var(--accent); }
+        .pf-bio a:hover { color: var(--accent); }
+        .pf-bio ul { padding-left: 1.2rem; margin-bottom: 0.75rem; }
+        .pf-bio hr { display: none; }
+        .pf-saudacao { font-style: normal; color: var(--text); }
+
+        /* Secao */
+        .pf-section { margin-top: 1.8rem; }
+
+        .pf-section-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* Lista de projetos */
+        .pf-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pf-item {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            column-gap: 0.45rem;
+            row-gap: 0;
+            padding: 0.32rem 0;
+            font-size: 0.97rem;
+            font-weight: 300;
+            line-height: 1.5;
+            border-bottom: 1px solid transparent;
+        }
+        .pf-item:last-child { border-bottom: none; }
+
+        .pf-bullet {
+            color: var(--accent);
+            flex-shrink: 0;
+            font-size: 0.75em;
+            line-height: 2;
+            user-select: none;
+        }
+
+        .pf-link {
+            color: var(--text);
+            border-bottom: 1px solid var(--accent);
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .pf-link:hover { color: var(--accent); }
+
+        .pf-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        .pf-meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 300;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .pf-proj-langs {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            gap: 0.25rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .pf-atualizado {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: var(--muted);
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+        .pf-estrelas {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+
+        /* Competencias */
+        .pf-skills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .pf-skill-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            min-width: 0;
+        }
+        .pf-skill-lang {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+        .pf-skill-tags {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 0.35rem;
+            width: 100%;
+            min-width: 0;
+        }
+        .pf-skill-tags::-webkit-scrollbar { display: none; }
+        .pf-skill-tag {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text);
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            padding: 0.1rem 0.5rem;
+            line-height: 1.6;
+            white-space: nowrap;
+        }
+
+        /* Experiencia */
+        .pf-exp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .pf-exp-group { display: flex; flex-direction: column; gap: 0; }
+        .pf-exp-empresa {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.4rem;
+        }
+        .pf-exp-roles {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-left: 1.4rem;
+        }
+        .pf-exp-roles::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 7px;
+            bottom: 7px;
+            width: 1px;
+            background-color: var(--accent);
+        }
+        .pf-exp-role { position: relative; padding: 0 0 0.9rem 0; }
+        .pf-exp-role:last-child { padding-bottom: 0; }
+        .pf-exp-role::before {
+            content: '';
+            position: absolute;
+            left: -1.4rem;
+            top: 6px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 1.5px solid var(--accent);
+        }
+        .pf-exp-cargo {
+            font-size: 0.97rem;
+            font-weight: 400;
+            color: var(--text);
+            display: block;
+        }
+        .pf-exp-periodo {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--muted);
+            display: block;
+            margin-top: 0.1rem;
+        }
+
+        /* Pagina de projeto */
+        .pf-projeto-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .pf-nav-link {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--muted);
+            transition: color 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .pf-nav-link:hover { color: var(--text); }
+
+        .pf-btn-repo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            padding: 0.4rem 0.9rem;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .pf-btn-repo:hover { background: var(--accent); color: var(--bg); }
+
+        .pf-projeto-titulo {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .pf-readme {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--text);
+        }
+        .pf-readme p { margin-bottom: 0.75rem; }
+        .pf-readme p:last-child { margin-bottom: 0; }
+        .pf-readme h1 { font-size: 1.2rem; font-weight: 500; margin: 1.4rem 0 0.4rem; }
+        .pf-readme h2 { font-size: 1rem; font-weight: 500; margin: 1.2rem 0 0.3rem; }
+        .pf-readme h3 { font-size: 0.95rem; font-weight: 500; margin: 1rem 0 0.25rem; }
+        .pf-readme ul, .pf-readme ol { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+        .pf-readme li { margin-bottom: 0.2rem; }
+        .pf-readme code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            background: var(--border);
+            padding: 0.1em 0.35em;
+            border-radius: 3px;
+        }
+        .pf-readme pre {
+            background: var(--border);
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 0.75rem;
+        }
+        .pf-readme pre code { background: none; padding: 0; }
+        .pf-readme img { display: none; }
+        .pf-readme a { border-bottom: 1px solid var(--accent); }
+        .pf-readme a:hover { color: var(--accent); }
+        .pf-readme strong { font-weight: 500; }
+        .pf-readme table { border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.9em; }
+        .pf-readme th, .pf-readme td { border: 1px solid var(--border); padding: 0.35rem 0.65rem; text-align: left; }
+        .pf-readme th { font-weight: 500; background: var(--border); }
+
+        /* Fade-in ao carregar */
+        @keyframes pf-fadein {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .container {
+            animation: pf-fadein 0.35s ease both;
+        }
+
+        /* Status e loading */
+        .pf-status {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--muted);
+            padding: 0.4rem 0;
+        }
+
+        /* Wrapper de conteudo do projeto (nome + meta) */
+        .pf-item-content {
+            display: inline;
+        }
+
+        /* Wrapper de metadados do projeto (langs + estrelas + tempo) */
+        .pf-item-meta {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 560px) {
+            .pf-item {
+                flex-wrap: nowrap;
+                align-items: center;
+                overflow: hidden;
+            }
+            .pf-item-content {
+                display: flex;
+                flex-direction: row;
+                align-items: baseline;
+                gap: 0.45rem;
+                min-width: 0;
+                overflow: hidden;
+            }
+            .pf-link {
+                flex-shrink: 0;
+            }
+            .pf-desc {
+                display: none;
+            }
+            .pf-item-meta {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                flex-shrink: 1;
+                min-width: 0;
+            }
+            .pf-item-meta::-webkit-scrollbar {
+                display: none;
+            }
+            .pf-proj-langs {
+                flex-wrap: nowrap;
+            }
+            .pf-skill-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .pf-skill-lang {
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container-principal">
+
+    <!-- Header -->
+    <div class="pf-header">
+        <a href="/" class="pf-name">Armando Netto</a>
+        <button class="pf-toggle" id="toggle-dark" title="Alternar modo escuro" aria-label="Alternar modo escuro">
+            <span class="pf-toggle-track">
+                <span class="pf-toggle-thumb"></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Bio -->
+    <div class="pf-bio" id="bio">
+        <p><span class="pf-saudacao" id="saudacao"></span></p>
+        <p>Sou graduando em Ciência de Dados e entusiasta do universo analítico, com uma sólida formação em matemática. Sou um entusiasta da democratização de dados, focando no desenvolvimento de soluções de grande impacto por meio de ferramentas de código aberto e arquiteturas de baixo custo.</p>
+        <p>Minha atuação integra a capacidade analítica de Python, R e SQL para desenvolver soluções inovadoras. Meu objetivo é transformar dados em ativos estratégicos, seja explorando padrões ou automatizando processos. Defendo o uso de ferramentas de código aberto para democratizar a análise de dados, proporcionando resultados significativos com o mínimo de custo operacional.</p>
+    </div>
+
+    <!-- Projetos -->
+    <div class="pf-section">
+        <div class="pf-section-title">Projetos</div>
+        <div id="projetos"><span class="pf-status">Carregando projetos...</span></div>
+    </div>
+
+    <!-- Competências -->
+    <div class="pf-section">
+        <div class="pf-section-title">Competências</div>
+        <div class="pf-skills">
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">Python</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">pandas</span>
+                    <span class="pf-skill-tag">numpy</span>
+                    <span class="pf-skill-tag">matplotlib</span>
+                    <span class="pf-skill-tag">seaborn</span>
+                    <span class="pf-skill-tag">plotly</span>
+                    <span class="pf-skill-tag">selenium</span>
+                    <span class="pf-skill-tag">Streamlit</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">SQL</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">BigQuery</span>
+                    <span class="pf-skill-tag">AWS Athena</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">R</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">ggplot2</span>
+                    <span class="pf-skill-tag">dplyr</span>
+                </div>
+            </div>
+            <div class="pf-skill-row">
+                <span class="pf-skill-lang">Ferramentas</span>
+                <div class="pf-skill-tags">
+                    <span class="pf-skill-tag">Power BI</span>
+                    <span class="pf-skill-tag">Tableau</span>
+                    <span class="pf-skill-tag">Git</span>
+                    <span class="pf-skill-tag">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experiência -->
+    <div class="pf-section">
+        <div class="pf-section-title">Experiência</div>
+        <ul class="pf-exp-list">
+            <li class="pf-exp-group">
+                <div class="pf-exp-empresa">Best Senior</div>
+                <div class="pf-exp-roles">
+                    <div class="pf-exp-role">
+                        <span class="pf-exp-cargo">Analista de Dados</span>
+                        <span class="pf-exp-periodo">jan 2026 — presente</span>
+                    </div>
+                    <div class="pf-exp-role">
+                        <span class="pf-exp-cargo">Assistente de Credenciamento</span>
+                        <span class="pf-exp-periodo">jun 2023 — dez 2025</span>
+                    </div>
+                </div>
+            </li>
+            <li class="pf-exp-group">
+                <div class="pf-exp-empresa">AutoGiva</div>
+                <div class="pf-exp-roles">
+                    <div class="pf-exp-role">
+                        <span class="pf-exp-cargo">Assistente Administrativo</span>
+                        <span class="pf-exp-periodo">nov 2021 — ago 2022</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Perfis -->
+    <div class="pf-section">
+        <div class="pf-section-title">Perfis</div>
+        <ul class="pf-list">
+            <li class="pf-item">
+                <span class="pf-bullet">&#x2022;</span>
+                <a href="https://github.com/armandonettox" target="_blank" class="pf-link">GitHub</a>
+                <span class="pf-meta">(github.com/armandonettox)</span>
+            </li>
+            <li class="pf-item">
+                <span class="pf-bullet">&#x2022;</span>
+                <a href="https://www.linkedin.com/in/armandonettox/" target="_blank" class="pf-link">LinkedIn</a>
+                <span class="pf-meta">(linkedin.com/in/armandonettox)</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contato -->
+    <div class="pf-section">
+        <div class="pf-section-title">Contato</div>
+        <ul class="pf-list">
+            <li class="pf-item">
+                <span class="pf-bullet">&#x2022;</span>
+                <a href="mailto:contato@armandonetto.com" class="pf-link">contato@armandonetto.com</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Pagina de projeto -->
+<div class="container" id="pagina-projeto" style="display:none;">
+    <div class="pf-header">
+        <a href="/" class="pf-name">Armando Netto</a>
+        <button class="pf-toggle" id="toggle-dark-projeto" title="Alternar modo escuro" aria-label="Alternar modo escuro">
+            <span class="pf-toggle-track"><span class="pf-toggle-thumb"></span></span>
+        </button>
+    </div>
+    <div class="pf-readme" id="projeto-readme">
+        <span class="pf-status">Carregando...</span>
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+        <a class="pf-btn-repo" id="projeto-repo-link" href="#" target="_blank">ver no GitHub &#x2192;</a>
+    </div>
+</div>
+
+<script>
+    const USUARIO = 'armandonettox';
+
+    // Config de projetos, source of truth para producao
+    const PROJETOS_CONFIG = {
+        'Armandonettox': { ocultar: true },
+        'armandonettox': { ocultar: true },
+        'portifolio':    { ocultar: true },
+    };
+    const ORDEM_PREFERIDA = [];
+
+    // Dark mode
+    const html = document.documentElement;
+    const isDark = localStorage.getItem('dark') === '1';
+    if (isDark) html.classList.add('dark');
+
+    document.getElementById('toggle-dark').addEventListener('click', () => {
+        const nowDark = html.classList.toggle('dark');
+        localStorage.setItem('dark', nowDark ? '1' : '0');
+    });
+
+    // Saudacao dinamica, horario de Brasilia
+    const hora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })).getHours();
+    let saudacao = 'Olá, boa noite!';
+    if (hora >= 5 && hora < 12) saudacao = 'Olá, bom dia!';
+    else if (hora >= 12 && hora < 18) saudacao = 'Olá, boa tarde!';
+    document.getElementById('saudacao').textContent = saudacao;
+
+    // GitHub API
+    const CACHE_TTL = 2 * 60 * 60 * 1000; // 2 horas em ms
+
+    async function apiFetch(url) {
+        const key = 'pf_' + url;
+        const cached = localStorage.getItem(key);
+        if (cached) {
+            const { data, ts } = JSON.parse(cached);
+            if (Date.now() - ts < CACHE_TTL) return data;
+        }
+
+        const path = url.replace('https://api.github.com', '');
+        const res = await fetch(`https://github-proxy.armandosln7.workers.dev?path=${encodeURIComponent(path)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
+        return data;
+    }
+
+    function extrairParagrafos(markdown) {
+        const blocos = markdown.split(/\n\n+/).map(b => b.trim());
+        const resultado = [];
+
+        for (const bloco of blocos) {
+            if (!bloco) continue;
+            if (/^#{1,6}\s/.test(bloco)) continue;        // títulos
+            if (/^!\[/.test(bloco)) continue;              // imagens/badges
+            if (/^-{3,}$/.test(bloco)) continue;           // separadores ---
+            if (/^\[!\[/.test(bloco)) continue;            // badge em link
+            if (bloco.startsWith('<')) continue;            // tags HTML
+            if (/:\s*$/.test(bloco)) continue;             // linha terminando em ":" (cabeçalho de lista)
+            if (/^[*\-]\s/.test(bloco)) continue;          // lista com marcadores
+            if (/^\*\*[^*]+\*\*$/.test(bloco)) continue;  // linha só com **negrito** (subtítulo)
+
+            const limpo = bloco
+                .replace(/!\[.*?\]\(.*?\)/g, '')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                .trim();
+
+            if (!limpo) continue;
+
+            resultado.push(limpo);
+
+            // Para nos dois primeiros parágrafos — bio deve ser concisa
+            if (resultado.length === 2) break;
+        }
+
+        return resultado;
+    }
+
+    async function carregarBio() {
+        try {
+            const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${USUARIO}/readme`);
+
+            // Decodifica base64 respeitando UTF-8
+            const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+            const texto = new TextDecoder('utf-8').decode(bytes);
+
+            const paragrafos = extrairParagrafos(texto);
+            if (paragrafos.length === 0) return;
+
+            const bio = document.getElementById('bio');
+
+            // Remove parágrafos do fallback estático, mantém a saudação
+            Array.from(bio.querySelectorAll('p')).forEach(p => {
+                if (!p.querySelector('#saudacao')) p.remove();
+            });
+
+            paragrafos.forEach(texto => {
+                const p = document.createElement('p');
+                p.innerHTML = texto;
+                bio.appendChild(p);
+            });
+        } catch (_) {
+            // Mantém o fallback estático já no HTML
+        }
+    }
+
+    async function carregarLinguagens(repo) {
+        try {
+            const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${repo}/languages`);
+            return Object.keys(data);
+        } catch (_) {
+            return [];
+        }
+    }
+
+    async function carregarProjetos() {
+        const el = document.getElementById('projetos');
+        try {
+            const repos = await apiFetch(`https://api.github.com/users/${USUARIO}/repos?per_page=100&sort=updated`);
+
+            const reposMap = {};
+            repos.filter(r => !r.fork).forEach(r => { reposMap[r.name] = r; });
+
+            const projetos = [];
+            const vistos = new Set();
+
+            for (const nome of ORDEM_PREFERIDA) {
+                vistos.add(nome);
+                const cfg = PROJETOS_CONFIG[nome] || {};
+                if (cfg.ocultar || !reposMap[nome]) continue;
+                projetos.push(formatar(nome, reposMap[nome], cfg));
+            }
+
+            for (const [nome, repo] of Object.entries(reposMap)) {
+                if (vistos.has(nome)) continue;
+                const cfg = PROJETOS_CONFIG[nome] || {};
+                if (cfg.ocultar) continue;
+                projetos.push(formatar(nome, repo, cfg));
+            }
+
+            if (projetos.length === 0) {
+                el.innerHTML = '<span class="pf-status">Nenhum projeto para exibir.</span>';
+                return;
+            }
+
+            // Ordena por estrelas, mantendo ORDEM_PREFERIDA no topo
+            const preferidos = projetos.filter(p => ORDEM_PREFERIDA.includes(p.nome));
+            const restantes = projetos
+                .filter(p => !ORDEM_PREFERIDA.includes(p.nome))
+                .sort((a, b) => b.estrelas - a.estrelas);
+            const ordenados = [...preferidos, ...restantes];
+
+            // Busca linguagens em paralelo
+            const langs = await Promise.all(ordenados.map(p => carregarLinguagens(p.nome)));
+
+            const ul = document.createElement('ul');
+            ul.className = 'pf-list';
+
+            ordenados.forEach((p, i) => {
+                const tags     = langs[i].map(l => `<span class="pf-skill-tag">${l}</span>`).join('');
+                const meta     = langs[i].length ? `<span class="pf-proj-langs">${tags}</span>` : '';
+                const desc     = p.descricao ? `<span class="pf-desc"> — ${p.descricao}</span>` : '';
+                const tempo    = p.atualizado ? `<span class="pf-atualizado">${tempoRelativo(p.atualizado)}</span>` : '';
+                const estrelas = p.estrelas > 0 ? `<span class="pf-estrelas">&#9733; ${p.estrelas}</span>` : '';
+                const li = document.createElement('li');
+                li.className = 'pf-item';
+                li.innerHTML = `
+                    <span class="pf-bullet">&#x2022;</span>
+                    <span class="pf-item-content"><a href="?projeto=${p.nome}" class="pf-link">${p.titulo}</a>${tempo}${estrelas}<span class="pf-item-meta">${meta}</span></span>
+                `;
+                ul.appendChild(li);
+            });
+
+            el.innerHTML = '';
+            el.appendChild(ul);
+        } catch (_) {
+            el.innerHTML = '<span class="pf-status">Não foi possível carregar os projetos.</span>';
+        }
+    }
+
+    function formatar(nome, repo, cfg) {
+        return {
+            nome,
+            titulo: cfg.titulo || nome,
+            descricao: cfg.descricao || repo.description || '',
+            url: repo.html_url,
+            estrelas: repo.stargazers_count || 0,
+            atualizado: repo.pushed_at || repo.updated_at,
+        };
+    }
+
+    function tempoRelativo(dataISO) {
+        const agora = Date.now();
+        const data = new Date(dataISO).getTime();
+        const diff = Math.floor((agora - data) / 1000);
+
+        if (diff < 60) return 'agora mesmo';
+        if (diff < 3600) return `ha ${Math.floor(diff / 60)} min`;
+        if (diff < 86400) return `ha ${Math.floor(diff / 3600)}h`;
+        const dias = Math.floor(diff / 86400);
+        if (dias === 1) return 'ha 1 dia';
+        if (dias < 30) return `ha ${dias} dias`;
+        const meses = Math.floor(dias / 30);
+        if (meses === 1) return 'ha 1 mes';
+        if (meses < 12) return `ha ${meses} meses`;
+        const anos = Math.floor(meses / 12);
+        return anos === 1 ? 'ha 1 ano' : `ha ${anos} anos`;
+    }
+
+    // Roteamento por query param
+    const params = new URLSearchParams(window.location.search);
+    const projetoAtivo = params.get('projeto');
+
+    if (projetoAtivo) {
+        document.getElementById('container-principal').style.display = 'none';
+        document.getElementById('pagina-projeto').style.display = 'block';
+        document.getElementById('toggle-dark-projeto').addEventListener('click', () => {
+            const nowDark = html.classList.toggle('dark');
+            localStorage.setItem('dark', nowDark ? '1' : '0');
+        });
+        carregarPaginaProjeto(projetoAtivo);
+    } else {
+        carregarBio();
+        carregarProjetos();
+    }
+
+    function markdownParaHtml(md) {
+        md = md.replace(/!\[.*?\]\(.*?\)/g, '');
+        md = md.replace(/\[!\[.*?\]\(.*?\)\]\(.*?\)/g, '');
+        return marked.parse(md);
+    }
+
+    async function carregarPaginaProjeto(nome) {
+        const cfg = PROJETOS_CONFIG[nome] || {};
+        const titulo = cfg.titulo || nome;
+        const githubUrl = `https://github.com/${USUARIO}/${nome}`;
+
+        document.title = 'Armando Netto';
+        document.getElementById('projeto-repo-link').href = githubUrl;
+
+        try {
+            const data = await apiFetch(`https://api.github.com/repos/${USUARIO}/${nome}/readme`);
+            const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+            const texto = new TextDecoder('utf-8').decode(bytes);
+            const el = document.getElementById('projeto-readme');
+            el.innerHTML = markdownParaHtml(texto);
+
+            // Remove links relativos (caminhos de arquivo do repo que nao funcionam no portfolio)
+            el.querySelectorAll('a').forEach(a => {
+                const href = a.getAttribute('href') || '';
+                if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('mailto:')) {
+                    const span = document.createElement('span');
+                    span.innerHTML = a.innerHTML;
+                    a.replaceWith(span);
+                }
+            });
+        } catch (_) {
+            document.getElementById('projeto-readme').innerHTML = '<span class="pf-status">README não encontrado.</span>';
+        }
+    }
+</script>
+</body>
+</html>
