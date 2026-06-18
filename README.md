@@ -2,6 +2,8 @@
 
 Publicado em [armandonetto.com](https://armandonetto.com).
 
+Feito para gastar menos tempo atualizando o portfolio e mais em adquirir conhecimento e desenvolver projetos. Os dados sao puxados automaticamente do GitHub.
+
 ## Automacoes
 
 O site e estatico (HTML/CSS/JS puro), mas os dados sao dinamicos via API do GitHub:
