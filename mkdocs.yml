@@ -1,0 +1,49 @@
+site_name: Armando Netto
+site_url: https://armandonetto.com/
+site_description: Portfolio de Armando Netto — Analista de Dados, graduando em Ciencia de Dados.
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: pt-BR
+  font: false
+  favicon: assets/favicon.svg
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: an-light
+      toggle:
+        icon: material/weather-sunny
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: an-dark
+      toggle:
+        icon: material/weather-night
+        name: Modo claro
+
+plugins: []
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: false
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+
+nav:
+  - Inicio: index.md
+  - Projetos:
+    - netto-bot: projetos/netto-bot.md
+    - netto-malware: projetos/netto-malware.md
+    - portifolio: projetos/portifolio.md
