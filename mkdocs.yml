@@ -55,6 +55,11 @@ markdown_extensions:
       alternate_style: true
 
 nav:
+  - " ":
+      - Sobre mim: index.md
+      - No que eu atuo: competencias.md
+      - Experiência: experiencia.md
+      - Fale comigo: contato.md
   - Projetos:
       - Visão geral: projetos/index.md
       - Soundblend:
@@ -85,6 +90,3 @@ nav:
               - Adaptação: projetos/verbo/reference/adaptation.md
               - Erros comuns: projetos/verbo/reference/troubleshooting.md
   - Blog: blog/index.md
-  - Competências: competencias.md
-  - Experiência: experiencia.md
-  - Contato: contato.md

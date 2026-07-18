@@ -1,6 +1,17 @@
 # Armando Netto { .pf-title-hidden }
 
 <div class="pf-bio">
-  <p>Sou graduando em Ciência de Dados e entusiasta do universo analítico, com uma sólida formação em matemática. Sou um entusiasta da democratização de dados, focando no desenvolvimento de soluções de grande impacto por meio de ferramentas de código aberto e arquiteturas de baixo custo.</p>
-  <p>Minha atuação integra a capacidade analítica de Python, R e SQL para desenvolver soluções inovadoras. Meu objetivo é transformar dados em ativos estratégicos, seja explorando padrões ou automatizando processos. Defendo o uso de ferramentas de código aberto para democratizar a análise de dados, proporcionando resultados significativos com o mínimo de custo operacional.</p>
+  <p><span id="pf-saudacao">Olá</span></p>
+  <p>Sou Armando Netto — profissional de dados com atuação em análise, automação, IA aplicada e Machine Learning.</p>
+  <p>Durante o dia, trabalho como Analista de Dados na Best Saúde, construindo análises, dashboards e fluxos automatizados no contexto de operadora de saúde. À noite e nos meus horários livres, desenvolvo produtos independentes e ferramentas que conectam dados e desenvolvimento de aplicações para resolver necessidades do meu dia a dia.</p>
 </div>
+
+<script>
+(function () {
+  var el = document.getElementById('pf-saudacao');
+  if (!el) return;
+  var hora = new Date().getHours();
+  var periodo = hora < 12 ? 'bom dia' : hora < 18 ? 'boa tarde' : 'boa noite';
+  el.textContent = 'Olá, ' + periodo;
+})();
+</script>
