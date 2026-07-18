@@ -1,0 +1,90 @@
+site_name: Armando Netto
+site_url: https://armandonetto.com/
+site_description: Portfolio de Armando Netto - Analista de Dados.
+site_author: Armando Netto
+
+repo_url: https://github.com/armandonettox
+repo_name: GitHub
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: pt-BR
+  font: false
+  favicon: assets/favicon.png
+  logo: assets/logo.png
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - search.suggest
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: an-light
+      toggle:
+        icon: material/weather-sunny
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: an-dark
+      toggle:
+        icon: material/weather-night
+        name: Modo claro
+
+plugins:
+  - search
+  - blog:
+      blog_dir: blog
+      post_url_format: "{slug}"
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Projetos:
+      - Visão geral: projetos/index.md
+      - Soundblend:
+          - Visão geral: projetos/soundblend/index.md
+          - Primeiros passos:
+              - Pré-requisitos: projetos/soundblend/getting-started/prerequisites.md
+              - Instalação: projetos/soundblend/getting-started/installation.md
+              - Configuração: projetos/soundblend/getting-started/configuration.md
+              - Rodando localmente: projetos/soundblend/getting-started/running.md
+              - YouTube Music (experimental): projetos/soundblend/getting-started/youtube-music.md
+          - Como usar:
+              - Configurar: projetos/soundblend/usage/artists.md
+              - Playlists: projetos/soundblend/usage/sync.md
+          - Referência:
+              - Configuração de playlists: projetos/soundblend/reference/playlist-config.md
+              - Variáveis de ambiente: projetos/soundblend/reference/environment-vars.md
+              - Arquitetura: projetos/soundblend/reference/architecture.md
+          - Deploy:
+              - Streamlit Cloud: projetos/soundblend/deploy/streamlit-cloud.md
+      - Verbo:
+          - Visão geral: projetos/verbo/index.md
+          - Primeiros passos:
+              - Instalação: projetos/verbo/getting-started/installation.md
+              - Configuração: projetos/verbo/getting-started/configuration.md
+              - Rodando: projetos/verbo/getting-started/running.md
+          - Referência:
+              - Arquitetura: projetos/verbo/reference/architecture.md
+              - Adaptação: projetos/verbo/reference/adaptation.md
+              - Erros comuns: projetos/verbo/reference/troubleshooting.md
+  - Blog: blog/index.md
+  - Competências: competencias.md
+  - Experiência: experiencia.md
+  - Contato: contato.md

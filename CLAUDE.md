@@ -3,12 +3,19 @@
 ## O que e este projeto
 
 Portfolio pessoal publicado em armandonetto.com.
-Visual minimalista inspirado no site de Dario Amodei (darioamodei.com).
+Visual minimalista inspirado no site de Dario Amodei (darioamodei.com), construido em cima do
+chrome nativo do Material for MkDocs (cabecalho, abas, sidebar, busca) em vez de tentar imitar
+um SPA escondendo o tema — tentativa anterior de esconder o chrome foi revertida por nao agradar.
 Migrado de HTML/CSS/JS puro para MkDocs em 2026.
+
+E tambem a unica fonte de documentacao dos meus projetos: cada projeto (soundblend, verbo, etc.)
+tem sua documentacao completa aqui, em `docs/projetos/<slug>/`. O README de cada projeto so
+descreve objetivamente o que ele faz e linka pra ca — nao duplica a documentacao.
 
 ## Stack
 
-- MkDocs + Material for MkDocs (tema customizado com CSS override)
+- MkDocs + Material for MkDocs (chrome nativo, paleta e tipografia customizadas via CSS override)
+- Plugin `blog` do Material para o blog (`docs/blog/posts/`)
 - GitHub Pages + GitHub Actions (deploy automatico a cada push em main)
 - Fonte: Newsreader (Google Fonts)
 - Cloudflare DNS para dominio customizado
@@ -19,50 +26,68 @@ Site estatico gerado pelo MkDocs a partir de arquivos Markdown em `docs/`.
 Conteudo manual — sem integracao com API do GitHub.
 
 Estrutura principal:
-- `docs/index.md` — home (bio, projetos, competencias, experiencia, perfis, contato)
-- `docs/projetos/*.md` — uma pagina por projeto, conteudo manual
-- `docs/stylesheets/extra.css` — toda a estetica: paleta, layout 640px, componentes pf-*
-- `overrides/main.html` — carrega Newsreader no head + shim de links antigos (?projeto=X)
-- `mkdocs.yml` — config do tema, palette, extensoes markdown
-- `.github/workflows/deploy.yml` — build e deploy automatico
+- `docs/index.md` — home (so a bio; sem chrome customizado, usa o template padrao do Material)
+- `docs/projetos/index.md` — lista de projetos com link pra cada um
+- `docs/projetos/<slug>/` — documentacao completa de cada projeto (uma pasta por projeto,
+  estrutura tipica: `index.md` + `getting-started/` + `reference/`, ver `/nova-pagina-projeto`)
+- `docs/blog/posts/*.md` — posts do blog (plugin `blog` gera o index automaticamente)
+- `docs/competencias.md`, `docs/experiencia.md`, `docs/contato.md` — paginas proprias com abas
+  horizontais no topo (`navigation.tabs`)
+- `docs/stylesheets/extra.css` — paleta an-light/an-dark (conjunto completo de variaveis `--md-*`,
+  nao so as principais — variaveis derivadas como `--md-typeset-color` "congelam" se so as
+  variaveis base forem sobrescritas), componentes `pf-*` (bio, listas, skills, experiencia)
+- `overrides/main.html` — extrahead com fonte Newsreader, remove o footer padrao do Material,
+  fixa o `<title>` da aba em "Armando Netto" pra toda pagina (bloco `htmltitle`)
+- `mkdocs.yml` — tema, palette, nav aninhado, plugins, extensoes markdown
+- `.github/workflows/deploy.yml` — build (`mkdocs build --strict`) e deploy automatico
 
-## Paleta de cores
+## Paleta de cores e chrome
 
-Definida como esquemas custom `an-light` e `an-dark` no `extra.css`.
-As variaveis `--pf-*` sao a fonte de verdade; os tokens `--md-*` do Material apontam para elas.
+Esquemas custom `an-light` e `an-dark` no `extra.css`, com o conjunto completo de variaveis do
+Material (nao so `--md-default-fg-color`/`--md-default-bg-color`) para evitar variaveis derivadas
+congeladas no valor errado.
 
 ```css
-/* Light (an-light) */
---pf-bg:     #f0eee6;
---pf-text:   #1f1e1d;
---pf-muted:  #3a3936;
---pf-border: #d1cfc5;
---pf-accent: #4a67b5;
+/* an-light */
+--md-default-bg-color: #f0eee6;
+--md-default-fg-color: #1f1e1d;
+--md-accent-fg-color:  #4a67b5;
+--md-primary-fg-color: #4a67b5;   /* fundo do cabecalho/abas, mesmo tom nos dois modos */
+--md-primary-bg-color: #ffffff;   /* texto do cabecalho/abas */
+--md-typeset-color:    #4a67b5;   /* corpo do texto */
 
-/* Dark (an-dark) */
---pf-bg:     #1f1e1d;
---pf-text:   #f0eee6;
---pf-muted:  #87867f;
---pf-border: #3d3d3a;
---pf-accent: #6b85c4;
+/* an-dark */
+--md-default-bg-color: #1f1e1d;
+--md-default-fg-color: #f0eee6;
+--md-accent-fg-color:  #6b85c4;
+--md-primary-fg-color: #4a67b5;
+--md-primary-bg-color: #ffffff;
+--md-typeset-color:    #6b85c4;
 ```
+
+Logo (`assets/logo.png`) e favicon (`assets/favicon.png`) sao gerados a partir das artes em
+`assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os arquivos-fonte de design).
 
 ## Dark mode
 
 Gerenciado nativamente pelo Material for MkDocs (bloco `palette:` no mkdocs.yml).
-Toggle na barra superior; persistencia automatica em localStorage (chave `__palette`).
+Toggle no cabecalho; persistencia automatica em localStorage (chave `__palette`).
 Sem JS proprio para dark mode.
 
 ## Controle de conteudo
 
 Todo o conteudo e manual:
-- Projetos: editar arquivos em `docs/projetos/` e o `nav:` no `mkdocs.yml`
-- Bio, competencias, experiencia: editar `docs/index.md` (HTML embutido com classes pf-*)
-- Perfis e contato: editar `docs/index.md`
+- Projetos: usar a skill `/nova-pagina-projeto` — cria a pasta em `docs/projetos/<slug>/`,
+  atualiza o `nav:` do `mkdocs.yml` e a lista em `docs/projetos/index.md`
+- Blog: novo arquivo em `docs/blog/posts/`, front matter com `date:` e `categories:`
+- Competencias, experiencia, contato: editar o `.md` correspondente (HTML embutido com classes
+  `pf-*` pra manter a estetica)
+- Bio da home: `docs/index.md`
 
 ## Deploy
 
-- GitHub Actions: push em `main` dispara `deploy.yml` que roda `mkdocs build --strict` e publica
+- GitHub Actions: push em `main` dispara `deploy.yml`, que instala `requirements.txt`, roda
+  `mkdocs build --strict` e publica o conteudo de `site/`
 - Passo unico de configuracao: Settings > Pages > Source > GitHub Actions
 - `docs/CNAME` contem `armandonetto.com` e e copiado para `site/CNAME` pelo MkDocs automaticamente
 
@@ -72,6 +97,7 @@ Use digitando `/nome` no Claude Code:
 
 | Comando | O que faz |
 |---------|-----------|
+| `/nova-pagina-projeto` | Cria a documentacao de um projeto em `docs/projetos/<slug>/` |
 | `/revisar-arquitetura` | Analisa a arquitetura do projeto inteiro ou de um arquivo especifico |
 | `/revisar-bugs` | Varre o projeto em busca de bugs e comportamentos inesperados |
 | `/revisar-morto` | Identifica codigo, variaveis, funcoes e arquivos que nao sao mais usados |

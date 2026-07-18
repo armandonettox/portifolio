@@ -1,0 +1,314 @@
+/* ---------- Tipografia base (site inteiro) ---------- */
+
+body,
+.md-typeset {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+
+.md-typeset {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.md-typeset code,
+.md-typeset pre,
+.md-typeset kbd {
+  font-family: 'Courier New', monospace;
+}
+
+.md-tabs__link {
+  font-size: 0.85rem;
+}
+
+.md-header__title {
+  display: none;
+}
+
+.md-header__button.md-logo img {
+  height: 2rem;
+}
+
+/* O titulo escondido tinha flex-grow:1 e empurrava busca/GitHub pra
+   direita -- sem ele, os dois recuavam pra perto do logo. Refaz esse
+   espacamento no elemento seguinte (toggle de tema). */
+.md-header__option {
+  margin-left: auto;
+}
+
+/* Branco em tudo que for texto/icone do cabecalho e das abas */
+.md-header,
+.md-tabs {
+  color: #ffffff;
+}
+
+
+/* ---------- Paletas Material (light/dark) ----------
+   As variaveis abaixo replicam o conjunto completo que o Material define
+   para os esquemas nativos "default" e "slate", em vez de so as 4-5 mais
+   obvias. Isso evita que --md-typeset-color e outras variaveis derivadas
+   (declaradas originalmente em :root) fiquem "congeladas" no valor claro
+   quando so sobrescrevemos --md-default-fg-color no proprio body. */
+
+[data-md-color-scheme="an-light"] {
+  --md-default-fg-color: #1f1e1d;
+  --md-default-fg-color--light: #3a3936;
+  --md-default-fg-color--lighter: #87867f;
+  --md-default-fg-color--lightest: #d1cfc5;
+  --md-default-bg-color: #f0eee6;
+  --md-default-bg-color--light: #f0eee6b3;
+  --md-default-bg-color--lighter: #f0eee64d;
+  --md-default-bg-color--lightest: #f0eee61f;
+  --md-code-fg-color: #3a3936;
+  --md-code-bg-color: #e4e1d6;
+  --md-code-hl-name-color: var(--md-code-fg-color);
+  --md-code-hl-operator-color: var(--md-default-fg-color--light);
+  --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+  --md-code-hl-comment-color: var(--md-default-fg-color--light);
+  --md-code-hl-generic-color: var(--md-default-fg-color--light);
+  --md-code-hl-variable-color: var(--md-default-fg-color--light);
+  --md-typeset-color: #4a67b5;
+  --md-typeset-a-color: #4a67b5;
+  --md-typeset-mark-color: #4a67b54d;
+  --md-typeset-table-color: #1f1e1d1f;
+  --md-typeset-table-color--light: rgba(31, 30, 29, .035);
+  --md-admonition-fg-color: var(--md-default-fg-color);
+  --md-admonition-bg-color: var(--md-default-bg-color);
+  --md-accent-fg-color: #4a67b5;
+  --md-accent-fg-color--transparent: #4a67b51a;
+  --md-accent-bg-color: #fff;
+  --md-accent-bg-color--light: #ffffffb3;
+  --md-primary-fg-color: #4a67b5;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+[data-md-color-scheme="an-dark"] {
+  --md-default-fg-color: #f0eee6;
+  --md-default-fg-color--light: #d1cfc5;
+  --md-default-fg-color--lighter: #87867f;
+  --md-default-fg-color--lightest: #3d3d3a;
+  --md-default-bg-color: #1f1e1d;
+  --md-default-bg-color--light: #1f1e1dba;
+  --md-default-bg-color--lighter: #1f1e1d54;
+  --md-default-bg-color--lightest: #1f1e1d1f;
+  --md-code-fg-color: #d1cfc5;
+  --md-code-bg-color: #2a2927;
+  --md-code-hl-name-color: var(--md-code-fg-color);
+  --md-code-hl-operator-color: var(--md-default-fg-color--light);
+  --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+  --md-code-hl-comment-color: var(--md-default-fg-color--light);
+  --md-code-hl-generic-color: var(--md-default-fg-color--light);
+  --md-code-hl-variable-color: var(--md-default-fg-color--light);
+  --md-typeset-color: #6b85c4;
+  --md-typeset-a-color: #6b85c4;
+  --md-typeset-mark-color: #6b85c44d;
+  --md-typeset-table-color: #f0eee61f;
+  --md-typeset-table-color--light: rgba(240, 238, 230, .035);
+  --md-admonition-fg-color: var(--md-default-fg-color);
+  --md-admonition-bg-color: var(--md-default-bg-color);
+  --md-accent-fg-color: #6b85c4;
+  --md-accent-fg-color--transparent: #6b85c41a;
+  --md-accent-bg-color: #1f1e1d;
+  --md-accent-bg-color--light: #1f1e1db3;
+  --md-primary-fg-color: #4a67b5;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+/* ---------- Componentes pf-* (bio, secoes, listas, skills, experiencia) ---------- */
+
+.pf-bio {
+  font-weight: 300;
+  line-height: 1.75;
+}
+.pf-bio p { margin-bottom: 0.75rem; }
+.pf-bio p:last-child { margin-bottom: 0; }
+
+.md-typeset h1,
+.md-typeset h2 {
+  color: var(--md-accent-fg-color);
+}
+
+.pf-title-hidden {
+  display: none;
+}
+
+.pf-section { margin-top: 1.8rem; }
+
+.pf-section-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--md-accent-fg-color);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--md-accent-fg-color);
+}
+
+/* Listas (projetos, perfis, contato) */
+.pf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pf-item {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.45rem;
+  row-gap: 0;
+  padding: 0.32rem 0;
+  font-size: 0.97rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.pf-bullet {
+  color: var(--md-accent-fg-color);
+  flex-shrink: 0;
+  font-size: 0.75em;
+  line-height: 2;
+  user-select: none;
+}
+
+.pf-link {
+  color: var(--md-accent-fg-color);
+  border-bottom: 1px solid var(--md-accent-fg-color);
+  transition: border-color 0.15s, color 0.15s;
+  opacity: 1;
+}
+.pf-link:hover { opacity: 0.75; }
+
+.pf-desc {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.pf-meta {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.8rem;
+  font-weight: 300;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Competencias */
+.pf-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.pf-skill-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.pf-skill-lang {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.pf-skill-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+}
+.pf-skill-tags::-webkit-scrollbar { display: none; }
+.pf-skill-tag {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--md-default-fg-color);
+  background: transparent;
+  border: 1px solid var(--md-accent-fg-color);
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* Experiencia */
+.pf-exp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.pf-exp-group { display: flex; flex-direction: column; gap: 0; }
+.pf-exp-empresa {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--md-default-fg-color--light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+.pf-exp-roles {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 1.4rem;
+}
+.pf-exp-roles::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 7px;
+  bottom: 7px;
+  width: 1px;
+  background-color: var(--md-accent-fg-color);
+}
+.pf-exp-role { position: relative; padding: 0 0 0.9rem 0; }
+.pf-exp-role:last-child { padding-bottom: 0; }
+.pf-exp-role::before {
+  content: '';
+  position: absolute;
+  left: -1.4rem;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--md-accent-fg-color);
+  border: 1.5px solid var(--md-accent-fg-color);
+}
+.pf-exp-cargo {
+  font-size: 0.97rem;
+  font-weight: 400;
+  color: var(--md-default-fg-color);
+  display: block;
+}
+.pf-exp-periodo {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--md-default-fg-color--light);
+  display: block;
+  margin-top: 0.1rem;
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .pf-skill-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .pf-skill-lang {
+    min-width: unset;
+  }
+}
