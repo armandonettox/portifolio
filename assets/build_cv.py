@@ -14,7 +14,7 @@ DARK = HexColor("#1f1e1d")
 MID = HexColor("#555555")
 LIGHT = HexColor("#d1cfc5")
 
-dst = Path("docs/assets/cv.pdf")
+dst = Path(__file__).resolve().parent.parent / "docs" / "assets" / "cv.pdf"
 
 doc = SimpleDocTemplate(
     str(dst),
