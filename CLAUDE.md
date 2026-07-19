@@ -42,8 +42,9 @@ Estrutura principal:
 - `overrides/main.html` — extrahead com fonte Newsreader, Open Graph com `assets/og-image.png`
   (imagem social dedicada 1200x630), remove o footer padrao do Material,
   fixa o `<title>` da aba em "Armando Netto" pra toda pagina (bloco `htmltitle`)
-- `mkdocs.yml` — tema, palette, nav aninhado (primeira aba chama "Sobre"), plugins,
-  extensoes markdown
+- `mkdocs.yml` — tema, palette, nav plano nas paginas pessoais (cada uma e uma aba no topo:
+  Sobre mim, No que eu atuo, Experiencia, Fale comigo; elas usam `hide: navigation` no front
+  matter), sidebar so em Projetos e Blog, plugins, extensoes markdown
 - `.github/workflows/deploy.yml` — build (`mkdocs build --strict`) e deploy automatico
 
 ## Paleta de cores e chrome

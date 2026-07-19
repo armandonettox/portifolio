@@ -64,11 +64,10 @@ markdown_extensions:
       alternate_style: true
 
 nav:
-  - Sobre:
-      - Sobre mim: index.md
-      - No que eu atuo: competencias.md
-      - Experiência: experiencia.md
-      - Fale comigo: contato.md
+  - Sobre mim: index.md
+  - No que eu atuo: competencias.md
+  - Experiência: experiencia.md
+  - Fale comigo: contato.md
   - Projetos:
       - Visão geral: projetos/index.md
       - Soundblend:
