@@ -1,7 +1,7 @@
 ---
 date: 2026-07-19
 categories:
-  - Soundblend
+  - Projetos
 ---
 
 # Cache de gêneros no Soundblend: MusicBrainz com taxa de 1 req/s

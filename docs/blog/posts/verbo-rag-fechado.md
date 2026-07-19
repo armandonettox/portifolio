@@ -1,7 +1,7 @@
 ---
 date: 2026-07-19
 categories:
-  - Verbo
+  - Projetos
 ---
 
 # Por que o Verbo é RAG fechado (e não usa conhecimento geral do LLM)
