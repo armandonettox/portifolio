@@ -4,7 +4,9 @@ hide:
   - navigation
 ---
 
-# Fale comigo
+# Fale comigo { .pf-center-title }
+
+<div class="pf-contact">
 
 <div class="pf-bio">
   <p>Tá com uma ideia, uma vaga ou só quer trocar uma ideia sobre dados? Escolhe o canal que preferir abaixo.</p>
@@ -36,4 +38,6 @@ hide:
     </div>
     <p class="pf-card-desc">github.com/armandonettox</p>
   </a>
+</div>
+
 </div>
