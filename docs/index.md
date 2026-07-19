@@ -1,7 +1,7 @@
 # Armando Netto { .pf-title-hidden }
 
 <section class="pf-hero">
-  <div class="pf-hero-avatar" aria-hidden="true">AN</div>
+  <img src="assets/profile.jpg" alt="Armando Netto" class="pf-hero-avatar" />
   <div class="pf-hero-content">
     <h1 class="pf-hero-name">Armando Netto</h1>
     <p class="pf-hero-role">Analista de Dados · Cientista de Dados · Engenheiro de Dados</p>
