@@ -5,15 +5,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
 
+  <meta name="author" content="Armando Netto">
+  <meta name="keywords" content="Armando Netto, analista de dados, cientista de dados, engenheiro de dados, Python, SQL, Power BI, AWS Athena, RAG, LLM, portfolio">
+  <meta name="robots" content="index, follow">
+
+  {% set og_title = page.meta.og_title if page and page.meta.og_title else (page.title if page and page.title else config.site_name) %}
+  {% set og_desc = page.meta.og_description if page and page.meta.og_description else config.site_description %}
+
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ config.site_name }}">
-  <meta property="og:description" content="{{ config.site_description }}">
-  <meta property="og:url" content="{{ config.site_url }}{{ page.url }}">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Armando Netto">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  <meta property="og:url" content="{{ config.site_url }}{{ page.url if page else '' }}">
   <meta property="og:image" content="{{ config.site_url }}assets/favicon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{{ config.site_name }}">
-  <meta name="twitter:description" content="{{ config.site_description }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_desc }}">
   <meta name="twitter:image" content="{{ config.site_url }}assets/favicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Armando Netto",
+    "url": "{{ config.site_url }}",
+    "jobTitle": "Analista de Dados",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Best Saude"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/armandonettox/",
+      "https://github.com/armandonettox"
+    ],
+    "knowsAbout": [
+      "Python", "SQL", "R", "Power BI", "AWS Athena", "Tableau", "Metabase",
+      "BigQuery", "PostgreSQL", "Oracle", "RAG", "LLM", "ChromaDB",
+      "Streamlit", "Docker", "FastAPI", "GitHub Actions", "Nginx"
+    ]
+  }
+  </script>
 {% endblock %}
 
 {% block footer %}{% endblock %}
