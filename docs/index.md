@@ -11,9 +11,7 @@ hide:
     <p class="pf-hero-role">Analista de Dados · Cientista de Dados · Engenheiro de Dados</p>
     <p class="pf-hero-tagline">Dados, automação e LLM aplicada a problemas reais.</p>
     <div class="pf-hero-ctas">
-      <a href="projetos/" class="pf-hero-btn pf-hero-btn-primary">Ver projetos</a>
-      <a href="contato/" class="pf-hero-btn">Fale comigo</a>
-      <a href="assets/cv.pdf" download class="pf-hero-btn">Baixar currículo (PDF)</a>
+      <a href="assets/cv.pdf" download class="pf-link pf-cv-link">Baixar currículo (PDF)</a>
     </div>
   </div>
 </section>
