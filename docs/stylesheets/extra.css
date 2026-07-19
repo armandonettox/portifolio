@@ -418,6 +418,9 @@ details[open] > summary.pf-section-title::before {
   flex-direction: column;
   gap: 1.2rem;
   width: fit-content;
+  /* compensa oticamente o recuo da regua da timeline (1.4rem):
+     sem isso o texto dos cargos parece deslocado a direita do titulo */
+  transform: translateX(-0.7rem);
 }
 .pf-exp-group { display: flex; flex-direction: column; gap: 0; }
 .pf-exp-empresa {
