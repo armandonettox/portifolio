@@ -406,14 +406,16 @@ details[open] > summary.pf-section-title::before {
   white-space: nowrap;
 }
 
-/* Experiencia */
+/* Experiencia: timeline como bloco centralizado, texto alinhado a esquerda */
 .pf-exp-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  width: fit-content;
+  min-width: 24rem;
 }
 .pf-exp-group { display: flex; flex-direction: column; gap: 0; }
 .pf-exp-empresa {

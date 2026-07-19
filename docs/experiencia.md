@@ -5,7 +5,7 @@ hide:
   - toc
 ---
 
-# Experiência
+# Experiência { .pf-center-title }
 
 <ul class="pf-exp-list">
   <li class="pf-exp-group">
