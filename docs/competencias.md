@@ -7,12 +7,6 @@ hide:
 
 # No que eu atuo
 
-<div class="pf-top-skills">
-  <span class="pf-top-skill">SQL</span>
-  <span class="pf-top-skill">Python</span>
-  <span class="pf-top-skill">R</span>
-</div>
-
 <details class="pf-section">
   <summary class="pf-section-title">Cientista de Dados</summary>
   <p class="pf-section-text">Atuo do problema à resposta: análise exploratória, estatística e machine learning

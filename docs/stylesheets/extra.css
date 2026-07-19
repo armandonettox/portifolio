@@ -133,8 +133,8 @@ body,
 }
 
 /* mesma centralizacao nas outras paginas pessoais
-   (competencias tem .pf-top-skills, experiencia tem .pf-exp-list) */
-.md-content__inner:has(.pf-top-skills),
+   (competencias tem .pf-section, experiencia tem .pf-exp-list) */
+.md-content__inner:has(.pf-section),
 .md-content__inner:has(.pf-exp-list) {
   max-width: 50rem;
   margin: 0 auto;
@@ -186,29 +186,6 @@ body,
 }
 
 /* ---------- Top skills (destaques em competencias) ---------- */
-
-.pf-top-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.4rem;
-  border-bottom: 1px solid var(--md-typeset-table-color);
-}
-.pf-top-skill {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--md-primary-bg-color);
-  background: var(--md-accent-fg-color);
-  border-radius: 20px;
-  padding: 0.3rem 0.9rem;
-  line-height: 1.5;
-  white-space: nowrap;
-}
-
-/* ---------- CV download (contato) ---------- */
 
 /* Contato centralizado: titulo e bloco de conteudo no meio da pagina,
    cards mantem texto alinhado a esquerda por legibilidade */
