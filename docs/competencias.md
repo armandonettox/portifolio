@@ -2,6 +2,7 @@
 title: No que eu atuo
 hide:
   - navigation
+  - toc
 ---
 
 # No que eu atuo

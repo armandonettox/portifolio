@@ -2,6 +2,7 @@
 title: Experiência
 hide:
   - navigation
+  - toc
 ---
 
 # Experiência

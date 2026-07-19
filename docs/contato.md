@@ -2,6 +2,7 @@
 title: Fale comigo
 hide:
   - navigation
+  - toc
 ---
 
 # Fale comigo { .pf-center-title }
