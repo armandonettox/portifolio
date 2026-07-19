@@ -13,15 +13,35 @@ title: Fale comigo
     <span class="pf-bullet">&#x2022;</span>
     <a href="mailto:contato@armandonetto.com" class="pf-link">E-mail</a>
     <span class="pf-meta">contato@armandonetto.com</span>
+    <button class="pf-copy-btn" data-copy="contato@armandonetto.com" aria-label="Copiar e-mail">Copiar</button>
   </li>
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
-    <a href="https://www.linkedin.com/in/armandonettox/" target="_blank" class="pf-link">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/armandonettox/" target="_blank" rel="noopener" class="pf-link">LinkedIn</a>
     <span class="pf-meta">linkedin.com/in/armandonettox</span>
   </li>
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
-    <a href="https://github.com/armandonettox" target="_blank" class="pf-link">GitHub</a>
+    <a href="https://github.com/armandonettox" target="_blank" rel="noopener" class="pf-link">GitHub</a>
     <span class="pf-meta">github.com/armandonettox</span>
   </li>
 </ul>
+
+<script>
+(function () {
+  document.querySelectorAll('.pf-copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var email = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(email).then(function () {
+        var original = btn.textContent;
+        btn.textContent = 'Copiado!';
+        btn.classList.add('pf-copy-done');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('pf-copy-done');
+        }, 1500);
+      });
+    });
+  });
+})();
+</script>
