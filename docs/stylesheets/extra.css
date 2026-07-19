@@ -358,6 +358,33 @@ body,
   border-bottom: 1px solid var(--md-accent-fg-color);
 }
 
+/* Secoes ocultaveis (details/summary), fechadas por padrao */
+summary.pf-section-title {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+summary.pf-section-title::-webkit-details-marker {
+  display: none;
+}
+summary.pf-section-title::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 0.5em;
+  transition: transform 0.15s ease;
+}
+details[open] > summary.pf-section-title::before {
+  transform: rotate(90deg);
+}
+
+/* texto curto dentro da secao aberta */
+.md-typeset .pf-section-text {
+  margin: 0.2rem 0 0.4rem 0;
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 42rem;
+}
+
 /* Listas (projetos, perfis, contato) */
 .pf-list {
   list-style: none;
