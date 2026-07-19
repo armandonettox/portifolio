@@ -9,8 +9,7 @@ hide:
 <section class="pf-hero">
   <img src="assets/profile.jpg" alt="Armando Netto" class="pf-hero-avatar" />
   <div class="pf-hero-content">
-    <p class="pf-hero-role">Analista de Dados · Cientista de Dados · Engenheiro de Dados</p>
-    <p class="pf-hero-tagline">Dados, automação e LLM aplicada a problemas reais.</p>
+    <p class="pf-hero-role">Python · SQL · R · HTML · CSS</p>
   </div>
 </section>
 

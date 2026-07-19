@@ -173,13 +173,6 @@ body,
   text-transform: uppercase;
   color: var(--md-default-fg-color--light);
 }
-.md-typeset .pf-hero-tagline {
-  margin: 0 0 1.1rem 0;
-  font-size: 1.1rem;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--md-accent-fg-color);
-}
 /* link discreto de curriculo no fim da bio */
 .pf-cv-link {
   font-size: 0.9rem;
@@ -189,7 +182,6 @@ body,
 @media (max-width: 560px) {
   .pf-hero { gap: 1.2rem; padding: 1rem 0 0.8rem 0; }
   .pf-hero-avatar { width: 104px; height: 104px; }
-  .md-typeset .pf-hero-tagline { font-size: 1rem; }
 }
 
 /* ---------- Top skills (destaques em competencias) ---------- */
