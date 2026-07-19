@@ -1,58 +1,32 @@
 ---
 date: 2026-07-19
+slug: obsidian-como-segundo-cerebro-para-llms
 categories:
   - Workflow
 ---
 
 # Obsidian como segundo cérebro para LLMs
 
-Uso o Obsidian como memória persistente para os LLMs com que trabalho (Claude, opencode). Não é só anotação — é o lugar onde o contexto vive entre sessões. O LLM esquece tudo entre conversas; o vault não.
+Cheguei nessa ideia quando o uso do Claude Code com Obsidian viralizou — mas não embarquei por modinha. Fui estudar o que havia por trás: estudos publicados, repositórios e ideias de gente bem conceituada, como o Karpathy. O que entendi é que usar o Obsidian como segundo cérebro nada mais é do que ativar a memória do LLM em um lugar diferente — e de uma forma que consome bem menos tokens.
 
 <!-- more -->
 
-## O problema
+## Desmistificando a ideia
 
-Toda sessão com um LLM começa do zero. Ele não lembra o que decidimos semana passada, não sabe a arquitetura do projeto, não conhece as convenções que fixamos. Repetir isso a cada sessão é caro (tokens) e frágil (depende de eu lembrar de dizer tudo).
+- Por algum motivo, LLMs entendem muito bem arquivos `.md` — texto plano com estrutura leve é o formato que eles leem melhor.
+- O Obsidian entra pela conveniência: plugins como o de **busca semântica** facilitam o LLM achar a nota certa por significado, não por string exata.
+- O grafo de ligar pontos, que tanto atrai nas capturas de tela, é praticamente só apelo visual — não é ele que faz a memória funcionar.
+- No fundo, daria pra fazer o mesmo com um repositório de arquivos `.md` organizado em Python com uma lib de busca semântica, ou com qualquer outra ferramenta que trabalhe com Markdown, como o Notion. O Obsidian é a embalagem; a ideia é memória em texto plano.
 
-## O que está no vault
+## Como eu montei o meu
 
-Cada projeto tem uma pasta no vault correspondente. O que vive lá:
+- **MCPs próprios** de leitura e escrita, pra o LLM usar o vault melhor do que um simples "abrir arquivo".
+- **Camada principal**: as regras vivem dentro do próprio Obsidian, junto com um arquivo *hot* (~500 palavras) com a informação mais fresca — é a primeira coisa lida em toda sessão.
+- **Camada secundária**: índices direcionados por assunto, que dizem ao LLM o que existe antes de ele abrir qualquer nota.
+- **Skills personalizadas** que gravam as sessões de trabalho, processam e organizam o vault inteiro.
 
-- **Contexto do projeto** — stack, decisões arquiteturais, por que escolhemos X em vez de Y
-- **Decisões e aprendizados** — registry datado de "tentamos A, não funcionou porque B, fomos de C"
-- **Sessões** — rascunho cru do que aconteceu em cada sessão de trabalho, antes de ser lapidado em nota permanente
-- **Índices** — `_index.md` de cada pasta funcionando como sumário navegável
+## A regra de ouro
 
-Os LLMs leem isso no início da sessão (via CLAUDE.md do projeto + skills que consultam o vault) e partem de onde paramos.
+Eu **nunca edito o vault manualmente**. Se o LLM me traz uma informação errada de lá, eu ensino ele a corrigir — a manutenção da memória também é responsabilidade dele. E ele identifica pontos de aprendizado sozinho, gerando notas específicas de *learnings* que são priorizadas antes de qualquer atitude ou decisão.
 
-## Como o LLM acessa
-
-Uso o MCP do Obsidian no opencode/Claude. O LLM consegue:
-
-- **Buscar semanticamente** — pergunta ao vault por significado, não por string exata
-- **Ler notas específicas** — quando uma decisão precisa ser consultada
-- **Escrever no vault** — registra decisões e aprendizados durante a sessão
-
-Isso transforma o LLM de "ferramenta amnésica que preciso reensinar toda vez" pra "parceiro que lembra do projeto".
-
-## A diferença na prática
-
-Antes do vault, eu perdia 10–15 minutos por sessão só explicando contexto. Depois, o LLM lê o `CLAUDE.md` do projeto, consulta o vault quando precisa, e Parte direto pra tarefa.
-
-Outro efeito: eu também escrevo mais. Como sei que o LLM vai ler, registro decisões que eu mesmo ia esquecer. O vault deixa de ser diário e vira documentação viva.
-
-## O que aprendi
-
-- **Memória TRANSFORMA LLM.** A diferença entre "qualquer LLM" e "meu LLM" é só contexto persistente. Não é fine-tuning, não é RAG sobre documentos públicos — é memória privada do projeto.
-- **O vault não é pra guardar a web nem pra estudar torto.** É um registro operacional: decisões, contexto, aprendizados. Vira bagulho genérico, perde utilidade.
-- **Indices (`_index.md`) são decisivos.** Sem índice, o LLM acessar notas se torna chamado aleatório a arquivos soltos. Com índice, ele consegue saber o que existe antes de abrir.
-- **Hierarquia de configuracao:** CLAUDE.md do projeto aponta pro vault; o vault aponta pros artefatos. O LLM navega essa hierarquia sem eu explicar.
-
-## Stack no caso de uso
-
-- Obsidian (vaults pessoais e de trabalho)
-- opencode + MCP do Obsidian (busca semântica, leitura, escrita)
-- Skills locais que encapsulam fluxos (processar inbox, gerar dailies, auditar orphans)
-- `CLAUDE.md` por projeto apontando parâmetros e memória
-
-A ideia central: o LLM precisa de memória. Se não é você quem dá, ele vive amnésico. Nada de depender da memória interna do modelo — isso não existe entre sessões.
+O resultado: toda sessão começa de onde a última parou, sem eu gastar 10 minutos reexplicando contexto — e sem depender da memória interna do modelo, que entre conversas simplesmente não existe.
