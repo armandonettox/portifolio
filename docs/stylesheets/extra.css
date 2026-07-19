@@ -407,8 +407,10 @@ details[open] > summary.pf-section-title::before {
 }
 
 /* Experiencia: timeline como bloco centralizado, texto alinhado a esquerda.
-   Prefixo .md-typeset porque a regra de ul do Material ganha da classe sozinha */
-.md-typeset .pf-exp-list {
+   Seletor com ul porque a regra de lista do Material usa :not() e ganha
+   de .md-typeset .pf-exp-list; com o elemento junto o empate e decidido
+   pela ordem de carga e o extra.css vence */
+.md-typeset ul.pf-exp-list {
   list-style: none;
   padding: 0;
   margin: 0 auto;
