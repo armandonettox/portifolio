@@ -18,7 +18,9 @@ theme:
     - navigation.instant.progress
     - navigation.tracking
     - navigation.tabs
+    - navigation.top
     - search.suggest
+    - search.highlight
     - content.code.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -55,7 +57,7 @@ markdown_extensions:
       alternate_style: true
 
 nav:
-  - " ":
+  - Sobre:
       - Sobre mim: index.md
       - No que eu atuo: competencias.md
       - Experiência: experiencia.md
