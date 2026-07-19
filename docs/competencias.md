@@ -29,8 +29,9 @@ hide:
 
 <details class="pf-section">
   <summary class="pf-section-title">Engenheiro de Dados</summary>
-  <p class="pf-section-text">Construo a base pra análise acontecer: pipelines, integrações entre sistemas e
-  aplicações que rodam sozinhas em produção. É o que sustenta meus
-  <a href="../projetos/">projetos pessoais</a> — autenticação, APIs, containers e deploy automatizado
+  <p class="pf-section-text">Construo a base pra análise acontecer: pipelines de ETL que ingerem dados de
+  planilhas, APIs e bancos transacionais, transformam e carregam em base analítica — rodando sozinhos,
+  em horário agendado, em produção. Também é o que sustenta meus
+  <a href="../projetos/">projetos pessoais</a>: autenticação, APIs, containers e deploy automatizado
   de ponta a ponta.</p>
 </details>
