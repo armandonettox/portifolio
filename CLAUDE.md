@@ -36,9 +36,14 @@ Estrutura principal:
 - `docs/stylesheets/extra.css` — paleta an-light/an-dark (conjunto completo de variaveis `--md-*`,
   nao so as principais — variaveis derivadas como `--md-typeset-color` "congelam" se so as
   variaveis base forem sobrescritas), componentes `pf-*` (bio, listas, skills, experiencia)
-- `overrides/main.html` — extrahead com fonte Newsreader, remove o footer padrao do Material,
+- `docs/javascripts/extra.js` — JS das paginas (saudacao da home, botao copiar e-mail do contato),
+  registrado via `extra_javascript`; usa `document$` do Material porque com `navigation.instant`
+  o `DOMContentLoaded` so dispara no primeiro carregamento
+- `overrides/main.html` — extrahead com fonte Newsreader, Open Graph com `assets/og-image.png`
+  (imagem social dedicada 1200x630), remove o footer padrao do Material,
   fixa o `<title>` da aba em "Armando Netto" pra toda pagina (bloco `htmltitle`)
-- `mkdocs.yml` — tema, palette, nav aninhado, plugins, extensoes markdown
+- `mkdocs.yml` — tema, palette, nav aninhado (primeira aba chama "Sobre"), plugins,
+  extensoes markdown
 - `.github/workflows/deploy.yml` — build (`mkdocs build --strict`) e deploy automatico
 
 ## Paleta de cores e chrome
@@ -65,8 +70,15 @@ congeladas no valor errado.
 --md-typeset-color:    #6b85c4;
 ```
 
-Logo (`assets/logo.png`) e favicon (`assets/favicon.png`) sao gerados a partir das artes em
-`assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os arquivos-fonte de design).
+Logo (`assets/logo.png`), favicon (`assets/favicon.png`) e og-image (`assets/og-image.png`)
+sao gerados a partir das artes em `assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os
+arquivos-fonte de design). Logo e favicon ficam redimensionados pro tamanho de uso
+(128px) pra nao pesar no carregamento.
+
+O curriculo em PDF (`docs/assets/cv.pdf`) e gerado por `assets/build_cv.py` (reportlab);
+rodar `python assets/build_cv.py` na raiz apos qualquer mudanca de conteudo. Os fontes do CV
+(`build_cv.py`, `cv-src.html`) ficam fora de `docs/` de proposito, pra nao serem publicados
+no site.
 
 ## Dark mode
 
@@ -79,7 +91,10 @@ Sem JS proprio para dark mode.
 Todo o conteudo e manual:
 - Projetos: usar a skill `/nova-pagina-projeto` — cria a pasta em `docs/projetos/<slug>/`,
   atualiza o `nav:` do `mkdocs.yml` e a lista em `docs/projetos/index.md`
-- Blog: novo arquivo em `docs/blog/posts/`, front matter com `date:` e `categories:`
+- Blog: novo arquivo em `docs/blog/posts/`, front matter com `date:` e `categories:`.
+  Categorias permitidas (enforced via `categories_allowed` no mkdocs.yml): Projetos,
+  Workflow, Bastidores — o build quebra se um post usar categoria fora dessa lista
+- Empregador: grafia oficial e "Best Senior" em todas as paginas e metadados
 - Competencias, experiencia, contato: editar o `.md` correspondente (HTML embutido com classes
   `pf-*` pra manter a estetica)
 - Bio da home: `docs/index.md`
