@@ -105,3 +105,24 @@ title: No que eu atuo
     </div>
   </div>
 </details>
+
+<details class="pf-section" open>
+  <summary class="pf-section-title">Idiomas</summary>
+  <div class="pf-skills">
+    <div class="pf-skill-row">
+      <span class="pf-skill-lang">Português</span>
+      <div class="pf-skill-tags">
+        <span class="pf-skill-tag">Nativo</span>
+      </div>
+    </div>
+    <div class="pf-skill-row">
+      <span class="pf-skill-lang">Inglês</span>
+      <div class="pf-skill-tags">
+        <span class="pf-skill-tag">Leitura — intermediário</span>
+        <span class="pf-skill-tag">Escrita — intermediário</span>
+        <span class="pf-skill-tag">Conversa — iniciante</span>
+        <span class="pf-skill-tag">Escuta — iniciante</span>
+      </div>
+    </div>
+  </div>
+</details>
