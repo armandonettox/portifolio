@@ -4,6 +4,15 @@ title: No que eu atuo
 
 # No que eu atuo
 
+<div class="pf-top-skills">
+  <span class="pf-top-skill">SQL</span>
+  <span class="pf-top-skill">Python</span>
+  <span class="pf-top-skill">R</span>
+  <span class="pf-top-skill">Power BI</span>
+  <span class="pf-top-skill">AWS Athena</span>
+  <span class="pf-top-skill">RAG / LLM</span>
+</div>
+
 <details class="pf-section">
   <summary class="pf-section-title">Cientista de Dados</summary>
   <div class="pf-skills">

@@ -209,6 +209,29 @@ body,
   .pf-hero-tagline { font-size: 1rem; }
 }
 
+/* ---------- Top skills (destaques em competencias) ---------- */
+
+.pf-top-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--md-typeset-table-color);
+}
+.pf-top-skill {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--md-primary-bg-color);
+  background: var(--md-accent-fg-color);
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
 /* ---------- Cards de projetos ---------- */
 
 .pf-cards {
