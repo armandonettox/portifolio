@@ -378,6 +378,7 @@ details[open] > summary.pf-section-title::before {
 /* texto curto dentro da secao aberta */
 .md-typeset .pf-section-text {
   margin: 0.2rem 0 0.4rem 0;
+  font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.7;
   max-width: 42rem;
