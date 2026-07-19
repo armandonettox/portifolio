@@ -406,8 +406,9 @@ details[open] > summary.pf-section-title::before {
   white-space: nowrap;
 }
 
-/* Experiencia: timeline como bloco centralizado, texto alinhado a esquerda */
-.pf-exp-list {
+/* Experiencia: timeline como bloco centralizado, texto alinhado a esquerda.
+   Prefixo .md-typeset porque a regra de ul do Material ganha da classe sozinha */
+.md-typeset .pf-exp-list {
   list-style: none;
   padding: 0;
   margin: 0 auto;
