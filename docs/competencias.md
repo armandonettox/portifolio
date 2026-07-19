@@ -15,8 +15,8 @@ hide:
   <span class="pf-top-skill">RAG / LLM</span>
 </div>
 
-<details class="pf-section">
-  <summary class="pf-section-title">Cientista de Dados</summary>
+<div class="pf-section">
+  <p class="pf-section-title">Cientista de Dados</p>
   <div class="pf-skills">
     <div class="pf-skill-row">
       <span class="pf-skill-lang">Python</span>
@@ -43,10 +43,10 @@ hide:
       </div>
     </div>
   </div>
-</details>
+</div>
 
-<details class="pf-section">
-  <summary class="pf-section-title">Analista de Dados</summary>
+<div class="pf-section">
+  <p class="pf-section-title">Analista de Dados</p>
   <div class="pf-skills">
     <div class="pf-skill-row">
       <span class="pf-skill-lang">SQL</span>
@@ -75,10 +75,10 @@ hide:
       </div>
     </div>
   </div>
-</details>
+</div>
 
-<details class="pf-section">
-  <summary class="pf-section-title">Engenheiro de Dados</summary>
+<div class="pf-section">
+  <p class="pf-section-title">Engenheiro de Dados</p>
   <div class="pf-skills">
     <div class="pf-skill-row">
       <span class="pf-skill-lang">Backend</span>
@@ -106,22 +106,4 @@ hide:
       </div>
     </div>
   </div>
-</details>
-
-<details class="pf-section" open>
-  <summary class="pf-section-title">Idiomas</summary>
-  <div class="pf-skills">
-    <div class="pf-skill-row">
-      <span class="pf-skill-lang">Português</span>
-      <div class="pf-skill-tags">
-        <span class="pf-skill-tag">Nativo</span>
-      </div>
-    </div>
-    <div class="pf-skill-row">
-      <span class="pf-skill-lang">Inglês</span>
-      <div class="pf-skill-tags">
-        <span class="pf-skill-tag">Intermediário</span>
-      </div>
-    </div>
-  </div>
-</details>
+</div>

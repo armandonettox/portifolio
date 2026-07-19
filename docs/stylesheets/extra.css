@@ -345,38 +345,17 @@ body,
 
 .pf-section { margin-top: 1.8rem; }
 
-.pf-section-title {
+/* prefixo .md-typeset pra ganhar das margens de p do Material */
+.md-typeset .pf-section-title {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--md-accent-fg-color);
-  margin-bottom: 0.6rem;
+  margin: 0 0 0.6rem 0;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--md-accent-fg-color);
-}
-
-/* Secoes ocultaveis (details/summary) */
-summary.pf-section-title {
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-}
-summary.pf-section-title::-webkit-details-marker {
-  display: none;
-}
-summary.pf-section-title::before {
-  content: '▸';
-  display: inline-block;
-  margin-right: 0.5em;
-  transition: transform 0.15s ease;
-}
-details[open] > summary.pf-section-title::before {
-  transform: rotate(90deg);
-}
-details.pf-section > .pf-skills {
-  margin-top: 0.6rem;
 }
 
 /* Listas (projetos, perfis, contato) */
