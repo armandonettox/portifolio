@@ -13,7 +13,7 @@ hide:
     <div class="pf-hero-ctas">
       <a href="projetos/" class="pf-hero-btn pf-hero-btn-primary">Ver projetos</a>
       <a href="contato/" class="pf-hero-btn">Fale comigo</a>
-      <a href="https://www.linkedin.com/in/armandonettox/" target="_blank" rel="noopener" class="pf-hero-btn">LinkedIn</a>
+      <a href="assets/cv.pdf" download class="pf-hero-btn">Baixar currículo (PDF)</a>
     </div>
   </div>
 </section>

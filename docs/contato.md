@@ -12,10 +12,6 @@ hide:
   <p>Tá com uma ideia, uma vaga ou só quer trocar uma ideia sobre dados? Escolhe o canal que preferir abaixo.</p>
 </div>
 
-<div class="pf-cv-download">
-  <a href="assets/cv.pdf" download class="pf-hero-btn pf-hero-btn-primary">Baixar currículo (PDF)</a>
-</div>
-
 <div class="pf-cards">
   <div class="pf-card">
     <div class="pf-card-header">

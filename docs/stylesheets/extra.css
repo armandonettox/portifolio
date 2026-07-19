@@ -224,10 +224,6 @@ body,
 
 /* ---------- CV download (contato) ---------- */
 
-.pf-cv-download {
-  margin: 1.4rem 0 1.8rem 0;
-}
-
 /* Contato centralizado: titulo e bloco de conteudo no meio da pagina,
    cards mantem texto alinhado a esquerda por legibilidade */
 .md-typeset .pf-center-title {
@@ -241,11 +237,6 @@ body,
 .pf-contact .pf-card {
   text-align: left;
 }
-.pf-cv-download .pf-hero-btn {
-  font-size: 0.88rem;
-  padding: 0.55rem 1.2rem;
-}
-
 /* ---------- Botao copiar (contato) ---------- */
 
 .pf-copy-btn {
