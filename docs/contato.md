@@ -1,7 +1,5 @@
 ---
 title: Fale comigo
-hide:
-  - navigation
 ---
 
 # Fale comigo

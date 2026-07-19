@@ -1,7 +1,5 @@
 ---
 title: Experiência
-hide:
-  - navigation
 ---
 
 # Experiência

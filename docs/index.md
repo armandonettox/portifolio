@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Armando Netto { .pf-title-hidden }
 
 <section class="pf-hero">

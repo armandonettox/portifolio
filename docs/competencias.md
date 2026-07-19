@@ -1,7 +1,5 @@
 ---
 title: No que eu atuo
-hide:
-  - navigation
 ---
 
 # No que eu atuo
