@@ -1,15 +1,16 @@
 ---
 date: 2026-07-18
+slug: portfolio-migrado-para-mkdocs
 categories:
   - Bastidores
 ---
 
-# Portfolio migrado para MkDocs
+# Por que este site existe
 
-Refiz o portfolio em cima do MkDocs Material. Além do site em si, agora tem duas coisas novas: esse blog e documentação de verdade pra cada projeto (começando por [Soundblend](../../projetos/soundblend/index.md) e [Verbo](../../projetos/verbo/index.md)).
-
-A ideia é simples: a documentação de cada projeto passa a viver só aqui, e o README de cada repositório vira só uma porta de entrada objetiva com link pra cá. Menos duplicação, uma fonte só pra manter atualizada.
+Meu conhecimento, meus projetos e minha experiência sempre estiveram espalhados: um pouco no GitHub, um pouco no LinkedIn, um pouco no currículo — e nenhum desses lugares conta a história completa. Este site nasceu pra resolver exatamente isso: um lugar só, organizado, onde dá pra ver o que eu sei fazer, o que já construí e por onde passei.
 
 <!-- more -->
 
-Esse blog serve pra registrar decisões técnicas, aprendizados e atualizações dos projetos — sem precisar de uma rede social pra isso.
+A peça central é o MkDocs (com o tema Material), e a escolha foi pela facilidade de edição. Cada página é um arquivo Markdown simples, e publicar é um `git push` — o deploy acontece sozinho. Isso muda completamente onde o meu tempo vai: em vez de gastar horas mexendo em HTML e CSS pra manter o site de pé, eu escrevo o conteúdo em minutos e volto pro que realmente importa, que é desenvolver.
+
+De quebra, o site virou a casa oficial da documentação dos meus projetos (começando por [Soundblend](../../projetos/soundblend/index.md) e [Verbo](../../projetos/verbo/index.md)): o README de cada repositório só apresenta o projeto e aponta pra cá. Menos duplicação, uma fonte só pra manter atualizada — e este blog registra as decisões e os aprendizados pelo caminho.
