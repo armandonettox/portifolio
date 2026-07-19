@@ -121,11 +121,20 @@ body,
 
 /* ---------- Hero (home) ---------- */
 
+/* a home deve caber na tela sem scroll: margem do main zerada
+   e padding do hero reduzido (so a home tem .pf-hero) */
+.md-main__inner:has(.pf-hero) {
+  margin-top: 0.2rem;
+}
+.md-content__inner:has(.pf-hero) {
+  margin-bottom: 0;
+  padding-top: 0;
+}
 .pf-hero {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 1.2rem 0 1rem 0;
+  padding: 0.6rem 0 0.6rem 0;
   flex-wrap: wrap;
 }
 /* sem nome no hero: o wordmark do cabecalho ja identifica o site,
@@ -309,9 +318,9 @@ body,
 
 .pf-bio {
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.6;
 }
-.pf-bio p { margin-bottom: 0.75rem; }
+.pf-bio p { margin-bottom: 0.6rem; }
 .pf-bio p:last-child { margin-bottom: 0; }
 
 .md-typeset h1,
