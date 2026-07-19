@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Armando Netto - Curriculo</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.6cm 1.8cm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #1f1e1d;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    margin: 0;
+  }
+  .header {
+    border-bottom: 2px solid #4a67b5;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .header h1 {
+    margin: 0 0 0.2rem 0;
+    font-size: 22pt;
+    font-weight: 500;
+    color: #1f1e1d;
+    letter-spacing: 0.01em;
+  }
+  .header .role {
+    color: #4a67b5;
+    font-size: 10pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .header .contact {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    font-size: 9pt;
+    color: #555;
+  }
+  .header .contact span {
+    white-space: nowrap;
+  }
+  .header .contact a {
+    color: #4a67b5;
+    text-decoration: none;
+  }
+  h2 {
+    color: #4a67b5;
+    font-size: 11pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 1.4rem 0 0.5rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #d1cfc5;
+  }
+  h3 {
+    margin: 0.6rem 0 0 0;
+    font-size: 11pt;
+    font-weight: 500;
+    color: #1f1e1d;
+  }
+  .exp {
+    margin-bottom: 0.8rem;
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .exp-company {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.4rem;
+  }
+  .exp-period {
+    font-size: 9pt;
+    color: #777;
+    white-space: nowrap;
+  }
+  .exp-roles {
+    margin-top: 0.3rem;
+    padding-left: 0;
+    list-style: none;
+  }
+  .exp-role {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 0.9rem;
+  }
+  .exp-role::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #4a67b5;
+  }
+  .exp-role-title {
+    font-weight: 500;
+    color: #1f1e1d;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.2rem;
+  }
+  .skill-row {
+    margin-bottom: 0.35rem;
+  }
+  .skill-cat {
+    font-size: 9pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #4a67b5;
+    margin-bottom: 0.15rem;
+  }
+  .skill-items {
+    font-size: 10pt;
+    color: #2a2927;
+  }
+  .languages {
+    font-size: 10pt;
+  }
+  .lang-row {
+    margin-bottom: 0.2rem;
+  }
+  .lang-row strong {
+    color: #4a67b5;
+    font-weight: 600;
+    min-width: 80px;
+    display: inline-block;
+  }
+  .projects {
+    margin-top: 0.3rem;
+  }
+  .project {
+    margin-bottom: 0.5rem;
+  }
+  .project-name {
+    font-weight: 600;
+    color: #4a67b5;
+  }
+  .project-desc {
+    font-style: italic;
+    color: #444;
+    font-size: 9.5pt;
+    margin-left: 0.4rem;
+  }
+  .footer-note {
+    margin-top: 1.2rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #d1cfc5;
+    font-size: 8.5pt;
+    color: #777;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Armando Netto</h1>
+  <div class="role">Analista de Dados . Cientista de Dados . Engenheiro de Dados</div>
+  <div class="contact">
+    <span>contato@armandonetto.com</span>
+    <span>|</span>
+    <span>linkedin.com/in/armandonettox</span>
+    <span>|</span>
+    <span>github.com/armandonettox</span>
+    <span>|</span>
+    <span>armandonetto.com</span>
+  </div>
+</div>
+
+<h2>Resumo</h2>
+<p>Profissional de dados com atuação em análise, automação, IA aplicada e Machine Learning. Experiência construindo dashboards, fluxos automatizados e produtos internos em contexto de operadora de saúde. Desenvolve projetos pessoais que conectam dados e aplicações web.</p>
+
+<h2>Experiencia</h2>
+
+<div class="exp">
+  <div class="exp-company">Best Senior</div>
+  <div class="exp-roles">
+    <div class="exp-role">
+      <div class="exp-role-title">Analista de Dados <span class="exp-period">jan 2026 - presente</span></div>
+      Construcao de analises, dashboards e fluxos automatizados no contexto de operadora de saude.
+    </div>
+    <div class="exp-role">
+      <div class="exp-role-title">Assistente de Credenciamento <span class="exp-period">jun 2023 - dez 2025</span></div>
+      Atuacao em processos de credenciamento de prestadores.
+    </div>
+  </div>
+</div>
+
+<div class="exp">
+  <div class="exp-company">AutoGiva</div>
+  <div class="exp-roles">
+    <div class="exp-role">
+      <div class="exp-role-title">Assistente Administrativo <span class="exp-period">nov 2021 - ago 2022</span></div>
+      Atividades administrativas de apoio operacional.
+    </div>
+  </div>
+</div>
+
+<h2>Competencias</h2>
+<div class="skills-grid">
+  <div>
+    <div class="skill-row">
+      <div class="skill-cat">SQL</div>
+      <div class="skill-items">BigQuery, AWS Athena, PostgreSQL, Oracle</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Python</div>
+      <div class="skill-items">pandas, numpy, matplotlib, seaborn, plotly, Streamlit</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">R</div>
+      <div class="skill-items">ggplot2, dplyr</div>
+    </div>
+  </div>
+  <div>
+    <div class="skill-row">
+      <div class="skill-cat">BI</div>
+      <div class="skill-items">Power BI, Tableau, Metabase</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">IA / LLM</div>
+      <div class="skill-items">RAG, embeddings, ChromaDB, NVIDIA NIM, OpenAI API</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Engenharia</div>
+      <div class="skill-items">FastAPI, Docker, OAuth, APIs REST, Git, GitHub Actions, Nginx, selenium, htmx, systemd</div>
+    </div>
+  </div>
+</div>
+
+<h2>Idiomas</h2>
+<div class="languages">
+  <div class="lang-row"><strong>Portugues:</strong> Nativo</div>
+  <div class="lang-row"><strong>Ingles:</strong> Leitura intermediario . Escrita intermediario . Conversa iniciante . Escuta iniciante</div>
+</div>
+
+<h2>Projetos</h2>
+<div class="projects">
+  <div class="project">
+    <span class="project-name">Soundblend</span>
+    <span class="project-desc">distribui musicas curtidas do Spotify em playlists por genero</span>
+  </div>
+  <div class="project">
+    <span class="project-name">Verbo</span>
+    <span class="project-desc">RAG fechado sobre a Biblia Ave Maria, sem inventar com conhecimento geral do LLM</span>
+  </div>
+</div>
+
+<div class="footer-note">
+  Curriculo gerado em julho de 2026. Versao mais recente em armandonetto.com.
+</div>
+
+</body>
+</html>
