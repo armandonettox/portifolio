@@ -418,7 +418,6 @@ details[open] > summary.pf-section-title::before {
   flex-direction: column;
   gap: 1.2rem;
   width: fit-content;
-  min-width: 24rem;
 }
 .pf-exp-group { display: flex; flex-direction: column; gap: 0; }
 .pf-exp-empresa {
