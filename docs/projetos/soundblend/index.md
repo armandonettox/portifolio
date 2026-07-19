@@ -44,7 +44,7 @@ O app está disponível em produção em:
 
 - [Pré-requisitos](getting-started/prerequisites.md) — Spotify App, credenciais e escopos OAuth
 - [Instalação](getting-started/installation.md) — como rodar localmente
-- [Configuração de playlists](getting-started/configuration.md) — estrutura do JSON e regras de gênero
+- [Configuração do ambiente](getting-started/configuration.md) — credenciais do Spotify e estrutura inicial de playlists
 
 ## Repositório
 
