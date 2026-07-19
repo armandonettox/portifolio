@@ -232,6 +232,16 @@ body,
   white-space: nowrap;
 }
 
+/* ---------- CV download (contato) ---------- */
+
+.pf-cv-download {
+  margin: 1.4rem 0 1.8rem 0;
+}
+.pf-cv-download .pf-hero-btn {
+  font-size: 0.88rem;
+  padding: 0.55rem 1.2rem;
+}
+
 /* ---------- Botao copiar (contato) ---------- */
 
 .pf-copy-btn {

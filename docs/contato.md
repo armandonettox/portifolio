@@ -8,6 +8,10 @@ title: Fale comigo
   <p>Tá com uma ideia, uma vaga ou só quer trocar uma ideia sobre dados? Escolhe o canal que preferir abaixo.</p>
 </div>
 
+<div class="pf-cv-download">
+  <a href="assets/cv.pdf" download class="pf-hero-btn pf-hero-btn-primary">Baixar currículo (PDF)</a>
+</div>
+
 <ul class="pf-list">
   <li class="pf-item">
     <span class="pf-bullet">&#x2022;</span>
