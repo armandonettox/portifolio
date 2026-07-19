@@ -156,8 +156,7 @@ story.append(Paragraph(
     '<strong><font color="#4a67b5">Portugues:</font></strong> Nativo',
     style_body))
 story.append(Paragraph(
-    '<strong><font color="#4a67b5">Ingles:</font></strong> '
-    'Leitura intermediario . Escrita intermediario . Conversa iniciante . Escuta iniciante',
+    '<strong><font color="#4a67b5">Ingles:</font></strong> Intermediario',
     style_body))
 
 # Projetos

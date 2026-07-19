@@ -118,10 +118,7 @@ title: No que eu atuo
     <div class="pf-skill-row">
       <span class="pf-skill-lang">Inglês</span>
       <div class="pf-skill-tags">
-        <span class="pf-skill-tag">Leitura — intermediário</span>
-        <span class="pf-skill-tag">Escrita — intermediário</span>
-        <span class="pf-skill-tag">Conversa — iniciante</span>
-        <span class="pf-skill-tag">Escuta — iniciante</span>
+        <span class="pf-skill-tag">Intermediário</span>
       </div>
     </div>
   </div>
