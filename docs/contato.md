@@ -30,22 +30,3 @@ title: Fale comigo
     <span class="pf-meta">github.com/armandonettox</span>
   </li>
 </ul>
-
-<script>
-(function () {
-  document.querySelectorAll('.pf-copy-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var email = btn.getAttribute('data-copy');
-      navigator.clipboard.writeText(email).then(function () {
-        var original = btn.textContent;
-        btn.textContent = 'Copiado!';
-        btn.classList.add('pf-copy-done');
-        setTimeout(function () {
-          btn.textContent = original;
-          btn.classList.remove('pf-copy-done');
-        }, 1500);
-      });
-    });
-  });
-})();
-</script>
