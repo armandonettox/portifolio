@@ -131,6 +131,14 @@ body,
   margin: 0 auto;
   padding-top: 0;
 }
+
+/* mesma centralizacao nas outras paginas pessoais
+   (competencias tem .pf-top-skills, experiencia tem .pf-exp-list) */
+.md-content__inner:has(.pf-top-skills),
+.md-content__inner:has(.pf-exp-list) {
+  max-width: 50rem;
+  margin: 0 auto;
+}
 .pf-hero {
   display: flex;
   align-items: center;
