@@ -162,12 +162,7 @@ body,
   font-style: italic;
   color: var(--md-accent-fg-color);
 }
-.pf-hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-/* link discreto de curriculo no hero */
+/* link discreto de curriculo no fim da bio */
 .pf-cv-link {
   font-size: 0.9rem;
   font-weight: 400;
