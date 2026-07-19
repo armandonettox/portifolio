@@ -165,13 +165,14 @@ body,
   min-width: 0;
 }
 .md-typeset .pf-hero-role {
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.3em;
+  word-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
+  color: var(--md-accent-fg-color);
 }
 /* link discreto de curriculo no fim da bio */
 .pf-cv-link {

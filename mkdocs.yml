@@ -45,7 +45,7 @@ plugins:
         - Bastidores
 
 extra_css:
-  - stylesheets/extra.css?v=20260719e
+  - stylesheets/extra.css?v=20260719f
 
 extra_javascript:
   - javascripts/extra.js
