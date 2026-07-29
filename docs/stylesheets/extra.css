@@ -189,10 +189,12 @@ body,
   border-radius: 999px;
   color: var(--md-accent-fg-color);
   text-decoration: none !important;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease;
 }
 .pf-hero-link svg { flex-shrink: 0; }
-.pf-hero-link:hover {
+/* .md-typeset na frente pra ganhar do ".md-typeset a:hover" do Material,
+   que tem mais especificidade (conta o elemento "a") e sobrescrevia a cor */
+.md-typeset .pf-hero-link:hover {
   background: var(--md-accent-fg-color);
   color: var(--md-primary-bg-color);
 }
