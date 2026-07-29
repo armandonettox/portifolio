@@ -70,11 +70,10 @@ congeladas no valor errado.
 --md-typeset-color:    #6b85c4;
 ```
 
-Favicon (`assets/favicon.png`) e og-image (`assets/og-image.png`) sao gerados a partir
-das artes em `assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os arquivos-fonte de
-design). Favicon fica redimensionado pro tamanho de uso (128px) pra nao pesar no
-carregamento. O cabecalho nao usa mais logo (`theme.logo` removido do mkdocs.yml, site
-sem marca no topo, so os links de navegacao).
+Logo (`assets/logo.png`), favicon (`assets/favicon.png`) e og-image (`assets/og-image.png`)
+sao gerados a partir das artes em `assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os
+arquivos-fonte de design). Logo e favicon ficam redimensionados pro tamanho de uso
+(128px) pra nao pesar no carregamento.
 
 O curriculo em PDF (`docs/assets/cv.pdf`) e gerado por `assets/build_cv.py` (reportlab);
 rodar `python assets/build_cv.py` na raiz apos qualquer mudanca de conteudo. Os fontes do CV
