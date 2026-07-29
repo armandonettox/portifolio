@@ -144,13 +144,18 @@ body,
    Retangular e grande, encostada na direita, em vez do circulo pequeno.
    Alinhada ao topo (nao ao centro) e maior pra acompanhar a bio, que
    agora tem varios paragrafos e deixa a foto pequena isolada no topo. */
+.pf-hero-photo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
 .pf-hero-avatar {
   width: 340px;
   height: 440px;
   border-radius: 12px;
-  flex-shrink: 0;
   object-fit: cover;
-  margin-left: auto;
 }
 /* flex-basis definido pra nao quebrar em coluna no desktop; o wrap so
    acontece quando sobra menos de 260px pro conteudo (mobile).
@@ -166,14 +171,16 @@ body,
   margin-top: 0;
 }
 
-/* Pilulas de contato no hero (email, linkedin, github) */
+/* Pilulas de contato abaixo da foto (email, linkedin, github) */
 .pf-hero-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 1.2rem;
+  gap: 0.5rem;
 }
 .pf-hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 0.78rem;
   font-weight: 500;
@@ -184,13 +191,15 @@ body,
   text-decoration: none !important;
   transition: background 0.15s ease, color 0.15s ease;
 }
+.pf-hero-link svg { flex-shrink: 0; }
 .pf-hero-link:hover {
   background: var(--md-accent-fg-color);
   color: var(--md-primary-bg-color);
 }
 @media (max-width: 560px) {
   .pf-hero { gap: 1.2rem; padding: 1rem 0 0.8rem 0; }
-  .pf-hero-avatar { width: 100%; height: auto; max-width: 260px; margin-left: 0; }
+  .pf-hero-photo { width: 100%; margin-left: 0; }
+  .pf-hero-avatar { width: 100%; height: auto; max-width: 260px; }
 }
 
 /* ---------- Top skills (destaques em competencias) ---------- */
