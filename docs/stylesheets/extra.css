@@ -132,13 +132,6 @@ body,
   padding-top: 0;
 }
 
-/* mesma centralizacao nas outras paginas pessoais
-   (competencias tem .pf-section, experiencia tem .pf-exp-list) */
-.md-content__inner:has(.pf-section),
-.md-content__inner:has(.pf-exp-list) {
-  max-width: 50rem;
-  margin: 0 auto;
-}
 .pf-hero {
   display: flex;
   align-items: center;
@@ -293,7 +286,7 @@ body,
   .pf-card:hover .pf-card-arrow { transform: none; }
 }
 
-/* ---------- Componentes pf-* (bio, secoes, listas, skills, experiencia) ---------- */
+/* ---------- Componentes pf-* (bio, listas, skills) ---------- */
 
 .pf-bio {
   font-weight: 300;
@@ -309,49 +302,6 @@ body,
 
 .pf-title-hidden {
   display: none;
-}
-
-.pf-section { margin-top: 1.8rem; }
-
-/* prefixo .md-typeset pra ganhar das margens de p do Material */
-.md-typeset .pf-section-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--md-accent-fg-color);
-  margin: 0 0 0.6rem 0;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--md-accent-fg-color);
-}
-
-/* Secoes ocultaveis (details/summary), fechadas por padrao */
-summary.pf-section-title {
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-}
-summary.pf-section-title::-webkit-details-marker {
-  display: none;
-}
-summary.pf-section-title::before {
-  content: '▸';
-  display: inline-block;
-  margin-right: 0.5em;
-  transition: transform 0.15s ease;
-}
-details[open] > summary.pf-section-title::before {
-  transform: rotate(90deg);
-}
-
-/* texto curto dentro da secao aberta */
-.md-typeset .pf-section-text {
-  margin: 0.2rem 0 0.4rem 0;
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.7;
-  max-width: 42rem;
 }
 
 .pf-link {
@@ -374,73 +324,6 @@ details[open] > summary.pf-section-title::before {
   padding: 0.1rem 0.5rem;
   line-height: 1.6;
   white-space: nowrap;
-}
-
-/* Experiencia: timeline como bloco centralizado, texto alinhado a esquerda.
-   Seletor com ul porque a regra de lista do Material usa :not() e ganha
-   de .md-typeset .pf-exp-list; com o elemento junto o empate e decidido
-   pela ordem de carga e o extra.css vence */
-.md-typeset ul.pf-exp-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: fit-content;
-  /* compensa oticamente o recuo da regua da timeline (1.4rem):
-     sem isso o texto dos cargos parece deslocado a direita do titulo */
-  transform: translateX(-0.7rem);
-}
-.pf-exp-group { display: flex; flex-direction: column; gap: 0; }
-.pf-exp-empresa {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--md-default-fg-color--light);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.4rem;
-}
-.pf-exp-roles {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-left: 1.4rem;
-}
-.pf-exp-roles::before {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 7px;
-  bottom: 7px;
-  width: 1px;
-  background-color: var(--md-accent-fg-color);
-}
-.pf-exp-role { position: relative; padding: 0 0 0.9rem 0; }
-.pf-exp-role:last-child { padding-bottom: 0; }
-.pf-exp-role::before {
-  content: '';
-  position: absolute;
-  left: -1.4rem;
-  top: 6px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--md-accent-fg-color);
-  border: 1.5px solid var(--md-accent-fg-color);
-}
-.pf-exp-cargo {
-  font-size: 0.97rem;
-  font-weight: 400;
-  color: var(--md-default-fg-color);
-  display: block;
-}
-.pf-exp-periodo {
-  font-size: 0.85rem;
-  font-weight: 300;
-  color: var(--md-default-fg-color--light);
-  display: block;
-  margin-top: 0.1rem;
 }
 
 /* Mobile */
