@@ -75,11 +75,6 @@ sao gerados a partir das artes em `assets/logo-*.{png,jpeg}` (fora de `docs/`, s
 arquivos-fonte de design). Logo e favicon ficam redimensionados pro tamanho de uso
 (128px) pra nao pesar no carregamento.
 
-O curriculo em PDF (`docs/assets/cv.pdf`) e gerado por `assets/build_cv.py` (reportlab);
-rodar `python assets/build_cv.py` na raiz apos qualquer mudanca de conteudo. Os fontes do CV
-(`build_cv.py`, `cv-src.html`) ficam fora de `docs/` de proposito, pra nao serem publicados
-no site.
-
 ## Dark mode
 
 Gerenciado nativamente pelo Material for MkDocs (bloco `palette:` no mkdocs.yml).
