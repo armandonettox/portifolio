@@ -134,17 +134,19 @@ body,
 
 .pf-hero {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
   padding: 0.6rem 0 0.6rem 0;
   flex-wrap: wrap;
 }
 /* sem nome no hero: o wordmark do cabecalho ja identifica o site,
    entao a foto cresce e vira o peso visual da primeira dobra.
-   Retangular e grande, encostada na direita, em vez do circulo pequeno. */
+   Retangular e grande, encostada na direita, em vez do circulo pequeno.
+   Alinhada ao topo (nao ao centro) e maior pra acompanhar a bio, que
+   agora tem varios paragrafos e deixa a foto pequena isolada no topo. */
 .pf-hero-avatar {
-  width: 280px;
-  height: 340px;
+  width: 340px;
+  height: 440px;
   border-radius: 12px;
   flex-shrink: 0;
   object-fit: cover;
