@@ -3,9 +3,6 @@ site_url: https://armandonetto.com/
 site_description: Portfolio de Armando Netto - Analista de Dados.
 site_author: Armando Netto
 
-repo_url: https://github.com/armandonettox
-repo_name: GitHub
-
 theme:
   name: material
   custom_dir: overrides
