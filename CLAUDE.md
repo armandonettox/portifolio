@@ -31,20 +31,19 @@ Estrutura principal:
 - `docs/projetos/<slug>/` — documentacao completa de cada projeto (uma pasta por projeto,
   estrutura tipica: `index.md` + `getting-started/` + `reference/`, ver `/nova-pagina-projeto`)
 - `docs/blog/posts/*.md` — posts do blog (plugin `blog` gera o index automaticamente)
-- `docs/competencias.md`, `docs/experiencia.md`, `docs/contato.md` — paginas proprias com abas
-  horizontais no topo (`navigation.tabs`)
+- `docs/index.md` — hero com foto e bio ao lado, pilulas de contato (e-mail, LinkedIn, GitHub)
+  logo abaixo da foto; unica pagina pessoal restante (`hide: navigation` no front matter)
 - `docs/stylesheets/extra.css` — paleta an-light/an-dark (conjunto completo de variaveis `--md-*`,
   nao so as principais — variaveis derivadas como `--md-typeset-color` "congelam" se so as
-  variaveis base forem sobrescritas), componentes `pf-*` (bio, listas, skills, experiencia)
-- `docs/javascripts/extra.js` — JS das paginas (saudacao da home, botao copiar e-mail do contato),
-  registrado via `extra_javascript`; usa `document$` do Material porque com `navigation.instant`
-  o `DOMContentLoaded` so dispara no primeiro carregamento
+  variaveis base forem sobrescritas), componentes `pf-*` (bio, listas, skills)
+- `docs/javascripts/extra.js` — JS das paginas (saudacao da home por horario), registrado via
+  `extra_javascript`; usa `document$` do Material porque com `navigation.instant` o
+  `DOMContentLoaded` so dispara no primeiro carregamento
 - `overrides/main.html` — extrahead com fonte Newsreader, Open Graph com `assets/og-image.png`
   (imagem social dedicada 1200x630), remove o footer padrao do Material,
   fixa o `<title>` da aba em "Armando Netto" pra toda pagina (bloco `htmltitle`)
-- `mkdocs.yml` — tema, palette, nav plano nas paginas pessoais (cada uma e uma aba no topo:
-  Sobre mim, No que eu atuo, Experiencia, Fale comigo; elas usam `hide: navigation` no front
-  matter), sidebar so em Projetos e Blog, plugins, extensoes markdown
+- `mkdocs.yml` — tema, palette, nav plano na pagina pessoal (Início, unica aba com
+  `hide: navigation` no front matter), sidebar so em Projetos e Blog, plugins, extensoes markdown
 - `.github/workflows/deploy.yml` — build (`mkdocs build --strict`) e deploy automatico
 
 ## Paleta de cores e chrome
@@ -96,9 +95,8 @@ Todo o conteudo e manual:
   Categorias permitidas (enforced via `categories_allowed` no mkdocs.yml): Projetos,
   Workflow, Bastidores — o build quebra se um post usar categoria fora dessa lista
 - Empregador: grafia oficial e "Best Senior" em todas as paginas e metadados
-- Competencias, experiencia, contato: editar o `.md` correspondente (HTML embutido com classes
-  `pf-*` pra manter a estetica)
-- Bio da home: `docs/index.md`
+- Bio da home e pilulas de contato (e-mail, LinkedIn, GitHub): `docs/index.md` (HTML embutido
+  com classes `pf-*` pra manter a estetica)
 
 ## Deploy
 
