@@ -313,14 +313,6 @@ body,
   display: none;
 }
 
-.pf-link {
-  color: var(--md-accent-fg-color);
-  border-bottom: 1px solid var(--md-accent-fg-color);
-  transition: border-color 0.15s, color 0.15s;
-  opacity: 1;
-}
-.pf-link:hover { opacity: 0.75; }
-
 /* Tag de tecnologia (usada nos cards de projetos) */
 .pf-skill-tag {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -333,15 +325,4 @@ body,
   padding: 0.1rem 0.5rem;
   line-height: 1.6;
   white-space: nowrap;
-}
-
-/* Mobile */
-@media (max-width: 560px) {
-  .pf-skill-row {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  .pf-skill-lang {
-    min-width: unset;
-  }
 }
