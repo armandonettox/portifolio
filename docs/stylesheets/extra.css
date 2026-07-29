@@ -160,6 +160,11 @@ body,
   flex: 1 1 260px;
   min-width: 0;
 }
+/* zera a margem do Material no primeiro paragrafo pra alinhar
+   exatamente com o topo da foto (senao o texto comeca mais baixo) */
+.md-typeset .pf-hero-content > p:first-child {
+  margin-top: 0;
+}
 @media (max-width: 560px) {
   .pf-hero { gap: 1.2rem; padding: 1rem 0 0.8rem 0; }
   .pf-hero-avatar { width: 100%; height: auto; max-width: 260px; margin-left: 0; }
