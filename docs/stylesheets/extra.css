@@ -28,8 +28,9 @@ body,
   display: none;
 }
 
-.md-header__button.md-logo img {
-  height: 2rem;
+/* Sem marca no cabecalho: nem logo nem titulo em texto */
+.md-header__button.md-logo {
+  display: none;
 }
 
 /* O titulo escondido tinha flex-grow:1 e empurrava busca/GitHub pra
@@ -43,6 +44,18 @@ body,
 .md-header,
 .md-tabs {
   color: #ffffff;
+}
+
+/* Cabecalho e abas mais compactos, pra ler como uma barra so mesmo
+   sendo dois elementos empilhados (tentativa de sobrepor via CSS
+   entrou em conflito com o JS do Material, que esconde as abas
+   sozinho quando a posicao delas na tela muda - reduzir a altura e
+   mais seguro e chega perto do efeito visual). */
+.md-tabs__item {
+  height: 1.9rem;
+}
+.md-tabs__link {
+  margin-top: 0.5rem;
 }
 
 

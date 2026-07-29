@@ -9,7 +9,6 @@ theme:
   language: pt-BR
   font: false
   favicon: assets/favicon.png
-  logo: assets/logo.png
   features:
     - navigation.instant
     - navigation.instant.progress
@@ -42,7 +41,7 @@ plugins:
         - Bastidores
 
 extra_css:
-  - stylesheets/extra.css?v=20260729i
+  - stylesheets/extra.css?v=20260729j
 
 extra_javascript:
   - javascripts/extra.js
