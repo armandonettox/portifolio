@@ -1,3 +1,5 @@
+![Armando Netto](docs/assets/logo.png)
+
 # Portfolio — Armando Netto
 
 Publicado em [armandonetto.com](https://armandonetto.com) — dominio que tambem uso para criar subdominios de novos projetos.
@@ -14,7 +16,7 @@ Site estatico gerado com [MkDocs](https://www.mkdocs.org/) + [Material for MkDoc
 |-------|-----------|
 | **Projetos** | Documentacao completa de cada projeto pessoal (unica fonte — os repositorios so linkam pra ca) |
 | **Blog** | Registro de decisoes tecnicas e aprendizados, via plugin `blog` do Material |
-| **Competencias / Experiencia / Contato** | Conteudo pessoal, atualizado manualmente |
+| **Inicio** | Bio, foto e pilulas de contato (e-mail, LinkedIn, GitHub), atualizado manualmente |
 
 ## Rodando localmente
 
