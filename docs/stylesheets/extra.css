@@ -24,6 +24,14 @@ body,
   font-size: 0.92rem;
 }
 
+/* Titulo da secao ativa na sidebar (ex: "Projetos", fixo no topo ao
+   rolar) vem branco por padrao do Material -- nao e ".md-nav__title"
+   e sim esse seletor mais especifico do modo "lifted", que sobrescreve
+   de volta pra cor padrao mesmo com ".md-nav__link" ja sendo azul. */
+.md-nav--lifted > .md-nav__list > .md-nav__item > [for] {
+  color: var(--md-accent-fg-color);
+}
+
 .md-header__title {
   display: none;
 }
