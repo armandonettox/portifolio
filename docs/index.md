@@ -7,10 +7,10 @@ hide:
 # Armando Netto { .pf-title-hidden }
 
 <section class="pf-hero">
-  <img src="assets/profile.jpg" alt="Armando Netto" class="pf-hero-avatar" />
   <div class="pf-hero-content">
     <p class="pf-hero-role">Python · SQL · R · HTML · CSS</p>
   </div>
+  <img src="assets/profile.jpg" alt="Armando Netto" class="pf-hero-avatar" />
 </section>
 
 <section class="pf-bio">

@@ -140,14 +140,15 @@ body,
   flex-wrap: wrap;
 }
 /* sem nome no hero: o wordmark do cabecalho ja identifica o site,
-   entao a foto cresce e vira o peso visual da primeira dobra */
+   entao a foto cresce e vira o peso visual da primeira dobra.
+   Retangular e grande, encostada na direita, em vez do circulo pequeno. */
 .pf-hero-avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 280px;
+  height: 340px;
+  border-radius: 12px;
   flex-shrink: 0;
   object-fit: cover;
-  border: 2px solid var(--md-accent-fg-color);
+  margin-left: auto;
 }
 /* flex-basis definido pra nao quebrar em coluna no desktop; o wrap so
    acontece quando sobra menos de 260px pro conteudo (mobile).
@@ -175,7 +176,7 @@ body,
 
 @media (max-width: 560px) {
   .pf-hero { gap: 1.2rem; padding: 1rem 0 0.8rem 0; }
-  .pf-hero-avatar { width: 104px; height: 104px; }
+  .pf-hero-avatar { width: 100%; height: auto; max-width: 260px; margin-left: 0; }
 }
 
 /* ---------- Top skills (destaques em competencias) ---------- */
