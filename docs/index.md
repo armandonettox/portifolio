@@ -9,10 +9,10 @@ hide:
 <section class="pf-hero">
   <div class="pf-hero-content pf-bio">
     <p><span id="pf-saudacao">Olá</span></p>
-    <p>Sou analista de dados na Best Senior, uma operadora de saúde, onde meu trabalho é transformar informação em decisão: análises, indicadores e dashboards que orientam a gestão da empresa.</p>
-    <p>No dia a dia, boa parte do meu trabalho é automação. Pego fluxos manuais e repetitivos e transformo em processos que rodam sozinhos, sustentados por painéis que construo internamente.</p>
-    <p>Estou cursando Ciência de Dados, formalizando uma direção que já pratico nos meus projetos pessoais: aplicações em Python, R e SQL que unem dados, automação e machine learning, você consegue ver alguns dos meus projetos pessoais na aba projetos ou no meu Github.</p>
-  </div>
+    <p>Atualmente atuo como Analista de dados na Best Saúde, operadora de saúde onde transformo dados em decisão: análises, indicadores e dashboards que orientam a gestão da empresa.</p>
+    <p>Grande parte do meu trabalho começa identificando processos manuais e repetitivos para tornar los automatizados, sustentados por painéis que construo internamente. Essa lógica de simplificar o complexo é o que também me trouxe para a Ciência de Dados, graduação que estou fazendo hoje e que formaliza uma direção que já pratico nos meus projetos pessoais: aplicações em Python, R e SQL que unem dados, automação e machine learning.</p>
+    <p>Você pode ver alguns desses projetos na aba Projetos deste portfólio ou no meu <a href="#">GitHub</a>.</p>
+
   <div class="pf-hero-photo">
     <img src="assets/profile.jpg" alt="Armando Netto" class="pf-hero-avatar" />
     <div class="pf-hero-links">
