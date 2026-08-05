@@ -23,6 +23,10 @@ jobs:
         with:
           python-version-file: .python-version
       - run: pip install -r requirements.txt
+      - name: Cache-bust extra.css
+        run: |
+          HASH=$(sha1sum docs/stylesheets/extra.css | cut -c1-8)
+          sed -i "s/extra\.css?v=[A-Za-z0-9]*/extra.css?v=${HASH}/" mkdocs.yml
       - run: mkdocs build --strict
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

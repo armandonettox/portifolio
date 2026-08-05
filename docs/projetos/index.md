@@ -4,6 +4,8 @@ title: Projetos
 
 # Projetos
 
+A maior parte dos meus projetos ainda é privada, porque não chegaram no estado que eu gostaria de mostrar publicamente. Se quiser conversar sobre algum deles, é só me chamar.
+
 <div class="pf-cards">
   <a href="verbo/" class="pf-card">
     <div class="pf-card-header">
