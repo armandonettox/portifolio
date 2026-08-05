@@ -1,9 +1,9 @@
 # Adaptação para outra fonte
 
-O Verbo foi construído em torno da Bíblia Ave Maria, mas a arquitetura (Chroma + NVIDIA NIM + Streamlit) serve para qualquer RAG fechado sobre um texto fixo. Para adaptar:
+O Verbo foi construído em torno de uma Bíblia específica, mas a arquitetura (Chroma + NVIDIA NIM + Streamlit) serve para qualquer RAG fechado sobre um texto fixo. Para adaptar:
 
 1. **Substituir a fonte** — trocar `data/biblia-ave-maria.json` pelo arquivo desejado.
-2. **Ajustar o parser** — `data/construir-banco.py` espera a estrutura específica do JSON da Bíblia Ave Maria; ajustar conforme o formato do novo arquivo.
+2. **Ajustar o parser** — `data/construir-banco.py` espera a estrutura específica do JSON atual; ajustar conforme o formato do novo arquivo.
 3. **Atualizar o prompt** — `modules/resposta.py` tem uma instrução de sistema específica ("responda usando exclusivamente os versículos da Bíblia"); reescrever para refletir a nova fonte.
 
 !!! tip "O que não muda"

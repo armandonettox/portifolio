@@ -23,7 +23,7 @@ title: Projetos
       <span class="pf-card-title">Verbo</span>
       <span class="pf-card-arrow" aria-hidden="true">&rarr;</span>
     </div>
-    <p class="pf-card-desc">RAG fechado sobre a Bíblia Ave Maria, em português. Responde só com base no texto-fonte, sem inventar com conhecimento geral do LLM.</p>
+    <p class="pf-card-desc">RAG fechado sobre a Bíblia, em português. Responde só com base no texto-fonte, sem inventar com conhecimento geral do LLM.</p>
     <div class="pf-card-tags">
       <span class="pf-skill-tag">Python</span>
       <span class="pf-skill-tag">RAG</span>
