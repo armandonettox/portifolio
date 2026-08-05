@@ -5,19 +5,6 @@ title: Projetos
 # Projetos
 
 <div class="pf-cards">
-  <a href="soundblend/" class="pf-card">
-    <div class="pf-card-header">
-      <span class="pf-card-title">Soundblend</span>
-      <span class="pf-card-arrow" aria-hidden="true">&rarr;</span>
-    </div>
-    <p class="pf-card-desc">Distribui músicas curtidas do Spotify em playlists organizadas por gênero, com regras de inclusão e exclusão.</p>
-    <div class="pf-card-tags">
-      <span class="pf-skill-tag">Python</span>
-      <span class="pf-skill-tag">Streamlit</span>
-      <span class="pf-skill-tag">Spotify API</span>
-      <span class="pf-skill-tag">OAuth</span>
-    </div>
-  </a>
   <a href="verbo/" class="pf-card">
     <div class="pf-card-header">
       <span class="pf-card-title">Verbo</span>

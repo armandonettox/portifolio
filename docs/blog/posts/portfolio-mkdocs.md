@@ -13,4 +13,4 @@ Meu conhecimento, meus projetos e minha experiência sempre estiveram espalhados
 
 A peça central é o MkDocs (com o tema Material), e a escolha foi pela facilidade de edição. Cada página é um arquivo Markdown simples, e publicar é um `git push` — o deploy acontece sozinho. Isso muda completamente onde o meu tempo vai: em vez de gastar horas mexendo em HTML e CSS pra manter o site de pé, eu escrevo o conteúdo em minutos e volto pro que realmente importa, que é desenvolver.
 
-De quebra, o site virou a casa oficial da documentação dos meus projetos (começando por [Soundblend](../../projetos/soundblend/index.md) e [Verbo](../../projetos/verbo/index.md)): o README de cada repositório só apresenta o projeto e aponta pra cá. Menos duplicação, uma fonte só pra manter atualizada — e este blog registra as decisões e os aprendizados pelo caminho.
+De quebra, o site virou a casa oficial da documentação dos meus projetos (começando pelo [Verbo](../../projetos/verbo/index.md)): o README de cada repositório só apresenta o projeto e aponta pra cá. Menos duplicação, uma fonte só pra manter atualizada — e este blog registra as decisões e os aprendizados pelo caminho.
