@@ -15,7 +15,7 @@ NVIDIA_API_KEY=seu_api_key_aqui
 !!! danger "Nunca commitar o .env"
     O arquivo `.secrets/.env` contém a `NVIDIA_API_KEY`. Nunca deve ser commitado com valores reais — verifique o `.gitignore` antes do primeiro commit. Em produção (Streamlit Community Cloud), a chave é lida via `st.secrets` em vez do arquivo.
 
-## Parâmetros do projeto (`config.py`)
+## Parâmetros do projeto (`src/verbo/config.py`)
 
 Além da chave de API, `config.py` define os caminhos e modelos usados. Não é necessário editar para rodar o projeto como está, mas é a referência caso queira ajustar algo:
 

@@ -5,10 +5,10 @@
 Executar uma única vez, antes do primeiro uso (ou sempre que a fonte de dados mudar):
 
 ```bash
-python data/construir-banco.py
+python scripts/construir_banco.py
 ```
 
-Esse script lê `data/biblia.json`, agrupa os versículos por capítulo em blocos de até 1.500 caracteres, gera o embedding de cada bloco via NVIDIA NIM e popula o Chroma em `chroma-db/`.
+Esse script lê `data/biblia.json`, agrupa os versículos por capítulo em blocos de até 1.500 caracteres, gera o embedding de cada bloco via NVIDIA NIM e popula o Chroma em `chroma-db/` (via `upsert`, então rodar de novo não duplica registros).
 
 ## Iniciar a aplicação
 
