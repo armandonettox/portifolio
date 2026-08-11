@@ -19,7 +19,13 @@ streamlit run app.py
 ## Rodar os testes
 
 ```bash
-pytest
+pytest tests/unit
+```
+
+Só testa `core/` — sem rede nem Streamlit, roda em segundos (é o que o GitHub Actions executa a cada push). `tests/integration/teste_conexao.py` faz uma chamada real à API e roda manualmente, fora do CI:
+
+```bash
+python tests/integration/teste_conexao.py
 ```
 
 ## Como usar

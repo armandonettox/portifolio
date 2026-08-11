@@ -16,6 +16,33 @@ O projeto nasceu de uma necessidade real: durante a preparação para a crisma, 
 - **Áudio narrado** — qualquer resposta ou capítulo pode ser ouvido, com barra de progresso na leitura de capítulos
 - **Versículo do dia** — um destaque diferente a cada dia, sem repetir enquanto houver versículos novos no ciclo
 - **Modo escuro** — alternável, com paleta própria para cada tema
+- **Falhas tratadas** — autenticação, limite de uso, conexão ou banco vetorial indisponível mostram uma mensagem clara pro usuário, sem travar a tela
+
+## Capturas de tela
+
+**Tela inicial** — busca semântica e versículo do dia:
+
+![Tela inicial do Verbo](assets/screenshots/01_home_busca.png)
+
+**Resultado da busca** — resposta gerada a partir dos versículos encontrados, com as referências na barra lateral:
+
+![Resultado de uma busca semantica](assets/screenshots/02_resultado_busca.png)
+
+**Conversa de acompanhamento** — mantém o contexto da busca original:
+
+![Historico de perguntas de acompanhamento](assets/screenshots/03_conversa_seguimento.png)
+
+**Leitura de capítulo completo**, com narração e navegação entre capítulos:
+
+![Leitura de um capitulo inteiro da Biblia](assets/screenshots/05_leitura_capitulo.png)
+
+**Modo escuro:**
+
+![Tela de leitura no modo escuro](assets/screenshots/06_tema_escuro.png)
+
+**Versão mobile:**
+
+![Tela inicial em viewport de celular](assets/screenshots/07_mobile_home.png)
 
 ## Stack
 
@@ -32,7 +59,7 @@ Bíblia católica, do repositório [`fidalgobr/bibliaAveMariaJSON`](https://gith
 
 ## Como funciona
 
-1. **Indexação (`data/construir-banco.py`)** — os versículos são agrupados por capítulo em blocos de até 1.500 caracteres, sem quebrar um versículo no meio, e cada bloco vira um vetor de embedding guardado no Chroma. Agrupar por capítulo (em vez de indexar cada versículo isolado) preserva o contexto ao redor da resposta.
+1. **Indexação (`scripts/construir_banco.py`)** — os versículos são agrupados por capítulo em blocos de até 1.500 caracteres, sem quebrar um versículo no meio, e cada bloco vira um vetor de embedding guardado no Chroma. Agrupar por capítulo (em vez de indexar cada versículo isolado) preserva o contexto ao redor da resposta.
 2. **Busca por similaridade** — a pergunta do usuário também vira embedding e é comparada contra os blocos indexados. Os até 40 mais próximos entram na resposta, descartando qualquer um abaixo de 40% de similaridade.
 3. **Geração da resposta** — o modelo de chat recebe a pergunta e só os trechos encontrados como contexto, com instrução explícita para não usar conhecimento próprio.
 4. **Conversa de acompanhamento** — perguntas seguintes reaproveitam os mesmos versículos e o histórico da conversa, sem nova busca.
