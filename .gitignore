@@ -26,3 +26,11 @@ Thumbs.db
 # MkDocs
 site/
 .cache/
+
+# llms
+./claude
+claude.md
+agents.md
+CLAUDE.md
+AGENTS.md
+.claude

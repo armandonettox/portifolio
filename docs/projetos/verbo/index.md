@@ -1,6 +1,6 @@
 # Verbo
 
-Verbo é um RAG fechado sobre a Bíblia Católica Ave Maria, em português. Responde perguntas usando só o texto da Bíblia como fonte — sem completar com conhecimento geral do modelo de linguagem. Projeto público, em produção no Streamlit Community Cloud.
+Verbo é um RAG fechado sobre a Bíblia Católica, em português. Responde perguntas usando só o texto da Bíblia como fonte, sem inventar com conhecimento geral do LLM. Projeto público, em produção no Streamlit Community Cloud.
 
 O nome é uma referência a João 1:1, "no princípio era o Verbo".
 
@@ -28,7 +28,7 @@ O projeto nasceu de uma necessidade real: durante a preparação para a crisma, 
 
 ## Fonte dos dados
 
-Bíblia Ave Maria (católica), do repositório [`fidalgobr/bibliaAveMariaJSON`](https://github.com/fidalgobr/bibliaAveMariaJSON): 35.450 versículos, 73 livros, UTF-8.
+Bíblia católica, do repositório [`fidalgobr/bibliaAveMariaJSON`](https://github.com/fidalgobr/bibliaAveMariaJSON): 35.450 versículos, 73 livros, UTF-8.
 
 ## Como funciona
 

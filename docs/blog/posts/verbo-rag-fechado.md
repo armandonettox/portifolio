@@ -7,7 +7,7 @@ categories:
 
 # Verbo: o RAG que nasceu na crisma
 
-O Verbo não estava nos meus planos. Ele surgiu quando comecei a fazer a crisma na igreja católica junto com a minha namorada — e ela comentou que sentia falta de uma IA, ou algo parecido, pra aprimorar os conhecimentos bíblicos dela. Aproveitei esse desejo pra criar o projeto e aprender, na prática, todo o processo de um RAG: da criação ao funcionamento. Com uma regra clara: ele só responde com base na Bíblia que ela escolheu, a Ave Maria — a mesma que usamos na crisma.
+O Verbo não estava nos meus planos. Ele surgiu quando comecei a fazer a crisma na igreja católica junto com a minha namorada — e ela comentou que sentia falta de uma IA, ou algo parecido, pra aprimorar os conhecimentos bíblicos dela. Aproveitei esse desejo pra criar o projeto e aprender, na prática, todo o processo de um RAG: da criação ao funcionamento. Com uma regra clara: ele só responde com base na tradução da Bíblia que ela escolheu, a mesma que usamos na crisma.
 
 <!-- more -->
 
@@ -19,7 +19,7 @@ Por isso o Verbo é um RAG **fechado**: o LLM é expressamente proibido de usar 
 
 ## Como funciona
 
-1. **Indexação** — cada versículo (35.450 no total, Bíblia Ave Maria) vira um vetor via NVIDIA NIM e é guardado em ChromaDB local.
+1. **Indexação** — cada versículo (35.450 no total) vira um vetor via NVIDIA NIM e é guardado em ChromaDB local.
 2. **Pergunta** — a pergunta do usuário também vira vetor.
 3. **Busca por similaridade** — ChromaDB retorna os 5 versículos mais próximos no espaço semântico.
 4. **Geração** — o prompt enviado pro LLM contém só a pergunta + os 5 versículos, com instrução explícita: "responda só com base nos trechos fornecidos".
