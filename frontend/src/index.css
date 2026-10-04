@@ -166,6 +166,17 @@ a {
 }
 
 /* os dois icones ficam empilhados; o que sai gira e some, o que entra gira e aparece */
+/* troca de tema devagar: cores mudam em meio segundo, sem mexer na rotacao do botao */
+:root.theme-changing *:not(.theme-toggle):not(.theme-toggle *) {
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    fill 0.5s ease,
+    stroke 0.5s ease !important;
+}
+
 .theme-toggle {
   position: relative;
 }
@@ -442,5 +453,141 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .tech-icon {
     animation: none;
+  }
+}
+
+/* paginas de lista (blog e projetos): linhas editoriais separadas por um traco fino */
+.page-title {
+  margin: 0 0 0.5rem;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.entry-list {
+  max-width: 46rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry-list li {
+  border-top: 1px solid var(--border);
+}
+
+.entry-list li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem 0.75rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+.entry:hover,
+.entry:focus-visible {
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+}
+
+.entry-meta {
+  padding-top: 0.5rem;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+}
+
+.entry-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.25;
+  transition: color 0.25s ease;
+}
+
+.entry:hover .entry-title,
+.entry:focus-visible .entry-title {
+  color: var(--primary);
+}
+
+.entry-arrow {
+  color: var(--primary);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.entry:hover .entry-arrow,
+.entry:focus-visible .entry-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.entry-summary {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.entry-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.entry-footer span:first-child {
+  color: var(--primary);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: 0.15rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .entry-meta {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry,
+  .entry-title,
+  .entry-arrow {
+    transition: none;
   }
 }

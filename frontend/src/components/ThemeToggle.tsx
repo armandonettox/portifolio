@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 type Theme = 'light' | 'dark'
 
+const TRANSITION_MS = 500
+
 function currentTheme(): Theme {
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
 }
@@ -12,7 +14,14 @@ export default function ThemeToggle() {
 
   function toggle() {
     const next: Theme = theme === 'dark' ? 'light' : 'dark'
-    document.documentElement.dataset.theme = next
+    const root = document.documentElement
+
+    // a classe liga a transicao de cores so durante a troca, para nao afetar o resto do site
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.classList.add('theme-changing')
+      window.setTimeout(() => root.classList.remove('theme-changing'), TRANSITION_MS + 100)
+    }
+    root.dataset.theme = next
     try {
       localStorage.setItem('theme', next)
     } catch {

@@ -9,11 +9,14 @@ export type PostSummary = {
 export type Post = PostSummary & { body: string }
 
 export type Project = {
-  slug: string
-  title: string
-  summary: string
-  stack: string[]
-  body: string
+  name: string
+  description: string | null
+  url: string
+  homepage: string | null
+  language: string | null
+  stars: number
+  pushed_at: string | null
+  topics: string[]
 }
 
 async function get<T>(path: string): Promise<T> {
