@@ -75,8 +75,13 @@ nos rotulos, sem gradientes nem emojis.
 
 - Push em `main` que mexe em `backend/`, `frontend/` ou `Dockerfile` dispara
   `.github/workflows/publish-image.yml`, que publica a imagem.
-- A VM nao atualiza sozinha: baixar a imagem e reiniciar `portfolio.service` (so esse servico).
-  O nginx do servidor tambem serve o Hera e o Hermes; sempre rodar `nginx -t` antes de recarregar.
+- A VM atualiza sozinha: o timer `portfolio-refresh.timer` (a cada 5 minutos) baixa a imagem e,
+  se mudou, reinicia so o `portfolio.service`, espera `/api/health` e volta para a versao anterior
+  se a nova nao ficar saudavel. Os arquivos estao em `deploy/`. Depois de um push, esperar ate
+  uns 7 minutos antes de testar o site no ar.
+- Nao mexer em containers, servicos ou timers de outros projetos na VM (Hera, Hermes, Verbo): o
+  script do portfolio so conhece o `portfolio`. O nginx do servidor tambem serve o Hera e o Hermes;
+  sempre rodar `nginx -t` antes de recarregar.
 - A origem exige o certificado do Cloudflare (acesso direto ao IP responde 400, como no Hera).
 - O Cloudflare guarda arquivos estaticos por 4 horas: depois de mudar um arquivo estatico, limpar
   o cache dele no painel.

@@ -57,7 +57,9 @@ Testes do backend: `cd backend && .venv/Scripts/python -m pytest`. Frontend: `np
 
 ## Publicação
 
-A cada push em `main` que mexe em `backend/`, `frontend/` ou no `Dockerfile`, o GitHub Actions compila a imagem para ARM64 e a publica em `ghcr.io/armandonettox/portfolio`. A atualização do servidor é manual: baixar a imagem e reiniciar o container.
+A cada push em `main` que mexe em `backend/`, `frontend/` ou no `Dockerfile`, o GitHub Actions compila a imagem para ARM64 e a publica em `ghcr.io/armandonettox/portfolio`. O servidor percebe a imagem nova sozinho: um timer roda a cada 5 minutos, baixa a imagem e, se ela mudou, reinicia só o container do portfólio. Se a versão nova não ficar saudável, ele volta para a anterior. Ou seja, depois de um push o site atualiza em até uns 7 minutos, sem ninguém fazer nada.
+
+Os arquivos que rodam no servidor (quadlet, script e timer) estão em `deploy/`.
 
 O container roda atrás do nginx e do Cloudflare. O `GITHUB_TOKEN` fica em um arquivo de variáveis no servidor, fora da imagem e do git.
 

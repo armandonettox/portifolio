@@ -1,0 +1,6 @@
+[Unit]
+Description=Atualiza o container do portfolio se houver imagem nova no GHCR
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/portfolio-refresh.sh
