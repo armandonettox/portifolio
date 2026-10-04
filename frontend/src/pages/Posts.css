@@ -3,7 +3,7 @@
   display: grid;
   gap: 0.6rem;
   max-width: 46rem;
-  margin-top: 0.5rem;
+  margin: 0.5rem auto 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85rem;
 }

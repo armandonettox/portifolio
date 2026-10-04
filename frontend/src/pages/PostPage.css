@@ -1,6 +1,7 @@
 /* pagina de leitura: coluna estreita, tipografia de texto longo */
 .post {
   max-width: 40rem;
+  margin: 0 auto;
 }
 
 .post-back {

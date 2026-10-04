@@ -215,7 +215,12 @@ a {
   }
 
   .site-nav a {
-    padding: 0.4rem 0.55rem;
+    padding: 0.7rem 0.6rem;
+  }
+
+  .theme-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
@@ -466,7 +471,7 @@ a {
 
 .entry-list {
   max-width: 46rem;
-  margin: 2rem 0 0;
+  margin: 2rem auto 0;
   padding: 0;
   list-style: none;
 }
@@ -589,5 +594,17 @@ a {
   .entry-title,
   .entry-arrow {
     transition: none;
+  }
+}
+
+/* sem cursor (celular) nao existe hover, entao as logos ficam coloridas, como a foto */
+@media (hover: none) {
+  .tech-icon {
+    color: var(--brand);
+    opacity: 1;
+  }
+
+  .tech-icon .duo-b {
+    color: var(--brand-2);
   }
 }

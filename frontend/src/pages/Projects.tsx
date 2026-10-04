@@ -15,7 +15,7 @@ const SORT_LABELS: Record<Sort, string> = {
 }
 
 const PERIOD_LABELS: Record<Period, string> = {
-  any: 'Qualquer data',
+  any: 'Data',
   month: 'Último mês',
   half: 'Últimos 6 meses',
   year: 'Último ano',
