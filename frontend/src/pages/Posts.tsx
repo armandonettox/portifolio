@@ -8,7 +8,8 @@ import './Posts.css'
 const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 export default function Posts() {
-  const [posts, setPosts] = useState<PostSummary[]>([])
+  // comeca na hora com a ultima versao guardada neste navegador, se houver
+  const [posts, setPosts] = useState<PostSummary[]>(() => api.postsCached() ?? [])
   const [failed, setFailed] = useState(false)
   const [params, setParams] = useSearchParams()
 
@@ -53,7 +54,9 @@ export default function Posts() {
     <>
       <h1 className="sr-only">Blog</h1>
 
-      {failed && <p className="meta">Não consegui carregar os posts agora. Tente de novo em instantes.</p>}
+      {failed && posts.length === 0 && (
+        <p className="meta">Não consegui carregar os posts agora. Tente de novo em instantes.</p>
+      )}
 
       {years.length > 0 && (
         <nav className="timeline" aria-label="Filtrar posts por data">

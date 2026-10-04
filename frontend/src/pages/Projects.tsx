@@ -40,8 +40,10 @@ function isPeriod(value: string | null): value is Period {
 }
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>([])
+  // comeca na hora com a ultima versao guardada neste navegador, se houver
+  const [projects, setProjects] = useState<Project[]>(() => api.projectsCached() ?? [])
   const [failed, setFailed] = useState(false)
+  const [loaded, setLoaded] = useState(() => api.projectsCached() !== null)
   const [params, setParams] = useSearchParams()
   // guarda o instante da abertura da pagina para o filtro de periodo nao mudar a cada render
   const [now] = useState(() => Date.now())
@@ -56,7 +58,10 @@ export default function Projects() {
   useEffect(() => {
     api
       .projects()
-      .then(setProjects)
+      .then((list) => {
+        setProjects(list)
+        setLoaded(true)
+      })
       .catch(() => setFailed(true))
   }, [])
 
@@ -161,7 +166,7 @@ export default function Projects() {
 
       <p className="finder-status" aria-live="polite">
         <span>
-          {visible.length} {visible.length === 1 ? 'projeto' : 'projetos'}
+          {loaded ? `${visible.length} ${visible.length === 1 ? 'projeto' : 'projetos'}` : null}
         </span>
         {hasFilter && (
           <button type="button" className="finder-clear" onClick={() => setParams([], { replace: true })}>
@@ -180,7 +185,7 @@ export default function Projects() {
         )}
       </p>
 
-      {failed && (
+      {failed && projects.length === 0 && (
         <p className="meta">Não consegui buscar os projetos no GitHub agora. Tente de novo em instantes.</p>
       )}
 

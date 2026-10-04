@@ -24,7 +24,8 @@ export default function PostPage() {
   }, [slug])
 
   const current = result?.slug === slug ? result : null
-  const post = current?.post ?? null
+  // se ainda nao chegou a resposta, mostra a ultima versao guardada neste navegador (se houver)
+  const post = current?.post ?? api.postCached(slug)
   const failed = current !== null && current.post === null
 
   if (failed) {
@@ -38,7 +39,7 @@ export default function PostPage() {
     )
   }
 
-  if (!post) return <p className="meta">Carregando...</p>
+  if (!post) return null
 
   return (
     <article className="post">

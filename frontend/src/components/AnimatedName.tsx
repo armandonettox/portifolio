@@ -98,7 +98,7 @@ export default function AnimatedName({ name }: { name: string }) {
           className={resolved[i] ? 'glyph' : 'glyph glyph-scrambling'}
           style={widths[i] ? { width: `${widths[i]}em` } : undefined}
         >
-          {char === ' ' ? ' ' : char}
+          {char === ' ' ? '\u00a0' : char}
         </span>
       ))}
     </h1>
