@@ -39,13 +39,28 @@ a {
 .container {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 3.5rem 1.25rem 2rem;
+  padding: calc(3.5rem + var(--topbar-h)) 1.25rem 2rem;
 }
 
 /* menu flutuante em pilula, com contorno fino */
+/* altura que a pilula ocupa no topo; o conteudo comeca depois dela */
+:root {
+  --topbar-h: 4.3rem;
+}
+
+/* no celular os links do menu sao mais altos (area de toque), entao a pilula ocupa mais */
+@media (max-width: 560px) {
+  :root {
+    --topbar-h: 4.65rem;
+  }
+}
+
+/* fixed (e nao sticky): fica no topo da janela em qualquer navegador, sem depender dos ancestrais */
 .topbar {
-  position: sticky;
-  top: 0.9rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
