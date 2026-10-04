@@ -1,32 +1,35 @@
-# React + TypeScript + Vite
+# Frontend do portfólio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Site pessoal de Armando Netto, em React com TypeScript (Vite). Consome a API do `backend/` (FastAPI).
 
-Currently, two official plugins are available:
+## Páginas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Início:** apresentação, foto e links de contato.
+- **Projetos:** repositórios públicos do GitHub, com busca e filtros por linguagem, data e ordem.
+- **Blog:** posts escritos como discussões no GitHub, com comentários pelo giscus.
 
-## React Compiler
+## Como rodar
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Precisa de Node 22 ou mais novo e do backend rodando na porta 8000.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+O Vite encaminha as chamadas de `/api` para `http://localhost:8000` (veja `vite.config.ts`).
+
+## Comandos
+
+| Comando | O que faz |
+|---------|-----------|
+| `npm run dev` | servidor de desenvolvimento |
+| `npm run build` | confere os tipos e gera a versão de produção em `dist/` |
+| `npm run lint` | roda o oxlint |
+
+## Estrutura
+
+- `src/pages/`: uma pasta de página por rota (Home, Projects, Posts, PostPage).
+- `src/components/`: nome animado, logos flutuantes, menu, botão de tema, comentários.
+- `src/api.ts`: tipos e chamadas à API.
+- `src/index.css`: paleta (tema claro e escuro por `data-theme`) e estilos globais.

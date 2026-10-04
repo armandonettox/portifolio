@@ -6,14 +6,19 @@ import { formatDate } from '../format'
 
 export default function Posts() {
   const [posts, setPosts] = useState<PostSummary[]>([])
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
-    api.posts().then(setPosts).catch(console.error)
+    api
+      .posts()
+      .then(setPosts)
+      .catch(() => setFailed(true))
   }, [])
 
   return (
     <>
       <h1 className="page-title">Blog</h1>
+      {failed && <p className="meta">Não consegui carregar os posts agora. Tente de novo em instantes.</p>}
       <ol className="entry-list">
         {posts.map((p) => (
           <li key={p.slug}>
