@@ -22,16 +22,37 @@ export default function Home() {
         </p>
         <ul className="home-links">
           <li>
-            <a href="mailto:contato@armandonetto.com">contato@armandonetto.com</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/armandonettox/" target="_blank" rel="noopener">
-              linkedin.com/in/armandonettox
+            <a href="mailto:contato@armandonetto.com" aria-label="E-mail: contato@armandonetto.com">
+              <span className="nav-prefix">~/</span>email<span className="link-arrow">↗</span>
+              <span className="link-reveal" aria-hidden="true">
+                contato@armandonetto.com
+              </span>
             </a>
           </li>
           <li>
-            <a href="https://github.com/armandonettox" target="_blank" rel="noopener">
-              github.com/armandonettox
+            <a
+              href="https://www.linkedin.com/in/armandonettox/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn (abre em nova aba)"
+            >
+              <span className="nav-prefix">~/</span>linkedin<span className="link-arrow">↗</span>
+              <span className="link-reveal" aria-hidden="true">
+                armandonettox
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/armandonettox"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub (abre em nova aba)"
+            >
+              <span className="nav-prefix">~/</span>github<span className="link-arrow">↗</span>
+              <span className="link-reveal" aria-hidden="true">
+                armandonettox
+              </span>
             </a>
           </li>
         </ul>

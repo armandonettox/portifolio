@@ -64,6 +64,14 @@ a {
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 20px -12px rgb(0 0 0 / 0.35);
   pointer-events: auto;
+  animation: menu-entra 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+}
+
+@keyframes menu-entra {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
 }
 
 .topbar-divider {
@@ -206,8 +214,15 @@ a {
   }
 
   .nav-indicator-ready,
-  .theme-toggle svg {
+  .theme-toggle svg,
+  .home-links a,
+  .link-arrow,
+  .link-reveal {
     transition: none;
+  }
+
+  .topbar-inner {
+    animation: none;
   }
 }
 
@@ -225,7 +240,10 @@ a {
   display: grid;
   grid-template-columns: 1fr 20rem;
   gap: 3rem;
-  align-items: start;
+  /* foto alinhada ao meio do texto e o conjunto no centro da altura da tela */
+  align-items: center;
+  align-content: center;
+  min-height: calc(100dvh - 11rem);
 }
 
 .home-text {
@@ -264,6 +282,8 @@ a {
 .home-visual {
   position: relative;
   container-type: inline-size;
+  /* sobe um pouco a foto em relacao ao centro do texto */
+  transform: translateY(-2.25rem);
 }
 
 .home-photo {
@@ -286,16 +306,72 @@ a {
   }
 }
 
+/* links externos no mesmo formato de caminho do menu, com seta e contorno para parecerem clicaveis */
 .home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   margin: 2rem 0 0;
   padding: 0;
   list-style: none;
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
 }
 
-.home-links li {
-  margin-bottom: 0.35rem;
+.home-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  border-radius: 999px;
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.home-links a:hover,
+.home-links a:focus-visible {
+  transform: translateY(-2px);
+  background: var(--surface);
+  border-color: var(--primary);
+}
+
+/* o endereco do e-mail aparece abaixo do botao ao passar o mouse, sem mover o resto da pagina */
+.link-reveal {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.home-links a:hover .link-reveal,
+.home-links a:focus-visible .link-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.link-arrow {
+  display: inline-block;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.home-links a:hover .link-arrow,
+.home-links a:focus-visible .link-arrow {
+  transform: translate(2px, -2px);
 }
 
 @media (max-width: 700px) {
@@ -307,6 +383,7 @@ a {
     order: -1;
     width: min(100%, 14rem);
     margin: 0 auto;
+    transform: none;
   }
 }
 
