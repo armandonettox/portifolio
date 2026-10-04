@@ -21,7 +21,3 @@ def list_posts() -> list[dict]:
 
 def get_post(slug: str) -> dict | None:
     return next((p for p in list_posts() if p["slug"] == slug), None)
-
-
-def list_projects() -> list[dict]:
-    return _load("projects")

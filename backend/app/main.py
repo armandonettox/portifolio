@@ -1,6 +1,7 @@
+import httpx
 from fastapi import FastAPI, HTTPException
 
-from app import content
+from app import content, github
 
 app = FastAPI(title="portfolio-api")
 
@@ -26,4 +27,7 @@ def post(slug: str) -> dict:
 
 @app.get("/api/projects")
 def projects() -> list[dict]:
-    return content.list_projects()
+    try:
+        return github.list_projects()
+    except httpx.HTTPError:
+        raise HTTPException(status_code=503, detail="nao foi possivel consultar o github agora")
