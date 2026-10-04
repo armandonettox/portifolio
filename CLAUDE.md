@@ -2,122 +2,97 @@
 
 ## O que e este projeto
 
-Portfolio pessoal publicado em armandonetto.com.
-Visual minimalista inspirado no site de Dario Amodei (darioamodei.com), construido em cima do
-chrome nativo do Material for MkDocs (cabecalho, abas, sidebar, busca) em vez de tentar imitar
-um SPA escondendo o tema — tentativa anterior de esconder o chrome foi revertida por nao agradar.
-Migrado de HTML/CSS/JS puro para MkDocs em 2026.
+Portfolio pessoal publicado em armandonetto.com. Backend em Python (FastAPI) e frontend em
+React com TypeScript (Vite). A primeira versao era em MkDocs (Material); foi removida em
+out/2026 e continua no historico do git (commit `00ae06a` e anteriores).
 
-E tambem a unica fonte de documentacao dos meus projetos: cada projeto (soundblend, verbo, etc.)
-tem sua documentacao completa aqui, em `docs/projetos/<slug>/`. O README de cada projeto so
-descreve objetivamente o que ele faz e linka pra ca — nao duplica a documentacao.
+Paginas: inicio (apresentacao, foto, links), projetos (repositorios publicos do GitHub, com busca
+e filtros) e blog (posts como discussoes do GitHub, com comentarios pelo giscus).
 
-**Em migracao (out/2026):** o site novo (`backend/` FastAPI + `frontend/` React/TypeScript) vive
-na mesma pasta e o MkDocs so sai do ar quando o novo estiver pronto. No site novo a regra muda:
-a documentacao tecnica de cada projeto fica no `docs/` do proprio repositorio do projeto, e o
-portfolio tem so uma pagina de apresentacao curta (`backend/content/projects/<slug>.md`).
-Motivo: a doc muda junto com o codigo e o portfolio nao precisa manter um motor de documentacao.
+A documentacao tecnica de cada projeto fica no repositorio do proprio projeto. O portfolio so
+apresenta (a pagina de projetos vem do GitHub, sem texto escrito aqui).
 
 ## Stack
 
-- MkDocs + Material for MkDocs (chrome nativo, paleta e tipografia customizadas via CSS override)
-- Plugin `blog` do Material para o blog (`docs/blog/posts/`)
-- GitHub Pages + GitHub Actions (deploy automatico a cada push em main)
-- Fonte: Newsreader (Google Fonts)
-- Cloudflare DNS para dominio customizado
+- Backend: FastAPI, httpx, pytest (`backend/`)
+- Frontend: React 19, TypeScript, Vite, react-router, react-markdown, oxlint (`frontend/`)
+- Fontes: Newsreader (texto) e Inter (rotulos), pelo pacote `@fontsource-variable`
+- Container: Dockerfile em duas etapas (compila o frontend, o backend serve tudo)
+- Imagem: GitHub Actions compila para ARM64 e publica em `ghcr.io/armandonettox/portfolio`
+- Servidor: VM pessoal da Oracle (Ubuntu, ARM64), Podman (quadlet) atras do nginx e do Cloudflare
+- Comentarios: giscus, ligado ao repositorio `armandonettox/blog`
 
 ## Arquitetura
 
-Site estatico gerado pelo MkDocs a partir de arquivos Markdown em `docs/`.
-Conteudo manual — sem integracao com API do GitHub.
-
-Estrutura principal:
-- `docs/index.md` — home (so a bio; sem chrome customizado, usa o template padrao do Material)
-- `docs/projetos/index.md` — lista de projetos com link pra cada um
-- `docs/projetos/<slug>/` — documentacao completa de cada projeto (uma pasta por projeto,
-  estrutura tipica: `index.md` + `getting-started/` + `reference/`, ver `/nova-pagina-projeto`)
-- `docs/blog/posts/*.md` — posts do blog (plugin `blog` gera o index automaticamente)
-- `docs/index.md` — hero com foto e bio ao lado, pilulas de contato (e-mail, LinkedIn, GitHub)
-  logo abaixo da foto; unica pagina pessoal restante (`hide: navigation` no front matter)
-- `docs/stylesheets/extra.css` — paleta an-light/an-dark (conjunto completo de variaveis `--md-*`,
-  nao so as principais — variaveis derivadas como `--md-typeset-color` "congelam" se so as
-  variaveis base forem sobrescritas), componentes `pf-*` (bio, listas, skills)
-- `docs/javascripts/extra.js` — JS das paginas (saudacao da home por horario), registrado via
-  `extra_javascript`; usa `document$` do Material porque com `navigation.instant` o
-  `DOMContentLoaded` so dispara no primeiro carregamento
-- `overrides/main.html` — extrahead com fonte Newsreader, Open Graph com `assets/og-image.png`
-  (imagem social dedicada 1200x630), remove o footer padrao do Material,
-  fixa o `<title>` da aba em "Armando Netto" pra toda pagina (bloco `htmltitle`)
-- `mkdocs.yml` — tema, palette, nav plano na pagina pessoal (Início, unica aba com
-  `hide: navigation` no front matter), sidebar so em Projetos e Blog, plugins, extensoes markdown
-- `.github/workflows/deploy.yml` — build (`mkdocs build --strict`) e deploy automatico
-
-## Paleta de cores e chrome
-
-Esquemas custom `an-light` e `an-dark` no `extra.css`, com o conjunto completo de variaveis do
-Material (nao so `--md-default-fg-color`/`--md-default-bg-color`) para evitar variaveis derivadas
-congeladas no valor errado.
-
-```css
-/* an-light */
---md-default-bg-color: #f0eee6;
---md-default-fg-color: #1f1e1d;
---md-accent-fg-color:  #4a67b5;
---md-primary-fg-color: #4a67b5;   /* fundo do cabecalho/abas, mesmo tom nos dois modos */
---md-primary-bg-color: #ffffff;   /* texto do cabecalho/abas */
---md-typeset-color:    #4a67b5;   /* corpo do texto */
-
-/* an-dark */
---md-default-bg-color: #1f1e1d;
---md-default-fg-color: #f0eee6;
---md-accent-fg-color:  #6b85c4;
---md-primary-fg-color: #4a67b5;
---md-primary-bg-color: #ffffff;
---md-typeset-color:    #6b85c4;
+```
+backend/app/main.py         rotas da API, sitemap e entrega do site compilado
+backend/app/github.py       projetos publicos do GitHub (cache de 1 hora, lista de escondidos)
+backend/app/discussions.py  posts das discussoes do GitHub (cache de 10 minutos)
+backend/app/seo.py          titulo, meta tags e dados estruturados de cada pagina
+backend/content/            github.json (repos escondidos) e blog.json (ids do repo e da categoria)
+frontend/src/pages/         Home, Projects, Posts, PostPage (cada uma com seu CSS quando precisa)
+frontend/src/components/    AnimatedName, TechFloat, SiteNav, ThemeToggle, Comments, TagList
+frontend/src/index.css      paleta, tema claro/escuro (data-theme) e estilos globais
 ```
 
-Logo (`assets/logo.png`), favicon (`assets/favicon.png`) e og-image (`assets/og-image.png`)
-sao gerados a partir das artes em `assets/logo-*.{png,jpeg}` (fora de `docs/`, sao os
-arquivos-fonte de design). Logo e favicon ficam redimensionados pro tamanho de uso
-(128px) pra nao pesar no carregamento.
+Pontos que nao sao obvios:
+- O backend escreve as meta tags de cada pagina no `index.html` (marcador
+  `<meta name="seo-head">`), porque o LinkedIn e o Google nao executam JavaScript.
+- Posts: so viram post as discussoes da categoria Posts escritas pelo dono do repo. A primeira
+  linha pode ser `<!-- data: AAAA-MM-DD -->` para mostrar uma data original (o GitHub nao deixa
+  mudar a data de criacao). O GitHub nao mostra comentarios HTML.
+- O backend precisa de `GITHUB_TOKEN` (leitura de repositorios publicos) para listar discussoes,
+  porque a API GraphQL exige autenticacao. No servidor ele fica em um arquivo de variaveis fora do
+  git e fora da imagem. Sem ele, os projetos funcionam e os posts respondem 503.
+- Arquivo que nao existe (robots.txt, imagem...) responde 404 de verdade; so rota sem extensao
+  cai no `index.html` do React Router.
 
-## Dark mode
+## Paleta e visual
 
-Gerenciado nativamente pelo Material for MkDocs (bloco `palette:` no mkdocs.yml).
-Toggle no cabecalho; persistencia automatica em localStorage (chave `__palette`).
-Sem JS proprio para dark mode.
+Navy como cor de destaque, nunca verde (decisao do usuario em out/2026).
 
-## Controle de conteudo
+| Papel | Claro | Escuro |
+|-------|-------|--------|
+| Fundo | `#f8f9fa` | `#111111` |
+| Superficie | `#ffffff` | `#0f1a2e` |
+| Texto | `#171717` | `#f1f5f9` |
+| Apagado | `#6b7280` | `#94a3b8` |
+| Borda | `#d9e2ec` | `#1f3358` |
+| Destaque | `#1e3a6b` | `#8fb0e8` |
 
-Todo o conteudo e manual:
-- Projetos: usar a skill `/nova-pagina-projeto` — cria a pasta em `docs/projetos/<slug>/`,
-  atualiza o `nav:` do `mkdocs.yml` e a lista em `docs/projetos/index.md`
-- Blog: novo arquivo em `docs/blog/posts/`, front matter com `date:` e `categories:`.
-  Categorias permitidas (enforced via `categories_allowed` no mkdocs.yml): Projetos,
-  Workflow, Bastidores — o build quebra se um post usar categoria fora dessa lista
-- Empregador: grafia oficial e "Best Senior" em todas as paginas e metadados
-- Bio da home e pilulas de contato (e-mail, LinkedIn, GitHub): `docs/index.md` (HTML embutido
-  com classes `pf-*` pra manter a estetica)
+Logos de tecnologias (Python, TypeScript, PostgreSQL) mantem as cores oficiais de marca.
+Visual editorial, sem cara de template: serifa no texto, monoespacada nos caminhos do menu e
+nos rotulos, sem gradientes nem emojis.
 
-## Deploy
+## Conteudo publico
 
-- GitHub Actions: push em `main` dispara `deploy.yml`, que instala `requirements.txt`, roda
-  `mkdocs build --strict` e publica o conteudo de `site/`
-- Passo unico de configuracao: Settings > Pages > Source > GitHub Actions
-- `docs/CNAME` contem `armandonetto.com` e e copiado para `site/CNAME` pelo MkDocs automaticamente
+- A home nao cita empregador nem cargo de lideranca (decisao do usuario). Isso inclui os dados
+  estruturados (`seo.py`): sem `worksFor`.
+- Texto dos posts e da home e do usuario: nao reescrever sem pedir, e sem travessoes nem frases de
+  efeito.
+
+## Publicacao
+
+- Push em `main` que mexe em `backend/`, `frontend/` ou `Dockerfile` dispara
+  `.github/workflows/publish-image.yml`, que publica a imagem.
+- A VM nao atualiza sozinha: baixar a imagem e reiniciar `portfolio.service` (so esse servico).
+  O nginx do servidor tambem serve o Hera e o Hermes; sempre rodar `nginx -t` antes de recarregar.
+- A origem exige o certificado do Cloudflare (acesso direto ao IP responde 400, como no Hera).
+- O Cloudflare guarda arquivos estaticos por 4 horas: depois de mudar um arquivo estatico, limpar
+  o cache dele no painel.
+- Push usa a conta pessoal `armandonettox`; a conta ativa do `gh` neste notebook e a da empresa.
 
 ## Skills disponiveis
 
-Use digitando `/nome` no Claude Code:
+Use digitando `/nome` no Claude Code (arquivos em `.claude/commands/`):
 
 | Comando | O que faz |
 |---------|-----------|
-| `/nova-pagina-projeto` | Cria a documentacao de um projeto em `docs/projetos/<slug>/` |
 | `/revisar-arquitetura` | Analisa a arquitetura do projeto inteiro ou de um arquivo especifico |
 | `/revisar-bugs` | Varre o projeto em busca de bugs e comportamentos inesperados |
 | `/revisar-morto` | Identifica codigo, variaveis, funcoes e arquivos que nao sao mais usados |
 
-Os arquivos de cada skill estao em `.claude/commands/`.
+`/nova-pagina-projeto` ainda existe em `.claude/commands/`, mas e do MkDocs e nao serve mais.
 
 ## Comentarios no codigo
 
@@ -127,8 +102,8 @@ Os arquivos de cada skill estao em `.claude/commands/`.
 ## Commits
 
 Formato obrigatorio: tipo(escopo): descricao
-Exemplos: feat(projetos): adiciona pagina do netto-bot
-          fix(css): corrige cor dos links no dark mode
+Exemplos: feat(frontend): adiciona busca na pagina de projetos
+          fix(backend): aceita HEAD e responde 404 para arquivos inexistentes
 
 Apos qualquer alteracao em arquivos, sugerir o commit diretamente sem perguntar antes.
 
