@@ -1,18 +1,17 @@
 import httpx
 from fastapi import FastAPI, HTTPException
 
-from app import content, discussions, github
+from app import discussions, github
 
 app = FastAPI(title="portfolio-api")
 
 
 def all_posts() -> list[dict]:
-    """Posts das discussoes do GitHub; se nao houver, usa os arquivos markdown do repositorio."""
+    """Posts vindos das discussoes do GitHub; sem resposta, a API devolve 503."""
     try:
-        posts = discussions.list_posts()
+        return discussions.list_posts()
     except (httpx.HTTPError, discussions.DiscussionsUnavailable):
-        posts = []
-    return posts or content.list_posts()
+        raise HTTPException(status_code=503, detail="nao foi possivel carregar os posts agora")
 
 
 @app.get("/api/health")

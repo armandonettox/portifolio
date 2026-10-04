@@ -83,13 +83,14 @@ def test_sem_token_levanta_indisponivel(monkeypatch):
         discussions.list_posts()
 
 
-def test_api_usa_markdown_quando_discussoes_indisponiveis(monkeypatch):
+def test_api_responde_503_quando_discussoes_indisponiveis(monkeypatch):
     def fora():
         raise discussions.DiscussionsUnavailable("sem token")
 
     monkeypatch.setattr(discussions, "list_posts", fora)
-    data = TestClient(app).get("/api/posts").json()
-    assert data and "body" not in data[0]
+    client = TestClient(app)
+    assert client.get("/api/posts").status_code == 503
+    assert client.get("/api/posts/qualquer").status_code == 503
 
 
 def test_api_usa_discussoes_quando_disponiveis(monkeypatch):
