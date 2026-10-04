@@ -20,8 +20,10 @@ COPY backend/app ./app
 COPY backend/content ./content
 COPY --from=frontend /frontend/dist ./static
 
-# o container nao roda como root
-RUN useradd --system --no-create-home app
+# o container nao roda como root; a pasta de cache guarda a ultima lista boa de projetos e posts
+# (no servidor ela fica em um volume, para sobreviver aos reinicios)
+RUN useradd --system --no-create-home app && mkdir -p /app/cache && chown app /app/cache
+ENV CACHE_DIR=/app/cache
 USER app
 
 EXPOSE 8000

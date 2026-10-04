@@ -13,7 +13,8 @@ O timer roda a cada 5 minutos e o script baixa `ghcr.io/armandonettox/portfolio:
 for diferente da atual, reinicia so o `portfolio.service`, espera `/api/health` responder e, se a
 versao nova nao ficar saudavel, volta para a anterior. Ele nao toca em nenhum outro container.
 
-Instalar: copiar os arquivos, criar `~/portfolio.env` (modo 600, com `GITHUB_TOKEN`), depois
+Instalar: copiar os arquivos, criar `~/portfolio.env` (modo 600, com `GITHUB_TOKEN`) e a pasta
+`~/portfolio-data` (cache em disco), depois
 `systemctl --user daemon-reload` e `systemctl --user enable --now portfolio-refresh.timer`.
 O usuario precisa de linger ligado (`loginctl enable-linger`).
 

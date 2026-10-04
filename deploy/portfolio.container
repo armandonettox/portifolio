@@ -10,6 +10,8 @@ ContainerName=portfolio
 PublishPort=127.0.0.1:8006:8000
 # GITHUB_TOKEN (leitura) fica neste arquivo, fora da imagem e fora do git
 EnvironmentFile=/home/ubuntu/portfolio.env
+# ultima lista boa de projetos e posts, guardada no servidor para sobreviver aos reinicios
+Volume=/home/ubuntu/portfolio-data:/app/cache:U
 
 [Service]
 Restart=always
