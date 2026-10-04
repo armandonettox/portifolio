@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import { useParams } from 'react-router-dom'
 import { api, type Post } from '../api'
+import Comments from '../components/Comments'
+import { formatDate } from '../format'
 
 export default function PostPage() {
   const { slug = '' } = useParams()
@@ -16,8 +18,9 @@ export default function PostPage() {
   return (
     <>
       <h1>{post.title}</h1>
-      <p className="meta">{post.date}</p>
+      <p className="meta">{formatDate(post.date)}</p>
       <Markdown>{post.body}</Markdown>
+      {post.number !== undefined && <Comments number={post.number} />}
     </>
   )
 }
