@@ -73,3 +73,18 @@ def test_com_github_fora_devolve_a_ultima_resposta(monkeypatch):
     github._cache["data"] = [{"name": "guardado"}]
     monkeypatch.setattr(github, "_fetch_repos", fora_do_ar)
     assert github.list_projects() == [{"name": "guardado"}]
+
+
+def test_lista_vazia_do_github_nao_fica_em_cache(monkeypatch):
+    respostas = [[], [repo("x", "2026-01-01T00:00:00Z")]]
+    monkeypatch.setattr(github, "_fetch_repos", lambda user: respostas.pop(0))
+    assert github.list_projects() == []
+    # a proxima consulta nao fica presa no vazio da anterior
+    assert [p["name"] for p in github.list_projects()] == ["x"]
+
+
+def test_lista_vazia_nao_substitui_uma_lista_boa_vencida(monkeypatch):
+    github._cache["at"] = 0.0
+    github._cache["data"] = [{"name": "guardado"}]
+    monkeypatch.setattr(github, "_fetch_repos", lambda user: [])
+    assert github.list_projects() == [{"name": "guardado"}]

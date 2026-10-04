@@ -1,9 +1,10 @@
 import json
 import os
-import time
 from pathlib import Path
 
 import httpx
+
+from app import cache
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "content" / "github.json"
 API_URL = "https://api.github.com/users/{user}/repos"
@@ -71,19 +72,11 @@ def build_projects(repos: list[dict], config: dict) -> list[dict]:
 
 
 def list_projects() -> list[dict]:
-    now = time.time()
-    if _cache["data"] is not None and now - _cache["at"] < CACHE_SECONDS:
-        return _cache["data"]
-
     config = load_config()
-    try:
-        data = build_projects(_fetch_repos(config["user"]), config)
-    except httpx.HTTPError:
-        # se o GitHub falhar, uma resposta antiga e melhor que nenhuma
-        if _cache["data"] is not None:
-            return _cache["data"]
-        raise
-
-    _cache["at"] = now
-    _cache["data"] = data
-    return data
+    # a ultima lista boa fica em memoria e em disco; se o GitHub falhar, ela continua valendo
+    return cache.get(
+        _cache,
+        "projects",
+        CACHE_SECONDS,
+        lambda: build_projects(_fetch_repos(config["user"]), config),
+    )

@@ -1,4 +1,6 @@
 import os
+import threading
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import httpx
@@ -7,7 +9,22 @@ from fastapi.responses import FileResponse, HTMLResponse, Response
 
 from app import discussions, github, seo
 
-app = FastAPI(title="portfolio-api")
+def warm_cache() -> None:
+    """Ao iniciar: carrega a ultima lista boa do disco e tenta atualizar, sem travar a subida."""
+    for load in (github.list_projects, discussions.list_posts):
+        try:
+            load()
+        except Exception:  # GitHub fora do ar na subida: o site sobe igual, com o que houver em disco
+            pass
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    threading.Thread(target=warm_cache, daemon=True).start()
+    yield
+
+
+app = FastAPI(title="portfolio-api", lifespan=lifespan)
 
 
 def all_posts() -> list[dict]:

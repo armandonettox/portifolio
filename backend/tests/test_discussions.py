@@ -125,3 +125,10 @@ def test_erro_de_rede_sem_cache_levanta(monkeypatch):
     monkeypatch.setattr(discussions, "_fetch_nodes", rede)
     with pytest.raises(httpx.HTTPError):
         discussions.list_posts()
+
+
+def test_resposta_vazia_nao_apaga_os_posts_ja_conhecidos(monkeypatch):
+    discussions._cache["at"] = 0.0
+    discussions._cache["data"] = [{"number": 1, "slug": "1-x"}]
+    monkeypatch.setattr(discussions, "_fetch_nodes", lambda config: [])
+    assert discussions.list_posts() == [{"number": 1, "slug": "1-x"}]

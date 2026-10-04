@@ -34,3 +34,6 @@ agents.md
 CLAUDE.md
 AGENTS.md
 .claude
+
+# cache em disco da ultima lista boa de projetos e posts (gerado em execucao)
+backend/cache/

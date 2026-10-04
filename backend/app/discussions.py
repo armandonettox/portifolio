@@ -1,12 +1,13 @@
 import json
 import os
 import re
-import time
 import unicodedata
 from datetime import date
 from pathlib import Path
 
 import httpx
+
+from app import cache
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "content" / "blog.json"
 GRAPHQL_URL = "https://api.github.com/graphql"
@@ -142,21 +143,11 @@ def _fetch_nodes(config: dict) -> list[dict]:
 
 
 def list_posts() -> list[dict]:
-    now = time.time()
-    if _cache["data"] is not None and now - _cache["at"] < CACHE_SECONDS:
-        return _cache["data"]
-
     config = load_config()
-    try:
-        data = build_posts(_fetch_nodes(config), config["owner"])
-    except (httpx.HTTPError, DiscussionsUnavailable):
-        # com o GitHub fora do ar, uma resposta antiga e melhor que nenhuma
-        if _cache["data"] is not None:
-            return _cache["data"]
-        raise
-
-    # resultado vazio nao fica em cache: assim o primeiro post publicado aparece na hora
-    if data:
-        _cache["at"] = now
-        _cache["data"] = data
-    return data
+    # a ultima lista boa fica em memoria e em disco; se o GitHub falhar, ela continua valendo
+    return cache.get(
+        _cache,
+        "posts",
+        CACHE_SECONDS,
+        lambda: build_posts(_fetch_nodes(config), config["owner"]),
+    )
