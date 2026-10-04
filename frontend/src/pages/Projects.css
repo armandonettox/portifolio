@@ -96,14 +96,52 @@
   font-size: 0.8rem;
 }
 
+/* botao em pilula, igual aos filtros, que aparece com fade quando existe algum filtro ativo */
 .finder-clear {
-  padding: 0;
-  border: 0;
-  background: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.8rem 0.25rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  border-radius: 999px;
+  background: transparent;
   color: var(--primary);
   font: inherit;
-  text-decoration: underline;
   cursor: pointer;
+  animation: finder-clear-in 0.25s ease both;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.finder-clear svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  transition: transform 0.25s ease;
+}
+
+.finder-clear:hover,
+.finder-clear:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.finder-clear:hover svg,
+.finder-clear:focus-visible svg {
+  transform: rotate(90deg);
+}
+
+.finder-clear:active {
+  transform: scale(0.96);
+}
+
+@keyframes finder-clear-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
 }
 
 @media (max-width: 560px) {
@@ -114,7 +152,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .finder input,
-  .finder select {
+  .finder select,
+  .finder-clear,
+  .finder-clear svg {
     transition: none;
+  }
+
+  .finder-clear {
+    animation: none;
   }
 }
