@@ -3,9 +3,9 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse, Response
 
-from app import discussions, github
+from app import discussions, github, seo
 
 app = FastAPI(title="portfolio-api")
 
@@ -57,6 +57,19 @@ def projects() -> list[dict]:
         raise HTTPException(status_code=503, detail="nao foi possivel consultar o github agora")
 
 
+def posts_or_empty() -> list[dict]:
+    """Para meta tags e sitemap: se o GitHub falhar, a pagina sai sem os dados dos posts."""
+    try:
+        return discussions.list_posts()
+    except (httpx.HTTPError, discussions.DiscussionsUnavailable):
+        return []
+
+
+@app.api_route("/sitemap.xml", methods=["GET", "HEAD"], include_in_schema=False)
+def sitemap() -> Response:
+    return Response(seo.sitemap(posts_or_empty()), media_type="application/xml")
+
+
 # Site compilado (React). Em desenvolvimento a pasta nao existe e o Vite serve o frontend.
 STATIC_DIR = Path(os.environ.get("STATIC_DIR", Path(__file__).resolve().parent.parent / "static"))
 
@@ -77,5 +90,8 @@ def site(path: str):
     # e nao a pagina inicial com status 200, que confunde buscadores e navegadores
     if "." in path.rsplit("/", 1)[-1]:
         raise HTTPException(status_code=404, detail="arquivo nao encontrado")
-    # qualquer outra rota e do React Router: entrega o index.html
-    return FileResponse(root / "index.html")
+    # qualquer outra rota e do React Router: entrega o index.html com as meta tags da pagina,
+    # porque o LinkedIn e os buscadores montam a previa sem executar JavaScript
+    index = (root / "index.html").read_text(encoding="utf-8")
+    posts = posts_or_empty() if path.strip("/").startswith("blog/") else []
+    return HTMLResponse(seo.render_index(index, path, posts))

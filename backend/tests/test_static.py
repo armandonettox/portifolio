@@ -48,7 +48,7 @@ def test_head_funciona_no_site_e_na_api(tmp_path, monkeypatch):
 
 def test_arquivo_inexistente_da_404_e_nao_a_pagina_inicial(tmp_path, monkeypatch):
     client = site_falso(tmp_path, monkeypatch)
-    for caminho in ("/robots.txt", "/sitemap.xml", "/favicon.ico", "/assets/nada.js"):
+    for caminho in ("/robots.txt", "/favicon.ico", "/assets/nada.js"):
         assert client.get(caminho).status_code == 404
 
 
