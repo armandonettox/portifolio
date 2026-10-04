@@ -37,3 +37,22 @@ def test_nao_sai_da_pasta_do_site(tmp_path, monkeypatch):
 def test_sem_pasta_do_site_retorna_404(tmp_path, monkeypatch):
     monkeypatch.setattr(main, "STATIC_DIR", tmp_path / "nao-existe")
     assert TestClient(main.app).get("/").status_code == 404
+
+
+def test_head_funciona_no_site_e_na_api(tmp_path, monkeypatch):
+    client = site_falso(tmp_path, monkeypatch)
+    assert client.head("/").status_code == 200
+    assert client.head("/blog/algum-post").status_code == 200
+    assert client.head("/api/health").status_code == 200
+
+
+def test_arquivo_inexistente_da_404_e_nao_a_pagina_inicial(tmp_path, monkeypatch):
+    client = site_falso(tmp_path, monkeypatch)
+    for caminho in ("/robots.txt", "/sitemap.xml", "/favicon.ico", "/assets/nada.js"):
+        assert client.get(caminho).status_code == 404
+
+
+def test_robots_existente_e_servido(tmp_path, monkeypatch):
+    client = site_falso(tmp_path, monkeypatch)
+    (tmp_path / "robots.txt").write_text("User-agent: *", encoding="utf-8")
+    assert client.get("/robots.txt").text == "User-agent: *"

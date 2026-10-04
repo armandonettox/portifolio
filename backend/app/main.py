@@ -18,7 +18,7 @@ def all_posts() -> list[dict]:
         raise HTTPException(status_code=503, detail="nao foi possivel carregar os posts agora")
 
 
-@app.get("/api/health")
+@app.api_route("/api/health", methods=["GET", "HEAD"])
 def health() -> dict:
     return {"status": "ok"}
 
@@ -61,7 +61,7 @@ def projects() -> list[dict]:
 STATIC_DIR = Path(os.environ.get("STATIC_DIR", Path(__file__).resolve().parent.parent / "static"))
 
 
-@app.get("/{path:path}", include_in_schema=False)
+@app.api_route("/{path:path}", methods=["GET", "HEAD"], include_in_schema=False)
 def site(path: str):
     if not STATIC_DIR.is_dir():
         raise HTTPException(status_code=404, detail="frontend nao encontrado")
@@ -73,5 +73,9 @@ def site(path: str):
     # so serve arquivo que esteja de fato dentro da pasta do site (evita ../ no endereco)
     if path and target.is_file() and target.is_relative_to(root):
         return FileResponse(target)
+    # pedido de arquivo que nao existe (robots.txt, sitemap.xml, imagem...) deve dar 404 de verdade,
+    # e nao a pagina inicial com status 200, que confunde buscadores e navegadores
+    if "." in path.rsplit("/", 1)[-1]:
+        raise HTTPException(status_code=404, detail="arquivo nao encontrado")
     # qualquer outra rota e do React Router: entrega o index.html
     return FileResponse(root / "index.html")
