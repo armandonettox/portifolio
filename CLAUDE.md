@@ -12,6 +12,12 @@ E tambem a unica fonte de documentacao dos meus projetos: cada projeto (soundble
 tem sua documentacao completa aqui, em `docs/projetos/<slug>/`. O README de cada projeto so
 descreve objetivamente o que ele faz e linka pra ca — nao duplica a documentacao.
 
+**Em migracao (out/2026):** o site novo (`backend/` FastAPI + `frontend/` React/TypeScript) vive
+na mesma pasta e o MkDocs so sai do ar quando o novo estiver pronto. No site novo a regra muda:
+a documentacao tecnica de cada projeto fica no `docs/` do proprio repositorio do projeto, e o
+portfolio tem so uma pagina de apresentacao curta (`backend/content/projects/<slug>.md`).
+Motivo: a doc muda junto com o codigo e o portfolio nao precisa manter um motor de documentacao.
+
 ## Stack
 
 - MkDocs + Material for MkDocs (chrome nativo, paleta e tipografia customizadas via CSS override)
